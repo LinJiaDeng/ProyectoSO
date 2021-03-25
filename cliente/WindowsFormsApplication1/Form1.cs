@@ -19,31 +19,7 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void Conectar_Click(object sender, EventArgs e)
-        {
-            //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
-            //al que deseamos conectarnos
-            IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9200);
-            
-
-            //Creamos el socket 
-            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            try
-            {
-                server.Connect(ipep);//Intentamos conectar el socket
-                this.BackColor = Color.Green;
-                MessageBox.Show("Conectado");
-
-            }
-            catch (SocketException ex)
-            {
-                //Si hay excepcion imprimimos error y salimos del programa con return 
-                MessageBox.Show("No he podido conectar con el servidor");
-                return;
-            }
-
-        }
+        
 
         private void Enviar_Click(object sender, EventArgs e)
         {
@@ -57,11 +33,11 @@ namespace WindowsFormsApplication1
                 //Recibimos la respuesta del servidor
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split ('\0')[0];
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
                 MessageBox.Show(mensaje);
             }
             else if (iniciarsesion.Checked)
-                {
+            {
                 string mensaje = "2/" + nombre.Text + "/" + contraseña.Text;
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
@@ -70,12 +46,12 @@ namespace WindowsFormsApplication1
                 //Recibimos la respuesta del servidor
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split ('\0')[0];
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
                 MessageBox.Show(mensaje);
             }
             else if (PuntuacionRonda.Checked)
             {
-                string mensaje = "2/" + nombre.Text;
+                string mensaje = "3/";
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
@@ -84,18 +60,12 @@ namespace WindowsFormsApplication1
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-
-
-                if (mensaje == "SI")
-                    MessageBox.Show("Tu nombre ES bonito.");
-                else
-                    MessageBox.Show("Tu nombre NO bonito. Lo siento.");
+                MessageBox.Show(nombre.Text + " tiene " + mensaje + " puntos");
 
             }
-            else
+            else if (NumeroCartasMano.Checked)
             {
-                // Enviamos nombre y altura
-                string mensaje = "3/" + nombre.Text + "/" + contraseña.Text;
+                string mensaje = "4/";
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
@@ -104,12 +74,22 @@ namespace WindowsFormsApplication1
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(mensaje);
+                MessageBox.Show(nombre.Text + " tiene " + mensaje + " cartas");
             }
-             
-        
-        }
+            else if (puntuaciontotal.Checked)
+            {
+                string mensaje = "5/";
+                // Enviamos al servidor el nombre tecleado
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
 
+                //Recibimos la respuesta del servidor
+                byte[] msg2 = new byte[80];
+                server.Receive(msg2);
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                MessageBox.Show(nombre.Text + " tiene " + mensaje + " puntos");
+            }
+        }
         private void desconectar_Click(object sender, EventArgs e)
         {
             //Mensaje de desconexión
@@ -123,6 +103,35 @@ namespace WindowsFormsApplication1
             server.Shutdown(SocketShutdown.Both);
             server.Close();
 
+
+        }
+
+        private void Conectar_Click_1(object sender, EventArgs e)
+        {
+            
+                //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
+                //al que deseamos conectarnos
+                IPAddress direc = IPAddress.Parse("10.0.3.15");
+                IPEndPoint ipep = new IPEndPoint(direc, 9050);
+
+
+                //Creamos el socket 
+                server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                try
+                {
+                    server.Connect(ipep);//Intentamos conectar el socket
+                    this.BackColor = Color.Green;
+                    MessageBox.Show("Conectado");
+
+                }
+                catch (SocketException ex)
+                {
+                    //Si hay excepcion imprimimos error y salimos del programa con return 
+                    MessageBox.Show("No he podido conectar con el servidor");
+                    return;
+                
+
+            }
 
         }
     

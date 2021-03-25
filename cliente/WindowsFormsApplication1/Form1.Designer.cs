@@ -68,6 +68,7 @@
             this.Conectar.TabIndex = 4;
             this.Conectar.Text = "conectar";
             this.Conectar.UseVisualStyleBackColor = true;
+            this.Conectar.Click += new System.EventHandler(this.Conectar_Click_1);
             // 
             // enviar
             // 
