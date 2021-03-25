@@ -88,19 +88,5 @@ E:\Docencia\SO\VideosEjercciioGuia\Leccion1\Codigo\cliente_con_conexion_desconex
 E:\Docencia\SO\VideosEjercciioGuia\Leccion1\Codigo\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 E:\Docencia\SO\VideosEjercciioGuia\Leccion1\Codigo\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 E:\Docencia\SO\VideosEjercciioGuia\Leccion1\Codigo\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.Cache
-D:\.UNI TELECOS\SO\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
-D:\.UNI TELECOS\SO\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
-D:\.UNI TELECOS\SO\cliente_con_conexion_desconexion\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
-D:\.UNI TELECOS\SO\cliente_con_conexion_desconexion\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
-D:\.UNI TELECOS\SO\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\clienteForm.csprojResolveAssemblyReference.cache
-D:\.UNI TELECOS\SO\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
-D:\.UNI TELECOS\SO\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
-D:\.UNI TELECOS\SO\cliente_con_conexion_desconexion\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.Cache
-D:\share\Proyecto\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
-D:\share\Proyecto\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
-D:\share\Proyecto\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
-D:\share\Proyecto\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
-D:\share\Proyecto\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csprojResolveAssemblyReference.cache
-D:\share\Proyecto\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
-D:\share\Proyecto\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
-D:\share\Proyecto\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.Cache
+D:\.UNI TELECOS\SO\PROYECTO 1.1\Cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\.UNI TELECOS\SO\PROYECTO 1.1\Cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
