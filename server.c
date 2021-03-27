@@ -36,13 +36,17 @@ int main(int argc, char *argv[])
 		printf("Error en el Listen");
 	
 	int i;
-	// Atenderemos solo 7 peticione
+	
+	printf ("Escuchando\n");
+	
+	sock_conn = accept(sock_listen, NULL, NULL);
+	printf ("He recibido conexi?n\n");
+	//sock_conn es el socket que usaremos para este cliente
+	
+	
+	
+	
 	for(;;){
-		printf ("Escuchando\n");
-		
-		sock_conn = accept(sock_listen, NULL, NULL);
-		printf ("He recibido conexi?n\n");
-		//sock_conn es el socket que usaremos para este cliente
 		
 		// Ahora recibimos su nombre, que dejamos en buff
 		ret=read(sock_conn,peticion, sizeof(peticion));
@@ -56,23 +60,32 @@ int main(int argc, char *argv[])
 		
 		printf ("Se ha conectado: %s\n",peticion);
 		
-		
 		char *p = strtok( peticion, "/");
 		int codigo =  atoi (p);
-		p = strtok( NULL, "/");
 		char nombre[20];
-		strcpy (nombre, p);
-		printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
+		if(codigo!=0){
+			p = strtok( NULL, "/");
+			
+			strcpy (nombre, p);
+			printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
+		}
+		else
+		   codigo=0;
 		
 		switch (codigo)
 		{
-
+		case 0:
+			close(sock_conn);
+			printf("/n Ciao");
+			break;
 		case 1:
                 //Registrar un usuario
-			
-			error = Registrarse(nombre,respuesta);
+			p = strtok( NULL, "/");
+			char contrasena[20];
+			strcpy (contrasena, p);
+			error = Registrarse(nombre,contrasena);
 			write (sock_conn,respuesta, strlen(respuesta));
-			close(sock_conn); 
+			 
 				if (error != 0)
 					printf ("Ha ocurrido un error en el caso 1");
 		
@@ -81,7 +94,7 @@ int main(int argc, char *argv[])
 		case 2:
 			error = LogIn(nombre,respuesta);
 			write (sock_conn,respuesta, strlen(respuesta));
-			close(sock_conn); 
+			 
 				if (error != 0)
 					printf ("Ha ocurrido un error en el caso 2");
 
@@ -89,7 +102,7 @@ int main(int argc, char *argv[])
 		case 3:
 			error = PuntuacionRonda(nombre,respuesta);
 			write (sock_conn,respuesta, strlen(respuesta));
-			close(sock_conn); 
+			 
 				if (error != 0)
 					printf ("Ha ocurrido un error en el caso 3");
 
@@ -98,7 +111,7 @@ int main(int argc, char *argv[])
 		case 4:
 			error = NumeroCartasMano(nombre,respuesta);
 			write (sock_conn,respuesta, strlen(respuesta));
-			close(sock_conn); 
+			
 			if (error != 0)
 				printf ("Ha ocurrido un error en el caso 4");
 
@@ -106,14 +119,15 @@ int main(int argc, char *argv[])
 		case 5:
 			error = PuntuacionTotal(nombre,respuesta);
 			write (sock_conn,respuesta, strlen(respuesta));
-			close(sock_conn); 
+			
 			if (error != 0)
 				printf ("Ha ocurrido un error en el caso 5");
 			break;
 
 			
 		default:
-			// statements executed if expression does not equal
+			
+				// statements executed if expression does not equal
 			// any case constant_expression
 			break;
 		}
@@ -311,7 +325,7 @@ int PuntuacionTotal (char nombre[20], char resultado[80])
 		printf("Error. Ya hay alguien con ese nombre.");
 		exit (1);
 	}
-	sprintf(consulta, "INSERT INTO PLAYER VALUES (%d,'%s','%s',0);", i + 1, usuario, contrasena);
+	sprintf(consulta, "INSERT INTO PLAYER (ID,NAME,PASSWORD,GAMES_WON) VALUES ('%d','%s','%s','0');", i + 1, usuario, contrasena);
 	
 	printf("consulta = %s\n", consulta);
 	// Ahora ya podemos realizar la insercion 
@@ -322,8 +336,7 @@ int PuntuacionTotal (char nombre[20], char resultado[80])
 		exit (1);
 	}
 
-	// cerrar la conexion con el servidor MYSQL 
-	mysql_close (conn);
+	
 	return 0;
 	
 }
@@ -366,7 +379,7 @@ int LogIn(char usuario[20], char contrasena[20]) {
 		printf("Error. Los datos no coinciden.");
 		exit (1);
 	}
-	// cerrar la conexion con el servidor MYSQL 
-	mysql_close (conn);
+	
+	
 	return 0;
 }
