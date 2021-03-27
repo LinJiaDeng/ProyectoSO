@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// escucharemos en el port 9050
-	serv_adr.sin_port = htons(9050);
+	serv_adr.sin_port = htons(9070);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	//La cola de peticiones pendientes no podr? ser superior a 4
@@ -159,7 +159,7 @@ int PuntuacionRonda (char nombre[20], char resultado[80])
 	
 	if (row == NULL) {
 		sprintf (resultado,"No se han obtenido datos en la consulta\n");
-	// Y lo enviamos 
+	// Y lo enviamos
 	}
 	else
 		strcpy(resultado,row[0]);
@@ -210,7 +210,6 @@ int NumeroCartasMano(char nombre[20], char resultado[80])
 	row = mysql_fetch_row (resultado_c);
 	if (row == NULL){
 		sprintf (resultado,"No se han obtenido datos en la consulta\n");
-		// Y lo enviamos
 	}
 	else
 		sprintf(resultado,row[0]); 
@@ -257,7 +256,7 @@ int PuntuacionTotal (char nombre[20], char resultado[80])
 		sprintf (resultado,"No se han obtenido datos en la consulta\n");
 	}
 	else
-		strcpy(resultado,row[0]);
+		strcpy(resultado,row[0]); 
 	return 0;
 	
 }
