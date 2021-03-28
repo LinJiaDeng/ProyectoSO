@@ -2,9 +2,9 @@
 
 Versión 1:
 
-Manager Jiadeng Lin
-Verificador Pau Ruiz
-Comunicador Guillem Pacheco
+1. Manager Jiadeng Lin
+2. Verificador Pau Ruiz
+3. Comunicador Guillem Pacheco
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Para subir tu versión a GitHub: 
