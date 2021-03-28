@@ -1,7 +1,7 @@
 ﻿
 namespace WindowsFormsApplication1.Forms
 {
-    partial class IniciarSesion
+    partial class Registrarse
     {
         /// <summary>
         /// Required designer variable.
@@ -31,14 +31,14 @@ namespace WindowsFormsApplication1.Forms
         {
             this.SuspendLayout();
             // 
-            // IniciarSesion
+            // Registrarse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Crimson;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "IniciarSesion";
-            this.Text = "Iniciar Sesión";
+            this.Name = "Registrarse";
+            this.Text = "Registrarse";
             this.ResumeLayout(false);
 
         }

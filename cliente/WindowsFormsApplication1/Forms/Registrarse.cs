@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication1.Forms
 {
-    public partial class IniciarSesion : Form
+    public partial class Registrarse : Form
     {
-        public IniciarSesion()
+        public Registrarse()
         {
             InitializeComponent();
         }
