@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <mysql.h>
 
+
 int main(int argc, char *argv[])
 {
 	int sock_conn, sock_listen, ret;
@@ -28,7 +29,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// escucharemos en el port 9050
-	serv_adr.sin_port = htons(9070);
+	serv_adr.sin_port = htons(9080);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	//La cola de peticiones pendientes no podr? ser superior a 4
@@ -84,7 +85,7 @@ int main(int argc, char *argv[])
 			char contrasena[20];
 			strcpy (contrasena, p);
 			error = Registrarse(nombre,contrasena);
-			write (sock_conn,respuesta, strlen(respuesta));
+			write (sock_conn,nombre, strlen(nombre));
 			 
 				if (error != 0)
 					printf ("Ha ocurrido un error en el caso 1");
@@ -92,15 +93,22 @@ int main(int argc, char *argv[])
 			break;
 			
 		case 2:
-			error = LogIn(nombre,respuesta);
-			write (sock_conn,respuesta, strlen(respuesta));
+			p = strtok( NULL, "/");
+			
+			strcpy (contrasena, p);
+			error = LogIn(nombre,contrasena);
+			write (sock_conn,nombre,strlen(nombre));
 			 
 				if (error != 0)
 					printf ("Ha ocurrido un error en el caso 2");
 
 			break;
 		case 3:
-			error = PuntuacionRonda(nombre,respuesta);
+			
+			
+			error = PuntuacionRonda(nombre);
+			
+			
 			write (sock_conn,respuesta, strlen(respuesta));
 			 
 				if (error != 0)
@@ -159,7 +167,7 @@ int PuntuacionRonda (char nombre[20], char resultado[80])
 		exit (1);
 	}
 	
-	sprintf (consulta, "SELECT ROUND_SCORE.SCORE FROM (ROUND_SCORE,PLAYER) WHERE PLAYER.NAME = '%s' AND ROUND_SCORE.ID_P = PLAYER.ID;",nombre);
+	sprintf (consulta, "SELECT ROUND_SCORE.SCORE FROM (ROUND_SCORE,PLAYER) WHERE PLAYER.NAME = '%s' AND PLAYER.ID = ROUND_SCORE.ID_P ;",nombre);
 	
 	err=mysql_query (conn, consulta); 
 	if (err!=0) {

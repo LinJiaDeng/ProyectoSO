@@ -109,7 +109,7 @@ namespace WindowsFormsApplication1
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
             IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9070);
+            IPEndPoint ipep = new IPEndPoint(direc, 9080);
 
 
             //Creamos el socket 
@@ -187,16 +187,7 @@ namespace WindowsFormsApplication1
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            //Mensaje de desconexión
-            string mensaje = "0/";
-
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-
-            // Nos desconectamos
-            this.BackColor = Color.Gray;
-            server.Shutdown(SocketShutdown.Both);
-            server.Close();
+         
             Application.Exit();
         }
 
@@ -210,6 +201,16 @@ namespace WindowsFormsApplication1
 
         private void Minimize_Click(object sender, EventArgs e)
         {
+            //Mensaje de desconexión
+            string mensaje = "0/";
+
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            // Nos desconectamos
+            this.BackColor = Color.Gray;
+            server.Shutdown(SocketShutdown.Both);
+            server.Close();
             WindowState = FormWindowState.Minimized;
         }
 
@@ -230,7 +231,7 @@ namespace WindowsFormsApplication1
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(mensaje);
+                MessageBox.Show(mensaje + "se ha registrado correctamente");
             }
             else if (iniciarsesion.Checked)
             {
@@ -243,11 +244,11 @@ namespace WindowsFormsApplication1
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(mensaje);
+                MessageBox.Show(mensaje + " ha iniciado sesion correctamente");
             }
             else if (PuntuacionRonda.Checked)
             {
-                string mensaje = "3/";
+                string mensaje = "3/" + nombre.Text;
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);

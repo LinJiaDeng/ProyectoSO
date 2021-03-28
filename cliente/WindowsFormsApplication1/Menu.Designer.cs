@@ -51,7 +51,6 @@
             this.contrasena = new System.Windows.Forms.TextBox();
             this.NumeroCartasMano = new System.Windows.Forms.RadioButton();
             this.enviar = new System.Windows.Forms.Button();
-            this.desconectar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.PuntuacionRonda = new System.Windows.Forms.RadioButton();
             this.nombre = new System.Windows.Forms.TextBox();
@@ -335,7 +334,6 @@
             this.panelDesktop.Controls.Add(this.contrasena);
             this.panelDesktop.Controls.Add(this.NumeroCartasMano);
             this.panelDesktop.Controls.Add(this.enviar);
-            this.panelDesktop.Controls.Add(this.desconectar);
             this.panelDesktop.Controls.Add(this.label2);
             this.panelDesktop.Controls.Add(this.PuntuacionRonda);
             this.panelDesktop.Controls.Add(this.nombre);
@@ -419,18 +417,6 @@
             this.enviar.UseVisualStyleBackColor = true;
             this.enviar.Click += new System.EventHandler(this.enviar_Click);
             // 
-            // desconectar
-            // 
-            this.desconectar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.desconectar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.desconectar.Location = new System.Drawing.Point(734, 334);
-            this.desconectar.Name = "desconectar";
-            this.desconectar.Size = new System.Drawing.Size(130, 67);
-            this.desconectar.TabIndex = 22;
-            this.desconectar.Text = "desconectar";
-            this.desconectar.UseVisualStyleBackColor = true;
-            
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -504,7 +490,6 @@
         private System.Windows.Forms.TextBox contrasena;
         private System.Windows.Forms.RadioButton NumeroCartasMano;
         private System.Windows.Forms.Button enviar;
-        private System.Windows.Forms.Button desconectar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RadioButton PuntuacionRonda;
         private System.Windows.Forms.TextBox nombre;
