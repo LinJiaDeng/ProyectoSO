@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <mysql.h>
 
+
 int main(int argc, char *argv[])
 {
 	int sock_conn, sock_listen, ret;
