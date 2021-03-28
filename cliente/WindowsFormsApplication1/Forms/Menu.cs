@@ -104,7 +104,7 @@ namespace WindowsFormsApplication1
             //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
             //al que deseamos conectarnos
             IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9070);
+            IPEndPoint ipep = new IPEndPoint(direc, 9080);
 
 
             //Creamos el socket 
@@ -120,6 +120,7 @@ namespace WindowsFormsApplication1
             {
                 //Si hay excepcion imprimimos error y salimos del programa con return 
                 MessageBox.Show("No he podido conectar con el servidor");
+                Application.Exit();
                 return;
 
             }
@@ -166,7 +167,7 @@ namespace WindowsFormsApplication1
             leftBorderBtn.Visible = false;
             iconCurrentChildForm.IconChar = IconChar.Home;
             iconCurrentChildForm.IconColor = Color.White;
-            lblTitleChildForm.Text = "Home";
+            lblTitleChildForm.Text = "Inicio";
             lblTitleChildForm.ForeColor = Color.White;
         }
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -182,7 +183,6 @@ namespace WindowsFormsApplication1
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-         
             Application.Exit();
         }
 
@@ -196,22 +196,8 @@ namespace WindowsFormsApplication1
 
         private void Minimize_Click(object sender, EventArgs e)
         {
-            //Mensaje de desconexión
-            string mensaje = "0/";
-
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-
-            // Nos desconectamos
-            this.BackColor = Color.Gray;
-            server.Shutdown(SocketShutdown.Both);
-            server.Close();
             WindowState = FormWindowState.Minimized;
         }
-
-       
-
-        
 
         private void enviar_Click(object sender, EventArgs e)
         {
@@ -257,7 +243,7 @@ namespace WindowsFormsApplication1
             }
             else if (NumeroCartasMano.Checked)
             {
-                string mensaje = "4/";
+                string mensaje = "4/" + nombre.Text;
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
@@ -270,7 +256,7 @@ namespace WindowsFormsApplication1
             }
             else if (puntuaciontotal.Checked)
             {
-                string mensaje = "5/";
+                string mensaje = "5/" + nombre.Text;
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
@@ -281,6 +267,21 @@ namespace WindowsFormsApplication1
                 mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
                 MessageBox.Show(nombre.Text + " tiene " + mensaje + " puntos");
             }
+        }
+
+        private void btnDesconectar_Click(object sender, EventArgs e)
+        {
+            //Mensaje de desconexión
+            string mensaje = "0/";
+
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            // Nos desconectamos
+            this.BackColor = Color.Gray;
+            server.Shutdown(SocketShutdown.Both);
+            server.Close();
+            Application.Exit();
         }
     }
 }
