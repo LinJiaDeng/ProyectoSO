@@ -5,6 +5,7 @@ Versión 1:
 Manager Jiadeng Lin
 Verificador Pau Ruiz
 Comunicador Guillem Pacheco
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Para subir tu versión a GitHub: 
 
