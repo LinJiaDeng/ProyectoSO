@@ -7,6 +7,45 @@
 #include <stdio.h>
 #include <mysql.h>
 
+typedef struct{
+	char nombre[20];
+	int socket;
+} Conectado;
+
+typedef struct{
+	Conectado conectados[100];
+	int num;
+}ListaConectados;
+
+int Pon (ListaConectados *lista, char nombre[20], int socket) {
+	//Devuelve -1 si no se ha podido añadir un conectado a la lista y 0 si
+	//todo ha ido bien.
+	if (lista->num == 100)	
+		return -1;
+	else{
+		strcpy (lista->conectados[lista->num].nombre, nombre);
+		lista->conectados[lista->num].socket = socket;
+		lista->num++;
+		return 0;
+	}
+}
+
+int DameSocket (ListaConectados *lista, char nombre[20]) {
+	int i=0;
+	int encontrado = 0; 
+	while ((i< lista->num) && !encontrado)
+	{
+		if (strcmp(lista->conectados[i].nombre,nombre)==0)
+			encontrado = 1;
+		if(!encontrado)
+			i++;
+	}
+	if (encontrado)
+		return lista->conectados[i].socket;
+	else 
+		return -1;
+}
+
 int PuntuacionRonda (char nombre[20], char resultado[150])
 {
 	MYSQL *conn;
@@ -244,12 +283,13 @@ int LogIn(char usuario[20], char contrasena[20]) {
 		printf("Error. Los datos no coinciden.");
 		exit (1);
 	}
-	
 	return 0;
 }
 
 int main(int argc, char *argv[])
 {
+	ListaConectados listaconectados;
+	listaconectados.num = 0;
 	int sock_conn, sock_listen, ret;
 	struct sockaddr_in serv_adr;
 	char peticion[512];
@@ -331,21 +371,21 @@ int main(int argc, char *argv[])
 			
 			strcpy (contrasena, p);
 			error = LogIn(nombre,contrasena);
+			int err = Pon(&listaconectados, nombre,sock_conn);
+			if (err != 0)
+				printf ("Ha ocurrido un error, no se ha podido añadir a la lista.");
+			else{
+			printf("OK");
+			}
 			write (sock_conn,nombre,strlen(nombre));
-			 
-				if (error != 0)
-					printf ("Ha ocurrido un error en el caso 2");
-
+				
 			break;
 		case 3:
-		    printf("hola");
 			error = PuntuacionRonda(nombre,respuesta);
-			printf("adios");
 			write (sock_conn,respuesta, strlen(respuesta));
 			 
 				if (error != 0)
 					printf ("Ha ocurrido un error en el caso 3");
-
 			break;
 		
 		case 4:
@@ -363,7 +403,8 @@ int main(int argc, char *argv[])
 			if (error != 0)
 				printf ("Ha ocurrido un error en el caso 5");
 			break;
-
+		case 6:
+			
 			
 		default:
 			
