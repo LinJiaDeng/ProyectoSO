@@ -80,11 +80,11 @@
     <Compile Include="Forms\Jugar.Designer.cs">
       <DependentUpon>Jugar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Registrarse.cs">
+    <Compile Include="Forms\Perfil.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Registrarse.Designer.cs">
-      <DependentUpon>Registrarse.cs</DependentUpon>
+    <Compile Include="Forms\Perfil.Designer.cs">
+      <DependentUpon>Perfil.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Menu.cs">
       <SubType>Form</SubType>
@@ -106,8 +106,8 @@
     <EmbeddedResource Include="Forms\Jugar.resx">
       <DependentUpon>Jugar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Registrarse.resx">
-      <DependentUpon>Registrarse.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Perfil.resx">
+      <DependentUpon>Perfil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>

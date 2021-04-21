@@ -19,7 +19,7 @@ namespace WindowsFormsApplication1
         private IconButton currentBtn;
         private Panel leftBorderBtn;
         private Form currentChildForm;
-        Socket server;
+        
 
         public Menu()
         {
@@ -98,32 +98,10 @@ namespace WindowsFormsApplication1
             lblTitleChildForm.Text = childForm.Text;
             
         }
-     
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
-            //al que deseamos conectarnos
-            IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9080);
-
-
-            //Creamos el socket 
-            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            try
-            {
-                server.Connect(ipep);//Intentamos conectar el socket
-                this.BackColor = Color.Green;
-                MessageBox.Show("Conectado");
-
-            }
-            catch (SocketException ex)
-            {
-                //Si hay excepcion imprimimos error y salimos del programa con return 
-                MessageBox.Show("No he podido conectar con el servidor");
-                Application.Exit();
-                return;
-
-            }
+            
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
@@ -135,7 +113,7 @@ namespace WindowsFormsApplication1
         private void iconButton2_Click(object sender, EventArgs e)
         {
             ActivarBoton(sender, RGBColors.color3);
-            OpenChildForm(new Registrarse());
+            OpenChildForm(new Perfil());
         }
 
         private void iconButton3_Click(object sender, EventArgs e)
@@ -199,89 +177,28 @@ namespace WindowsFormsApplication1
             WindowState = FormWindowState.Minimized;
         }
 
-        private void enviar_Click(object sender, EventArgs e)
+        private void desconectar_Click(object sender, EventArgs e)
         {
-            if (Registrarse.Checked)
+            if (IniciarSesion.A == 1)
             {
-                string mensaje = "1/" + nombre.Text + "/" + contrasena.Text;
-                // Enviamos al servidor el nombre tecleado
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
+                //Mensaje de desconexión
+                string mensaje = "0/";
 
-                //Recibimos la respuesta del servidor
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(mensaje + "se ha registrado correctamente");
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                IniciarSesion.server.Send(msg);
+
+                MessageBox.Show("Desconectado");
+
+                // Nos desconectamos
+                IniciarSesion.server.Shutdown(SocketShutdown.Both);
+                IniciarSesion.server.Close();
+                notifyConexion.BalloonTipText = "Desconectado";
+                IniciarSesion.A = 0;
             }
-            else if (iniciarsesion.Checked)
+            else
             {
-                string mensaje = "2/" + nombre.Text + "/" + contrasena.Text;
-                // Enviamos al servidor el nombre tecleado
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
-
-                //Recibimos la respuesta del servidor
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(mensaje + " ha iniciado sesion correctamente");
+                MessageBox.Show("Todavía no estás conectado!");
             }
-            else if (PuntuacionRonda.Checked)
-            {
-                string mensaje = "3/" + nombre.Text;
-                // Enviamos al servidor el nombre tecleado
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
-
-                //Recibimos la respuesta del servidor
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(nombre.Text + " tiene " + mensaje + " puntos");
-
-            }
-            else if (NumeroCartasMano.Checked)
-            {
-                string mensaje = "4/" + nombre.Text;
-                // Enviamos al servidor el nombre tecleado
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
-
-                //Recibimos la respuesta del servidor
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(nombre.Text + " tiene " + mensaje + " cartas");
-            }
-            else if (puntuaciontotal.Checked)
-            {
-                string mensaje = "5/" + nombre.Text;
-                // Enviamos al servidor el nombre tecleado
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
-
-                //Recibimos la respuesta del servidor
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(nombre.Text + " tiene " + mensaje + " puntos");
-            }
-        }
-
-        private void btnDesconectar_Click(object sender, EventArgs e)
-        {
-            //Mensaje de desconexión
-            string mensaje = "0/";
-
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-
-            // Nos desconectamos
-            this.BackColor = Color.Gray;
-            server.Shutdown(SocketShutdown.Both);
-            server.Close();
-            Application.Exit();
         }
     }
 }

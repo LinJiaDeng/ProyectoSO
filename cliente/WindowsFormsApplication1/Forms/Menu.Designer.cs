@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnCréditos = new FontAwesome.Sharp.IconButton();
             this.btnInstrucciones = new FontAwesome.Sharp.IconButton();
             this.btnJugar = new FontAwesome.Sharp.IconButton();
-            this.btnRegistrarse = new FontAwesome.Sharp.IconButton();
+            this.btnPerfil = new FontAwesome.Sharp.IconButton();
             this.btnIniciarSesión = new FontAwesome.Sharp.IconButton();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.btnHome = new System.Windows.Forms.PictureBox();
@@ -44,18 +45,8 @@
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
-            this.btnDesconectar = new System.Windows.Forms.Button();
-            this.iniciarsesion = new System.Windows.Forms.RadioButton();
-            this.Registrarse = new System.Windows.Forms.RadioButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.puntuaciontotal = new System.Windows.Forms.RadioButton();
-            this.contrasena = new System.Windows.Forms.TextBox();
-            this.NumeroCartasMano = new System.Windows.Forms.RadioButton();
-            this.enviar = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.PuntuacionRonda = new System.Windows.Forms.RadioButton();
-            this.nombre = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.desconectar = new System.Windows.Forms.Button();
+            this.notifyConexion = new System.Windows.Forms.NotifyIcon(this.components);
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
@@ -70,7 +61,7 @@
             this.panelMenu.Controls.Add(this.btnCréditos);
             this.panelMenu.Controls.Add(this.btnInstrucciones);
             this.panelMenu.Controls.Add(this.btnJugar);
-            this.panelMenu.Controls.Add(this.btnRegistrarse);
+            this.panelMenu.Controls.Add(this.btnPerfil);
             this.panelMenu.Controls.Add(this.btnIniciarSesión);
             this.panelMenu.Controls.Add(this.panelLogo);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -149,28 +140,28 @@
             this.btnJugar.UseVisualStyleBackColor = true;
             this.btnJugar.Click += new System.EventHandler(this.iconButton3_Click);
             // 
-            // btnRegistrarse
+            // btnPerfil
             // 
-            this.btnRegistrarse.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnRegistrarse.FlatAppearance.BorderSize = 0;
-            this.btnRegistrarse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegistrarse.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrarse.IconChar = FontAwesome.Sharp.IconChar.ArrowRight;
-            this.btnRegistrarse.IconColor = System.Drawing.Color.White;
-            this.btnRegistrarse.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnRegistrarse.IconSize = 45;
-            this.btnRegistrarse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistrarse.Location = new System.Drawing.Point(0, 229);
-            this.btnRegistrarse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRegistrarse.Name = "btnRegistrarse";
-            this.btnRegistrarse.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.btnRegistrarse.Size = new System.Drawing.Size(225, 73);
-            this.btnRegistrarse.TabIndex = 2;
-            this.btnRegistrarse.Text = "Registrarse";
-            this.btnRegistrarse.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistrarse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnRegistrarse.UseVisualStyleBackColor = true;
-            this.btnRegistrarse.Click += new System.EventHandler(this.iconButton2_Click);
+            this.btnPerfil.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPerfil.FlatAppearance.BorderSize = 0;
+            this.btnPerfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPerfil.ForeColor = System.Drawing.Color.White;
+            this.btnPerfil.IconChar = FontAwesome.Sharp.IconChar.UserCircle;
+            this.btnPerfil.IconColor = System.Drawing.Color.White;
+            this.btnPerfil.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPerfil.IconSize = 45;
+            this.btnPerfil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPerfil.Location = new System.Drawing.Point(0, 229);
+            this.btnPerfil.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPerfil.Name = "btnPerfil";
+            this.btnPerfil.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnPerfil.Size = new System.Drawing.Size(225, 73);
+            this.btnPerfil.TabIndex = 2;
+            this.btnPerfil.Text = "Perfil";
+            this.btnPerfil.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPerfil.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPerfil.UseVisualStyleBackColor = true;
+            this.btnPerfil.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // btnIniciarSesión
             // 
@@ -178,7 +169,7 @@
             this.btnIniciarSesión.FlatAppearance.BorderSize = 0;
             this.btnIniciarSesión.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciarSesión.ForeColor = System.Drawing.Color.White;
-            this.btnIniciarSesión.IconChar = FontAwesome.Sharp.IconChar.UserNinja;
+            this.btnIniciarSesión.IconChar = FontAwesome.Sharp.IconChar.SignInAlt;
             this.btnIniciarSesión.IconColor = System.Drawing.Color.White;
             this.btnIniciarSesión.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnIniciarSesión.IconSize = 45;
@@ -189,7 +180,7 @@
             this.btnIniciarSesión.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
             this.btnIniciarSesión.Size = new System.Drawing.Size(225, 73);
             this.btnIniciarSesión.TabIndex = 1;
-            this.btnIniciarSesión.Text = "Iniciar Sesión";
+            this.btnIniciarSesión.Text = "Iniciar Sesión/  Registrarse";
             this.btnIniciarSesión.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnIniciarSesión.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnIniciarSesión.UseVisualStyleBackColor = true;
@@ -300,7 +291,7 @@
             this.lblTitleChildForm.Name = "lblTitleChildForm";
             this.lblTitleChildForm.Size = new System.Drawing.Size(333, 41);
             this.lblTitleChildForm.TabIndex = 1;
-            this.lblTitleChildForm.Text = "Home";
+            this.lblTitleChildForm.Text = "Inicio";
             // 
             // iconCurrentChildForm
             // 
@@ -328,18 +319,7 @@
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.Crimson;
-            this.panelDesktop.Controls.Add(this.label4);
-            this.panelDesktop.Controls.Add(this.btnDesconectar);
-            this.panelDesktop.Controls.Add(this.iniciarsesion);
-            this.panelDesktop.Controls.Add(this.Registrarse);
-            this.panelDesktop.Controls.Add(this.label3);
-            this.panelDesktop.Controls.Add(this.puntuaciontotal);
-            this.panelDesktop.Controls.Add(this.contrasena);
-            this.panelDesktop.Controls.Add(this.NumeroCartasMano);
-            this.panelDesktop.Controls.Add(this.enviar);
-            this.panelDesktop.Controls.Add(this.label2);
-            this.panelDesktop.Controls.Add(this.PuntuacionRonda);
-            this.panelDesktop.Controls.Add(this.nombre);
+            this.panelDesktop.Controls.Add(this.desconectar);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(225, 110);
             this.panelDesktop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -347,136 +327,22 @@
             this.panelDesktop.Size = new System.Drawing.Size(1164, 505);
             this.panelDesktop.TabIndex = 17;
             // 
-            // btnDesconectar
+            // desconectar
             // 
-            this.btnDesconectar.Location = new System.Drawing.Point(270, 408);
-            this.btnDesconectar.Name = "btnDesconectar";
-            this.btnDesconectar.Size = new System.Drawing.Size(127, 82);
-            this.btnDesconectar.TabIndex = 25;
-            this.btnDesconectar.Text = "Desconectar";
-            this.btnDesconectar.UseVisualStyleBackColor = true;
-            this.btnDesconectar.Click += new System.EventHandler(this.btnDesconectar_Click);
+            this.desconectar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.desconectar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.desconectar.Location = new System.Drawing.Point(979, 410);
+            this.desconectar.Margin = new System.Windows.Forms.Padding(4);
+            this.desconectar.Name = "desconectar";
+            this.desconectar.Size = new System.Drawing.Size(173, 82);
+            this.desconectar.TabIndex = 22;
+            this.desconectar.Text = "desconectar";
+            this.desconectar.UseVisualStyleBackColor = true;
+            this.desconectar.Click += new System.EventHandler(this.desconectar_Click);
             // 
-            // iniciarsesion
+            // notifyConexion
             // 
-            this.iniciarsesion.AutoSize = true;
-            this.iniciarsesion.Location = new System.Drawing.Point(60, 174);
-            this.iniciarsesion.Margin = new System.Windows.Forms.Padding(4);
-            this.iniciarsesion.Name = "iniciarsesion";
-            this.iniciarsesion.Size = new System.Drawing.Size(111, 21);
-            this.iniciarsesion.TabIndex = 24;
-            this.iniciarsesion.TabStop = true;
-            this.iniciarsesion.Text = "Iniciar sesion";
-            this.iniciarsesion.UseVisualStyleBackColor = true;
-            // 
-            // Registrarse
-            // 
-            this.Registrarse.AutoSize = true;
-            this.Registrarse.Location = new System.Drawing.Point(60, 145);
-            this.Registrarse.Margin = new System.Windows.Forms.Padding(4);
-            this.Registrarse.Name = "Registrarse";
-            this.Registrarse.Size = new System.Drawing.Size(203, 21);
-            this.Registrarse.TabIndex = 23;
-            this.Registrarse.TabStop = true;
-            this.Registrarse.Text = "Selecciona para registrarse";
-            this.Registrarse.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(57, 97);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 17);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Contraseña";
-            // 
-            // puntuaciontotal
-            // 
-            this.puntuaciontotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.puntuaciontotal.AutoSize = true;
-            this.puntuaciontotal.Location = new System.Drawing.Point(670, 118);
-            this.puntuaciontotal.Margin = new System.Windows.Forms.Padding(4);
-            this.puntuaciontotal.Name = "puntuaciontotal";
-            this.puntuaciontotal.Size = new System.Drawing.Size(259, 21);
-            this.puntuaciontotal.TabIndex = 17;
-            this.puntuaciontotal.TabStop = true;
-            this.puntuaciontotal.Text = "Puntuación total al final de la partida";
-            this.puntuaciontotal.UseVisualStyleBackColor = true;
-            // 
-            // contrasena
-            // 
-            this.contrasena.Location = new System.Drawing.Point(171, 94);
-            this.contrasena.Margin = new System.Windows.Forms.Padding(4);
-            this.contrasena.Name = "contrasena";
-            this.contrasena.Size = new System.Drawing.Size(227, 22);
-            this.contrasena.TabIndex = 21;
-            // 
-            // NumeroCartasMano
-            // 
-            this.NumeroCartasMano.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.NumeroCartasMano.AutoSize = true;
-            this.NumeroCartasMano.Location = new System.Drawing.Point(671, 81);
-            this.NumeroCartasMano.Margin = new System.Windows.Forms.Padding(4);
-            this.NumeroCartasMano.Name = "NumeroCartasMano";
-            this.NumeroCartasMano.Size = new System.Drawing.Size(216, 21);
-            this.NumeroCartasMano.TabIndex = 18;
-            this.NumeroCartasMano.TabStop = true;
-            this.NumeroCartasMano.Text = "Número de cartas en la mano";
-            this.NumeroCartasMano.UseVisualStyleBackColor = true;
-            // 
-            // enviar
-            // 
-            this.enviar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.enviar.Location = new System.Drawing.Point(104, 408);
-            this.enviar.Margin = new System.Windows.Forms.Padding(4);
-            this.enviar.Name = "enviar";
-            this.enviar.Size = new System.Drawing.Size(139, 82);
-            this.enviar.TabIndex = 16;
-            this.enviar.Text = "Enviar";
-            this.enviar.UseVisualStyleBackColor = true;
-            this.enviar.Click += new System.EventHandler(this.enviar_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(45, 46);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 31);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Nombre";
-            // 
-            // PuntuacionRonda
-            // 
-            this.PuntuacionRonda.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.PuntuacionRonda.AutoSize = true;
-            this.PuntuacionRonda.Location = new System.Drawing.Point(671, 52);
-            this.PuntuacionRonda.Margin = new System.Windows.Forms.Padding(4);
-            this.PuntuacionRonda.Name = "PuntuacionRonda";
-            this.PuntuacionRonda.Size = new System.Drawing.Size(169, 21);
-            this.PuntuacionRonda.TabIndex = 20;
-            this.PuntuacionRonda.TabStop = true;
-            this.PuntuacionRonda.Text = "Puntos en cada ronda";
-            this.PuntuacionRonda.UseVisualStyleBackColor = true;
-            // 
-            // nombre
-            // 
-            this.nombre.Location = new System.Drawing.Point(171, 52);
-            this.nombre.Margin = new System.Windows.Forms.Padding(4);
-            this.nombre.Name = "nombre";
-            this.nombre.Size = new System.Drawing.Size(217, 22);
-            this.nombre.TabIndex = 14;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(658, 366);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(401, 17);
-            this.label4.TabIndex = 27;
-            this.label4.Text = "NOTA: usuarios para probar la base de datos: Lin, Pau, Guille";
+            this.notifyConexion.Visible = true;
             // 
             // Menu
             // 
@@ -497,7 +363,6 @@
             this.panelTitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).EndInit();
             this.panelDesktop.ResumeLayout(false);
-            this.panelDesktop.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -508,7 +373,7 @@
         private FontAwesome.Sharp.IconButton btnCréditos;
         private FontAwesome.Sharp.IconButton btnInstrucciones;
         private FontAwesome.Sharp.IconButton btnJugar;
-        private FontAwesome.Sharp.IconButton btnRegistrarse;
+        private FontAwesome.Sharp.IconButton btnPerfil;
         private FontAwesome.Sharp.IconButton btnIniciarSesión;
         private System.Windows.Forms.PictureBox btnHome;
         private System.Windows.Forms.Panel panelTitleBar;
@@ -516,21 +381,11 @@
         private FontAwesome.Sharp.IconPictureBox iconCurrentChildForm;
         private System.Windows.Forms.Panel panelShadow;
         private System.Windows.Forms.Panel panelDesktop;
-        private System.Windows.Forms.RadioButton iniciarsesion;
-        private System.Windows.Forms.RadioButton Registrarse;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton puntuaciontotal;
-        private System.Windows.Forms.TextBox contrasena;
-        private System.Windows.Forms.RadioButton NumeroCartasMano;
-        private System.Windows.Forms.Button enviar;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RadioButton PuntuacionRonda;
-        private System.Windows.Forms.TextBox nombre;
         private FontAwesome.Sharp.IconButton Windowed;
         private FontAwesome.Sharp.IconButton Minimize;
         private FontAwesome.Sharp.IconButton btnExit;
-        private System.Windows.Forms.Button btnDesconectar;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button desconectar;
+        public System.Windows.Forms.NotifyIcon notifyConexion;
     }
 }
 
