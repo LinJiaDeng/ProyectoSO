@@ -14,6 +14,10 @@ namespace WindowsFormsApplication1.Forms
         public Instrucciones()
         {
             InitializeComponent();
+            pictureBox1.ImageLocation = "Portada.jpg";
+            pictureBox2.ImageLocation = "Instrucciones.jpg";
+
         }
+
     }
 }

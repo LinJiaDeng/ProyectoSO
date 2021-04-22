@@ -217,3 +217,18 @@ C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplicati
 C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CopyComplete
 C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\bin\Debug\FontAwesome.Sharp.dll
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csprojAssemblyReference.cache
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Créditos.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.IniciarSesion.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Instrucciones.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Jugar.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Perfil.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Menu.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.cache
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CopyComplete
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
