@@ -6,6 +6,10 @@ Versión 2:
 2. Verificador Jiadeng Lin
 3. Comunicador Pau Ruiz
 
+Video demostrativo v.02:
+
+https://www.youtube.com/watch?v=0mGybSbc4xo&ab_channel=Pau2001
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Para subir tu versión a GitHub: 
 
