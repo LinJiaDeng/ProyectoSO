@@ -1,10 +1,10 @@
 # ProyectoSO
 
-Versión 1:
+Versión 2:
 
-1. Manager Jiadeng Lin
-2. Verificador Pau Ruiz
-3. Comunicador Guillem Pacheco
+1. Manager Guillem Pacheco
+2. Verificador Jiadeng Lin
+3. Comunicador Pau Ruiz
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Para subir tu versión a GitHub: 

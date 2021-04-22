@@ -182,7 +182,7 @@ namespace WindowsFormsApplication1
             if (IniciarSesion.A == 1)
             {
                 //Mensaje de desconexión
-                string mensaje = "0/";
+                string mensaje = "0/" + IniciarSesion.N;
 
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 IniciarSesion.server.Send(msg);
@@ -199,6 +199,23 @@ namespace WindowsFormsApplication1
             {
                 MessageBox.Show("Todavía no estás conectado!");
             }
+        }
+
+        private void Conectadosbtn_Click(object sender, EventArgs e)
+        {
+            
+                string mensaje = "6/" + IniciarSesion.N;
+                // Enviamos al servidor el nombre tecleado
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                IniciarSesion.server.Send(msg);
+
+                //Recibimos la respuesta del servidor
+                byte[] msg2 = new byte[80];
+                IniciarSesion.server.Receive(msg2);
+                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                MessageBox.Show(mensaje);
+           
+
         }
     }
 }

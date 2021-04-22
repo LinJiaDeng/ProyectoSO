@@ -232,3 +232,18 @@ D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\clienteFo
 D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CopyComplete
 D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
 D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\bin\Debug\FontAwesome.Sharp.dll
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csprojAssemblyReference.cache
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Créditos.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.IniciarSesion.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Instrucciones.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Jugar.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Perfil.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Menu.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.cache
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CopyComplete
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
