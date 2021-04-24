@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Menu
+    partial class Inicio
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -45,14 +45,15 @@
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.ListaConectados = new System.Windows.Forms.DataGridView();
             this.desconectar = new System.Windows.Forms.Button();
-            this.notifyConexion = new System.Windows.Forms.NotifyIcon(this.components);
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             this.panelTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).BeginInit();
             this.panelDesktop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaConectados)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -319,6 +320,7 @@
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.Crimson;
+            this.panelDesktop.Controls.Add(this.ListaConectados);
             this.panelDesktop.Controls.Add(this.desconectar);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(225, 110);
@@ -326,6 +328,18 @@
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(1164, 505);
             this.panelDesktop.TabIndex = 17;
+            // 
+            // ListaConectados
+            // 
+            this.ListaConectados.BackgroundColor = System.Drawing.Color.White;
+            this.ListaConectados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ListaConectados.Location = new System.Drawing.Point(747, 28);
+            this.ListaConectados.Name = "ListaConectados";
+            this.ListaConectados.ReadOnly = true;
+            this.ListaConectados.RowHeadersWidth = 51;
+            this.ListaConectados.RowTemplate.Height = 24;
+            this.ListaConectados.Size = new System.Drawing.Size(384, 266);
+            this.ListaConectados.TabIndex = 23;
             // 
             // desconectar
             // 
@@ -340,11 +354,7 @@
             this.desconectar.UseVisualStyleBackColor = true;
             this.desconectar.Click += new System.EventHandler(this.desconectar_Click);
             // 
-            // notifyConexion
-            // 
-            this.notifyConexion.Visible = true;
-            // 
-            // Menu
+            // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -354,7 +364,7 @@
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "Menu";
+            this.Name = "Inicio";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelMenu.ResumeLayout(false);
@@ -363,6 +373,7 @@
             this.panelTitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).EndInit();
             this.panelDesktop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ListaConectados)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -385,7 +396,7 @@
         private FontAwesome.Sharp.IconButton Minimize;
         private FontAwesome.Sharp.IconButton btnExit;
         private System.Windows.Forms.Button desconectar;
-        public System.Windows.Forms.NotifyIcon notifyConexion;
+        private System.Windows.Forms.DataGridView ListaConectados;
     }
 }
 

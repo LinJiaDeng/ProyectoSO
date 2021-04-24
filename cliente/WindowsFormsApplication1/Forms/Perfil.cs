@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1.Forms
     public partial class Perfil : Form
     {
        
-        IniciarSesion perfil = new IniciarSesion();
+        Inicio servidor = new Inicio();
        
 
         public Perfil()
@@ -43,40 +43,21 @@ namespace WindowsFormsApplication1.Forms
                     string mensaje = "3/" + IniciarSesion.N;
                     // Enviamos al servidor el nombre tecleado
                     byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                    IniciarSesion.server.Send(msg);
-
-                    //Recibimos la respuesta del servidor
-                    byte[] msg2 = new byte[80];
-                    IniciarSesion.server.Receive(msg2);
-                    mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                    MessageBox.Show(perfil.txtnombre.Text + " tiene " + mensaje + " puntos");
-
+                    Inicio.server.Send(msg);
                 }
                 else if (NumeroCartasMano.Checked)
                 {
                     string mensaje = "4/" + IniciarSesion.N;
                     // Enviamos al servidor el nombre tecleado
                     byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                    IniciarSesion.server.Send(msg);
-
-                    //Recibimos la respuesta del servidor
-                    byte[] msg2 = new byte[80];
-                    IniciarSesion.server.Receive(msg2);
-                    mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                    MessageBox.Show(perfil.txtnombre.Text + " tiene " + mensaje + " cartas");
+                    Inicio.server.Send(msg);                
                 }
                 else if (puntuaciontotal.Checked)
                 {
                     string mensaje = "5/" + IniciarSesion.N;
                     // Enviamos al servidor el nombre tecleado
                     byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                    IniciarSesion.server.Send(msg);
-
-                    //Recibimos la respuesta del servidor
-                    byte[] msg2 = new byte[80];
-                    IniciarSesion.server.Receive(msg2);
-                    mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                    MessageBox.Show(perfil.txtnombre.Text + " tiene " + mensaje + " puntos");
+                    Inicio.server.Send(msg);                                   
                 }
             }
             else

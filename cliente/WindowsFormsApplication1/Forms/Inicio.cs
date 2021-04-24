@@ -11,17 +11,20 @@ using System.Net.Sockets;
 using FontAwesome.Sharp;
 using System.Runtime.InteropServices;
 using WindowsFormsApplication1.Forms;
+using System.Threading;
 
 namespace WindowsFormsApplication1
 {
-    public partial class Menu : Form
+    public partial class Inicio : Form
     {
         private IconButton currentBtn;
         private Panel leftBorderBtn;
         private Form currentChildForm;
-        
+        public static Socket server;
+        Thread atender;
 
-        public Menu()
+
+        public Inicio()
         {
             InitializeComponent();
             leftBorderBtn = new Panel();
@@ -101,7 +104,70 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ListaConectados.Columns.Add("nombre","Jugadores online");
+
+            //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
+            //al que deseamos conectarnos
+            IPAddress direc = IPAddress.Parse("192.168.56.102");
+            IPEndPoint ipep = new IPEndPoint(direc, 9080);
+
             
+            //Creamos el socket 
+            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            try
+            {
+                server.Connect(ipep);//Intentamos conectar el socket
+                MessageBox.Show("Perfecto");
+            }
+            catch (SocketException ex)
+            {
+                //Si hay excepcion imprimimos error y salimos del programa con return 
+                return;
+
+            }
+            
+
+            ThreadStart ts = delegate { AtenderServidor(); };
+            atender = new Thread(ts);
+            atender.Start();
+        }
+
+        public void AtenderServidor ()
+        {
+            while (true)
+            {
+                byte[] msg2 = new byte[80];
+                server.Receive(msg2);
+                string [] respuesta = Encoding.ASCII.GetString(msg2).Split('/');
+                int codigo = Convert.ToInt32(respuesta[0]);
+                string mensaje = respuesta[1].Split('\0')[0];
+
+                switch (codigo)
+                {
+                    case 0:
+                        MessageBox.Show(mensaje);
+                        atender.Abort();
+                        break;
+                    case 1:
+                        MessageBox.Show(mensaje + " se ha registrado correctamente, Ahora inicie sesión!");        
+                        break;
+                    case 2:
+                        MessageBox.Show(mensaje + " ha iniciado sesión correctamente"); 
+                        break;
+                    case 3:
+                        MessageBox.Show(IniciarSesion.N + " tiene " + mensaje + " puntos");
+                        break;
+                    case 4:
+                        MessageBox.Show(IniciarSesion.N + " tiene " + mensaje + " cartas");
+                        break;
+                    case 5:
+                        MessageBox.Show(IniciarSesion.N + " tiene " + mensaje + " puntos");
+                        break;
+                    case 6:
+                        
+                        break;
+                }
+            }
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
@@ -182,17 +248,17 @@ namespace WindowsFormsApplication1
             if (IniciarSesion.A == 1)
             {
                 //Mensaje de desconexión
-                string mensaje = "0/";
+                string mensaje = "0/" + IniciarSesion.N;
 
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                IniciarSesion.server.Send(msg);
+                server.Send(msg);
 
                 MessageBox.Show("Desconectado");
 
                 // Nos desconectamos
-                IniciarSesion.server.Shutdown(SocketShutdown.Both);
-                IniciarSesion.server.Close();
-                notifyConexion.BalloonTipText = "Desconectado";
+                server.Shutdown(SocketShutdown.Both);
+                server.Close();
+                atender.Abort();
                 IniciarSesion.A = 0;
             }
             else

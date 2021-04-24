@@ -148,8 +148,6 @@ C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsAppli
 C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.IniciarSesion.resources
 C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Instrucciones.resources
 C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Jugar.resources
-C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Registrarse.resources
-C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Menu.resources
 C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.cache
 C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CoreCompileInputs.cache
@@ -201,3 +199,65 @@ C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\Proyecto\cliente\WindowsForm
 C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\Proyecto\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\Proyecto\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.Cache
 C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\Proyecto\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csprojResolveAssemblyReference.cache
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csprojAssemblyReference.cache
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Créditos.resources
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.IniciarSesion.resources
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Instrucciones.resources
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Jugar.resources
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Perfil.resources
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Menu.resources
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.cache
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CoreCompileInputs.cache
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CopyComplete
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\adeli\OneDrive\Escritorio\ProyectoSO-1.01\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\bin\Debug\FontAwesome.Sharp.dll
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csprojAssemblyReference.cache
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Créditos.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.IniciarSesion.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Instrucciones.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Jugar.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Perfil.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Menu.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.cache
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CopyComplete
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\share\ProyectoSO - bueno\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\bin\Debug\FontAwesome.Sharp.dll
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csprojAssemblyReference.cache
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Créditos.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.IniciarSesion.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Instrucciones.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Jugar.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Perfil.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Menu.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.cache
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CopyComplete
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Perfil.resources
+C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Inicio.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csprojResolveAssemblyReference.cache
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Créditos.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.IniciarSesion.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Instrucciones.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Jugar.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Perfil.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Inicio.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.Cache

@@ -1,10 +1,14 @@
 # ProyectoSO
 
-Versión 1:
+Versión 2:
 
-1. Manager Jiadeng Lin
-2. Verificador Pau Ruiz
-3. Comunicador Guillem Pacheco
+1. Manager Guillem Pacheco
+2. Verificador Jiadeng Lin
+3. Comunicador Pau Ruiz
+
+Video demostrativo v.02:
+
+https://www.youtube.com/watch?v=0mGybSbc4xo&ab_channel=Pau2001
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Para subir tu versión a GitHub: 

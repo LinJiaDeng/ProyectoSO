@@ -11,13 +11,14 @@ using System.Net.Sockets;
 using FontAwesome.Sharp;
 using System.Runtime.InteropServices;
 using WindowsFormsApplication1.Forms;
+using System.Threading;
 
 namespace WindowsFormsApplication1.Forms
 {
     public partial class IniciarSesion : Form
     {
-        public static Socket server;
-        Menu menu = new Menu();
+        
+        Inicio menu = new Inicio();
         public static int A;
         public static string N;
         bool RegisterCheck = false;
@@ -26,55 +27,28 @@ namespace WindowsFormsApplication1.Forms
         {
             InitializeComponent();
         }
-       
+
 
         private void IniciarSesion_Load(object sender, EventArgs e)
         {
 
         }
-
+ 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
             if (A != 1)
             {
-                if (RegisterCheck == false)
-                {
+               
+                IniciarSesion.A = 1;
+                IniciarSesion.N = txtnombre.Text;
 
-                    //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
-                    //al que deseamos conectarnos
-                    IPAddress direc = IPAddress.Parse("192.168.56.102");
-                    IPEndPoint ipep = new IPEndPoint(direc, 9080);
-
-
-                    //Creamos el socket 
-                    server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                    try
-                    {
-                        server.Connect(ipep);//Intentamos conectar el socket
-                        menu.notifyConexion.BalloonTipText = "Conectado";
-
-                    }
-                    catch (SocketException ex)
-                    {
-                        //Si hay excepcion imprimimos error y salimos del programa con return 
-                        menu.notifyConexion.BalloonTipText = "No se ha podido conectar con el servidor";
-                        return;
-
-                    }
-                }
+    
 
                 string mensaje = "2/" + txtnombre.Text + "/" + txtcontrasena.Text;
                 // Enviamos al servidor el nombre tecleado
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                server.Send(msg);
-
-                //Recibimos la respuesta del servidor
-                byte[] msg2 = new byte[80];
-                server.Receive(msg2);
-                mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-                MessageBox.Show(mensaje + " ha iniciado sesión correctamente");
-                IniciarSesion.A = 1;
-                IniciarSesion.N = txtnombre.Text;
+                Inicio.server.Send(msg);                
+                
             }
             else
                 MessageBox.Show("Ya has iniciado una sesión debes desconectarte primero.");
@@ -83,38 +57,12 @@ namespace WindowsFormsApplication1.Forms
         private void btnRegistrarse_Click(object sender, EventArgs e)
         {
 
-            //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
-            //al que deseamos conectarnos
-            IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9080);
-
-
-            //Creamos el socket 
-            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            try
-            {
-                server.Connect(ipep);//Intentamos conectar el socket
-                menu.notifyConexion.BalloonTipText = "Conectado";
-
-            }
-            catch (SocketException ex)
-            {
-                //Si hay excepcion imprimimos error y salimos del programa con return 
-                menu.notifyConexion.BalloonTipText = "No se ha podido conectar con el servidor";
-                return;
-
-            }
+           
 
             string mensaje = "1/" + txtnombre.Text + "/" + txtcontrasena.Text;
             // Enviamos al servidor el nombre tecleado
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-            server.Send(msg);
-
-            //Recibimos la respuesta del servidor
-            byte[] msg2 = new byte[80];
-            server.Receive(msg2);
-            mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
-            MessageBox.Show(mensaje+" se ha registrado correctamente, Ahora inicie sesión!");
+            Inicio.server.Send(msg);
             RegisterCheck = true;
         }
     }
