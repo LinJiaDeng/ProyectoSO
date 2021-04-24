@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Menu
+    partial class Inicio
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -45,15 +45,15 @@
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.ListaConectados = new System.Windows.Forms.DataGridView();
             this.desconectar = new System.Windows.Forms.Button();
-            this.notifyConexion = new System.Windows.Forms.NotifyIcon(this.components);
-            this.Conectadosbtn = new System.Windows.Forms.Button();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             this.panelTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).BeginInit();
             this.panelDesktop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaConectados)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -67,9 +67,9 @@
             this.panelMenu.Controls.Add(this.panelLogo);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
-            this.panelMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(169, 500);
+            this.panelMenu.Size = new System.Drawing.Size(225, 615);
             this.panelMenu.TabIndex = 14;
             // 
             // btnCréditos
@@ -83,11 +83,11 @@
             this.btnCréditos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCréditos.IconSize = 45;
             this.btnCréditos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCréditos.Location = new System.Drawing.Point(0, 363);
-            this.btnCréditos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCréditos.Location = new System.Drawing.Point(0, 448);
+            this.btnCréditos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCréditos.Name = "btnCréditos";
-            this.btnCréditos.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
-            this.btnCréditos.Size = new System.Drawing.Size(169, 59);
+            this.btnCréditos.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnCréditos.Size = new System.Drawing.Size(225, 73);
             this.btnCréditos.TabIndex = 5;
             this.btnCréditos.Text = "Créditos";
             this.btnCréditos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -106,11 +106,11 @@
             this.btnInstrucciones.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnInstrucciones.IconSize = 45;
             this.btnInstrucciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInstrucciones.Location = new System.Drawing.Point(0, 304);
-            this.btnInstrucciones.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnInstrucciones.Location = new System.Drawing.Point(0, 375);
+            this.btnInstrucciones.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnInstrucciones.Name = "btnInstrucciones";
-            this.btnInstrucciones.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
-            this.btnInstrucciones.Size = new System.Drawing.Size(169, 59);
+            this.btnInstrucciones.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnInstrucciones.Size = new System.Drawing.Size(225, 73);
             this.btnInstrucciones.TabIndex = 4;
             this.btnInstrucciones.Text = "Instrucciones";
             this.btnInstrucciones.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -129,11 +129,11 @@
             this.btnJugar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnJugar.IconSize = 45;
             this.btnJugar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJugar.Location = new System.Drawing.Point(0, 245);
-            this.btnJugar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnJugar.Location = new System.Drawing.Point(0, 302);
+            this.btnJugar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnJugar.Name = "btnJugar";
-            this.btnJugar.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
-            this.btnJugar.Size = new System.Drawing.Size(169, 59);
+            this.btnJugar.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnJugar.Size = new System.Drawing.Size(225, 73);
             this.btnJugar.TabIndex = 3;
             this.btnJugar.Text = "Jugar";
             this.btnJugar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -152,11 +152,11 @@
             this.btnPerfil.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPerfil.IconSize = 45;
             this.btnPerfil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPerfil.Location = new System.Drawing.Point(0, 186);
-            this.btnPerfil.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPerfil.Location = new System.Drawing.Point(0, 229);
+            this.btnPerfil.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPerfil.Name = "btnPerfil";
-            this.btnPerfil.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
-            this.btnPerfil.Size = new System.Drawing.Size(169, 59);
+            this.btnPerfil.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnPerfil.Size = new System.Drawing.Size(225, 73);
             this.btnPerfil.TabIndex = 2;
             this.btnPerfil.Text = "Perfil";
             this.btnPerfil.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -175,11 +175,11 @@
             this.btnIniciarSesión.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnIniciarSesión.IconSize = 45;
             this.btnIniciarSesión.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIniciarSesión.Location = new System.Drawing.Point(0, 127);
-            this.btnIniciarSesión.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnIniciarSesión.Location = new System.Drawing.Point(0, 156);
+            this.btnIniciarSesión.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnIniciarSesión.Name = "btnIniciarSesión";
-            this.btnIniciarSesión.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
-            this.btnIniciarSesión.Size = new System.Drawing.Size(169, 59);
+            this.btnIniciarSesión.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnIniciarSesión.Size = new System.Drawing.Size(225, 73);
             this.btnIniciarSesión.TabIndex = 1;
             this.btnIniciarSesión.Text = "Iniciar Sesión/  Registrarse";
             this.btnIniciarSesión.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -193,18 +193,18 @@
             this.panelLogo.Controls.Add(this.btnHome);
             this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelLogo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(169, 127);
+            this.panelLogo.Size = new System.Drawing.Size(225, 156);
             this.panelLogo.TabIndex = 0;
             // 
             // btnHome
             // 
             this.btnHome.Image = global::WindowsFormsApplication1.Properties.Resources.sushi_go_logo;
-            this.btnHome.Location = new System.Drawing.Point(2, 2);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHome.Location = new System.Drawing.Point(3, 2);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(164, 120);
+            this.btnHome.Size = new System.Drawing.Size(219, 148);
             this.btnHome.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnHome.TabIndex = 0;
             this.btnHome.TabStop = false;
@@ -219,10 +219,10 @@
             this.panelTitleBar.Controls.Add(this.lblTitleChildForm);
             this.panelTitleBar.Controls.Add(this.iconCurrentChildForm);
             this.panelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTitleBar.Location = new System.Drawing.Point(169, 0);
-            this.panelTitleBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTitleBar.Location = new System.Drawing.Point(225, 0);
+            this.panelTitleBar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(873, 81);
+            this.panelTitleBar.Size = new System.Drawing.Size(1164, 100);
             this.panelTitleBar.TabIndex = 15;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
             // 
@@ -236,10 +236,10 @@
             this.Windowed.IconColor = System.Drawing.Color.White;
             this.Windowed.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Windowed.IconSize = 20;
-            this.Windowed.Location = new System.Drawing.Point(801, 10);
-            this.Windowed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Windowed.Location = new System.Drawing.Point(1068, 12);
+            this.Windowed.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Windowed.Name = "Windowed";
-            this.Windowed.Size = new System.Drawing.Size(29, 20);
+            this.Windowed.Size = new System.Drawing.Size(39, 25);
             this.Windowed.TabIndex = 4;
             this.Windowed.UseVisualStyleBackColor = false;
             this.Windowed.Click += new System.EventHandler(this.Windowed_Click);
@@ -254,10 +254,10 @@
             this.Minimize.IconChar = FontAwesome.Sharp.IconChar.None;
             this.Minimize.IconColor = System.Drawing.Color.White;
             this.Minimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Minimize.Location = new System.Drawing.Point(767, 10);
-            this.Minimize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Minimize.Location = new System.Drawing.Point(1023, 12);
+            this.Minimize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Minimize.Name = "Minimize";
-            this.Minimize.Size = new System.Drawing.Size(29, 20);
+            this.Minimize.Size = new System.Drawing.Size(39, 25);
             this.Minimize.TabIndex = 3;
             this.Minimize.Text = "_";
             this.Minimize.UseVisualStyleBackColor = false;
@@ -274,10 +274,10 @@
             this.btnExit.IconColor = System.Drawing.Color.White;
             this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExit.IconSize = 20;
-            this.btnExit.Location = new System.Drawing.Point(835, 9);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExit.Location = new System.Drawing.Point(1113, 11);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(29, 20);
+            this.btnExit.Size = new System.Drawing.Size(39, 25);
             this.btnExit.TabIndex = 2;
             this.btnExit.Text = "X";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -288,10 +288,9 @@
             this.lblTitleChildForm.BackColor = System.Drawing.Color.Transparent;
             this.lblTitleChildForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitleChildForm.ForeColor = System.Drawing.Color.White;
-            this.lblTitleChildForm.Location = new System.Drawing.Point(73, 33);
-            this.lblTitleChildForm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblTitleChildForm.Location = new System.Drawing.Point(97, 41);
             this.lblTitleChildForm.Name = "lblTitleChildForm";
-            this.lblTitleChildForm.Size = new System.Drawing.Size(250, 33);
+            this.lblTitleChildForm.Size = new System.Drawing.Size(333, 41);
             this.lblTitleChildForm.TabIndex = 1;
             this.lblTitleChildForm.Text = "Inicio";
             // 
@@ -300,11 +299,11 @@
             this.iconCurrentChildForm.IconChar = FontAwesome.Sharp.IconChar.Home;
             this.iconCurrentChildForm.IconColor = System.Drawing.Color.White;
             this.iconCurrentChildForm.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconCurrentChildForm.IconSize = 42;
-            this.iconCurrentChildForm.Location = new System.Drawing.Point(26, 26);
-            this.iconCurrentChildForm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iconCurrentChildForm.IconSize = 56;
+            this.iconCurrentChildForm.Location = new System.Drawing.Point(35, 32);
+            this.iconCurrentChildForm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.iconCurrentChildForm.Name = "iconCurrentChildForm";
-            this.iconCurrentChildForm.Size = new System.Drawing.Size(42, 46);
+            this.iconCurrentChildForm.Size = new System.Drawing.Size(56, 57);
             this.iconCurrentChildForm.TabIndex = 0;
             this.iconCurrentChildForm.TabStop = false;
             // 
@@ -312,61 +311,60 @@
             // 
             this.panelShadow.BackColor = System.Drawing.Color.DarkRed;
             this.panelShadow.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelShadow.Location = new System.Drawing.Point(169, 81);
-            this.panelShadow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelShadow.Location = new System.Drawing.Point(225, 100);
+            this.panelShadow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelShadow.Name = "panelShadow";
-            this.panelShadow.Size = new System.Drawing.Size(873, 8);
+            this.panelShadow.Size = new System.Drawing.Size(1164, 10);
             this.panelShadow.TabIndex = 16;
             // 
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.Crimson;
-            this.panelDesktop.Controls.Add(this.Conectadosbtn);
+            this.panelDesktop.Controls.Add(this.ListaConectados);
             this.panelDesktop.Controls.Add(this.desconectar);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDesktop.Location = new System.Drawing.Point(169, 89);
-            this.panelDesktop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelDesktop.Location = new System.Drawing.Point(225, 110);
+            this.panelDesktop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(873, 411);
+            this.panelDesktop.Size = new System.Drawing.Size(1164, 505);
             this.panelDesktop.TabIndex = 17;
+            // 
+            // ListaConectados
+            // 
+            this.ListaConectados.BackgroundColor = System.Drawing.Color.White;
+            this.ListaConectados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ListaConectados.Location = new System.Drawing.Point(747, 28);
+            this.ListaConectados.Name = "ListaConectados";
+            this.ListaConectados.ReadOnly = true;
+            this.ListaConectados.RowHeadersWidth = 51;
+            this.ListaConectados.RowTemplate.Height = 24;
+            this.ListaConectados.Size = new System.Drawing.Size(384, 266);
+            this.ListaConectados.TabIndex = 23;
             // 
             // desconectar
             // 
             this.desconectar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.desconectar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.desconectar.Location = new System.Drawing.Point(734, 334);
+            this.desconectar.Location = new System.Drawing.Point(979, 410);
+            this.desconectar.Margin = new System.Windows.Forms.Padding(4);
             this.desconectar.Name = "desconectar";
-            this.desconectar.Size = new System.Drawing.Size(130, 67);
+            this.desconectar.Size = new System.Drawing.Size(173, 82);
             this.desconectar.TabIndex = 22;
             this.desconectar.Text = "desconectar";
             this.desconectar.UseVisualStyleBackColor = true;
             this.desconectar.Click += new System.EventHandler(this.desconectar_Click);
             // 
-            // notifyConexion
+            // Inicio
             // 
-            this.notifyConexion.Visible = true;
-            // 
-            // Conectadosbtn
-            // 
-            this.Conectadosbtn.Location = new System.Drawing.Point(26, 334);
-            this.Conectadosbtn.Margin = new System.Windows.Forms.Padding(2);
-            this.Conectadosbtn.Name = "Conectadosbtn";
-            this.Conectadosbtn.Size = new System.Drawing.Size(155, 37);
-            this.Conectadosbtn.TabIndex = 24;
-            this.Conectadosbtn.Text = "Lista de conectados";
-            this.Conectadosbtn.UseVisualStyleBackColor = true;
-            this.Conectadosbtn.Click += new System.EventHandler(this.Conectadosbtn_Click);
-            // 
-            // Menu
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1042, 500);
+            this.ClientSize = new System.Drawing.Size(1389, 615);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
-            this.Name = "Menu";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "Inicio";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelMenu.ResumeLayout(false);
@@ -375,6 +373,7 @@
             this.panelTitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).EndInit();
             this.panelDesktop.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ListaConectados)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -397,8 +396,7 @@
         private FontAwesome.Sharp.IconButton Minimize;
         private FontAwesome.Sharp.IconButton btnExit;
         private System.Windows.Forms.Button desconectar;
-        public System.Windows.Forms.NotifyIcon notifyConexion;
-        private System.Windows.Forms.Button Conectadosbtn;
+        private System.Windows.Forms.DataGridView ListaConectados;
     }
 }
 
