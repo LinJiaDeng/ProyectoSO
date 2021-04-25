@@ -146,6 +146,7 @@ namespace WindowsFormsApplication1
                 {
                     case 0:
                         MessageBox.Show(mensaje);
+                        atender.Abort();
                         break;
                     case 1:
                         MessageBox.Show(mensaje + " se ha registrado correctamente, Ahora inicie sesión!");        

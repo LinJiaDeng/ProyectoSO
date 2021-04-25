@@ -247,3 +247,17 @@ D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\
 D:\.UNI TELECOS\SO GITHUB BUENO\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
 C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Perfil.resources
 C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Inicio.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csprojResolveAssemblyReference.cache
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Créditos.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.IniciarSesion.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Instrucciones.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Jugar.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Perfil.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Inicio.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Pablo\Desktop\Carpeta padre\QUATRI 2021\SO\ProyectoSO-master\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.Cache

@@ -409,7 +409,7 @@ void *AtenderCliente (void *socket)
 			//Registrar un usuario
 			p = strtok( NULL, "/");
 			char respuesta1[50];
-			char contrasena[20];
+			char contrasena[50];
 			strcpy (contrasena, p);
 			error = Registrarse(nombre,contrasena);
 			sprintf(respuesta1,"1/%s",nombre);
@@ -423,10 +423,12 @@ void *AtenderCliente (void *socket)
 		case 2:
 			//Iniciar Sesion
 			p = strtok( NULL, "/");
+			
 			char respuesta2[50];
+			
 			strcpy (contrasena, p);
 			error = LogIn(nombre,contrasena);
-			sprintf(respuesta,"2/%s",nombre);
+			sprintf(respuesta2,"2/%s",nombre);
 			write (sock_conn,respuesta2,strlen(respuesta2));
 			int numsocket = DameSocket(&lista,nombre);
 			
