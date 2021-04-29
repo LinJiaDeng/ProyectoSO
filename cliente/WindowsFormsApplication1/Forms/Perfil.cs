@@ -43,21 +43,21 @@ namespace WindowsFormsApplication1.Forms
                     string mensaje = "3/" + IniciarSesion.N;
                     // Enviamos al servidor el nombre tecleado
                     byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                    Inicio.server.Send(msg);
+                    IniciarSesion.server.Send(msg);
                 }
                 else if (NumeroCartasMano.Checked)
                 {
                     string mensaje = "4/" + IniciarSesion.N;
                     // Enviamos al servidor el nombre tecleado
                     byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                    Inicio.server.Send(msg);                
+                    IniciarSesion.server.Send(msg);                
                 }
                 else if (puntuaciontotal.Checked)
                 {
                     string mensaje = "5/" + IniciarSesion.N;
                     // Enviamos al servidor el nombre tecleado
                     byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
-                    Inicio.server.Send(msg);                                   
+                    IniciarSesion.server.Send(msg);                                   
                 }
             }
             else

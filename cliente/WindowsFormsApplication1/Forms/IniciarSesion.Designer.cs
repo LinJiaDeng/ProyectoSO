@@ -35,6 +35,7 @@ namespace WindowsFormsApplication1.Forms
             this.txtnombre = new System.Windows.Forms.TextBox();
             this.btnIniciarSesion = new System.Windows.Forms.Button();
             this.btnRegistrarse = new System.Windows.Forms.Button();
+            this.Desconectarbtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblContrasena
@@ -101,12 +102,24 @@ namespace WindowsFormsApplication1.Forms
             this.btnRegistrarse.UseVisualStyleBackColor = false;
             this.btnRegistrarse.Click += new System.EventHandler(this.btnRegistrarse_Click);
             // 
+            // Desconectarbtn
+            // 
+            this.Desconectarbtn.BackColor = System.Drawing.Color.PeachPuff;
+            this.Desconectarbtn.Location = new System.Drawing.Point(671, 12);
+            this.Desconectarbtn.Name = "Desconectarbtn";
+            this.Desconectarbtn.Size = new System.Drawing.Size(117, 56);
+            this.Desconectarbtn.TabIndex = 19;
+            this.Desconectarbtn.Text = "Desconectar";
+            this.Desconectarbtn.UseVisualStyleBackColor = false;
+            this.Desconectarbtn.Click += new System.EventHandler(this.Desconectarbtn_Click);
+            // 
             // IniciarSesion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Crimson;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Desconectarbtn);
             this.Controls.Add(this.btnRegistrarse);
             this.Controls.Add(this.btnIniciarSesion);
             this.Controls.Add(this.lblContrasena);
@@ -129,5 +142,6 @@ namespace WindowsFormsApplication1.Forms
         public System.Windows.Forms.TextBox txtnombre;
         private System.Windows.Forms.Button btnIniciarSesion;
         private System.Windows.Forms.Button btnRegistrarse;
+        private System.Windows.Forms.Button Desconectarbtn;
     }
 }

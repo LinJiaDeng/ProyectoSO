@@ -20,23 +20,17 @@ typedef struct {
 
 int i;
 int sockets[100];
+char notificacion[500];
 ListaConectados lista;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int Conectarse (ListaConectados *lista, char nombre[20], int socket){
-	char notificacion[500];
 	if (lista->num == 100)
 		return -1;
 	else {
 		strcpy (lista->conectados[lista->num].nombre, nombre);
 		lista->conectados[lista->num].socket = socket;
 		lista->num++;
-		DameConectados(&lista,notificacion);
-		int j;
-		for (j=0; j<i; j++)
-		{
-			write (sockets[j],notificacion, strlen(notificacion));
-		}
 		return 0;
 	}
 }
@@ -92,12 +86,6 @@ int Eliminar (ListaConectados *lista, char nombre[20]){
 			lista->conectados[i].socket = lista->conectados[i+1].socket;          
 		}
 		lista->num--;
-		DameConectados(&lista,notificacion);
-		int j;
-		for (j=0; j<i; j++)
-		{
-			write (sockets[j],notificacion, strlen(notificacion));
-		}
 		return 0;
 	}
 }
@@ -105,7 +93,8 @@ int Eliminar (ListaConectados *lista, char nombre[20]){
 
 void DameConectados (ListaConectados *lista, char conectados[500]){
 	//Devuelve los nombres de los conectados separados por /.
-	sprintf (conectados, "6/%d/", lista->num);
+
+	sprintf (conectados, "6/%d", lista->num);
 	int i;
 	for (i=0; i< lista->num; i++)
 	{
@@ -401,6 +390,12 @@ void *AtenderCliente (void *socket)
 			pthread_mutex_lock(&mutex);
 			Eliminar(&lista,nombre);
 			pthread_mutex_unlock(&mutex);
+			DameConectados(&lista,notificacion);
+			int j;
+			for (j=0; j<i; j++)
+			{
+				write (sockets[j],notificacion, strlen(notificacion));
+			}
 			char respuesta0[50];
 			strcpy(respuesta0,"0/Te has desconectado");
 			write (sock_conn,respuesta0,strlen(respuesta0));
@@ -409,7 +404,7 @@ void *AtenderCliente (void *socket)
 			//Registrar un usuario
 			p = strtok( NULL, "/");
 			char respuesta1[50];
-			char contrasena[50];
+			char contrasena[20];
 			strcpy (contrasena, p);
 			error = Registrarse(nombre,contrasena);
 			sprintf(respuesta1,"1/%s",nombre);
@@ -423,9 +418,7 @@ void *AtenderCliente (void *socket)
 		case 2:
 			//Iniciar Sesion
 			p = strtok( NULL, "/");
-			
 			char respuesta2[50];
-			
 			strcpy (contrasena, p);
 			error = LogIn(nombre,contrasena);
 			sprintf(respuesta2,"2/%s",nombre);
@@ -441,6 +434,12 @@ void *AtenderCliente (void *socket)
 			
 			if (errorCON != 0)
 				printf ("Ha ocurrido un error en el caso 1, no se ha podido añadir a la lista de conectados");
+			else		
+			DameConectados(&lista,notificacion);
+			for (j=0; j<i; j++)
+			{
+				write (sockets[j],notificacion, strlen(notificacion));
+			}
 			
 			break;
 		case 3:
@@ -511,9 +510,9 @@ int main(int argc, char *argv[])
 	
 	pthread_t thread;
 	i=0;
+	printf ("Escuchando\n");
 	
 	for(;;){
-		printf ("Escuchando\n");
 		
 		sock_conn = accept(sock_listen, NULL, NULL);
 		printf ("He recibido conexion\n");

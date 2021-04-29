@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnCréditos = new FontAwesome.Sharp.IconButton();
             this.btnInstrucciones = new FontAwesome.Sharp.IconButton();
@@ -46,7 +47,7 @@
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
             this.ListaConectados = new System.Windows.Forms.DataGridView();
-            this.desconectar = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
@@ -321,7 +322,6 @@
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.Crimson;
             this.panelDesktop.Controls.Add(this.ListaConectados);
-            this.panelDesktop.Controls.Add(this.desconectar);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(225, 110);
             this.panelDesktop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -331,28 +331,50 @@
             // 
             // ListaConectados
             // 
+            this.ListaConectados.AllowUserToAddRows = false;
+            this.ListaConectados.AllowUserToDeleteRows = false;
+            this.ListaConectados.AllowUserToResizeColumns = false;
+            this.ListaConectados.AllowUserToResizeRows = false;
+            this.ListaConectados.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ListaConectados.BackgroundColor = System.Drawing.Color.White;
+            this.ListaConectados.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListaConectados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.ListaConectados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListaConectados.Location = new System.Drawing.Point(747, 28);
+            this.ListaConectados.ColumnHeadersVisible = false;
+            this.ListaConectados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Pink;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.ForestGreen;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ListaConectados.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ListaConectados.GridColor = System.Drawing.Color.Crimson;
+            this.ListaConectados.Location = new System.Drawing.Point(1053, 0);
+            this.ListaConectados.MultiSelect = false;
             this.ListaConectados.Name = "ListaConectados";
-            this.ListaConectados.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Pink;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ListaConectados.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.ListaConectados.RowHeadersVisible = false;
             this.ListaConectados.RowHeadersWidth = 51;
             this.ListaConectados.RowTemplate.Height = 24;
-            this.ListaConectados.Size = new System.Drawing.Size(384, 266);
+            this.ListaConectados.Size = new System.Drawing.Size(130, 266);
             this.ListaConectados.TabIndex = 23;
             // 
-            // desconectar
+            // Column1
             // 
-            this.desconectar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.desconectar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.desconectar.Location = new System.Drawing.Point(979, 410);
-            this.desconectar.Margin = new System.Windows.Forms.Padding(4);
-            this.desconectar.Name = "desconectar";
-            this.desconectar.Size = new System.Drawing.Size(173, 82);
-            this.desconectar.TabIndex = 22;
-            this.desconectar.Text = "desconectar";
-            this.desconectar.UseVisualStyleBackColor = true;
-            this.desconectar.Click += new System.EventHandler(this.desconectar_Click);
+            this.Column1.HeaderText = "Column1";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 125;
             // 
             // Inicio
             // 
@@ -395,8 +417,8 @@
         private FontAwesome.Sharp.IconButton Windowed;
         private FontAwesome.Sharp.IconButton Minimize;
         private FontAwesome.Sharp.IconButton btnExit;
-        private System.Windows.Forms.Button desconectar;
         private System.Windows.Forms.DataGridView ListaConectados;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }
 
