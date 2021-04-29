@@ -73,7 +73,6 @@ int DamePosicion (ListaConectados *lista, char nombre[20]){
 
 int Eliminar (ListaConectados *lista, char nombre[20]){
 	//Retorna 0 si elimina y -1 si el usuario no est￡ en la lista
-	char notificacion[500];
 	int pos = DamePosicion (lista, nombre);
 	if (pos == -1)
 		return -1;
@@ -500,7 +499,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// escucharemos en el port 9080
-	serv_adr.sin_port = htons(9080);
+	serv_adr.sin_port = htons(9090);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	//La cola de peticiones pendientes no podr? ser superior a 4
