@@ -18,7 +18,11 @@ typedef struct {
 	int num;
 }ListaConectados;
 
+int i;
+int sockets[100];
+char notificacion[500];
 ListaConectados lista;
+pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int Conectarse (ListaConectados *lista, char nombre[20], int socket){
 	if (lista->num == 100)
@@ -88,130 +92,13 @@ int Eliminar (ListaConectados *lista, char nombre[20]){
 
 void DameConectados (ListaConectados *lista, char conectados[500]){
 	//Devuelve los nombres de los conectados separados por /.
-	sprintf (conectados, "Numero de personas conectadas: %d \n", lista->num);
+
+	sprintf (conectados, "6/%d", lista->num);
 	int i;
 	for (i=0; i< lista->num; i++)
 	{
-		sprintf (conectados, "%s \n %s", conectados, lista->conectados[i].nombre);
+		sprintf (conectados,"%s/%s", conectados, lista->conectados[i].nombre);
 	}
-}
-
-void *AtenderCliente (void *socket)
-{
-
-	int sock_conn;
-	int *s;
-	s= (int *) socket;
-	sock_conn= *s;
-	int error;
-	
-	//int socket_conn = * (int *) socket;
-	
-	char peticion[512];
-	char respuesta[512];
-	int ret;
-	
-	int terminar =0;
-	// Entramos en un bucle para atender todas las peticiones de este cliente
-	//hasta que se desconecte
-	while (terminar ==0)
-	{
-		// Ahora recibimos su nombre, que dejamos en buff
-		ret=read(sock_conn,peticion, sizeof(peticion));
-		printf ("Recibido\n");
-		
-		
-		// Tenemos que a?adirle la marca de fin de string 
-		// para que no escriba lo que hay despues en el buffer
-		peticion[ret]='\0';
-		
-		//Escribimos el nombre en la consola
-		printf ("Se ha conectado: %s\n",peticion);
-		
-		char *p = strtok( peticion, "/");
-		int codigo =  atoi (p);
-		char nombre[20];
-		p = strtok( NULL, "/");
-			
-		strcpy (nombre, p);
-		printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
-				
-		switch (codigo)
-		{
-		case 0:
-			terminar = 1;
-			Eliminar(&lista,nombre);
-			close(sock_conn);
-			break;
-		case 1:
-			//Registrar un usuario
-			p = strtok( NULL, "/");
-			char contrasena[20];
-			strcpy (contrasena, p);
-			error = Registrarse(nombre,contrasena);
-			write (sock_conn,nombre, strlen(nombre));
-			
-			if (error != 0)
-				printf ("Ha ocurrido un error en el caso 1");
-			
-			break;
-			
-		case 2:
-			//Iniciar Sesion
-			p = strtok( NULL, "/");
-			
-			strcpy (contrasena, p);
-			error = LogIn(nombre,contrasena);
-			write (sock_conn,nombre,strlen(nombre));
-			int numsocket = DameSocket(&lista,nombre);
-			int errorCON = Conectarse (&lista,nombre,numsocket);
-			if (error != 0)
-				printf ("Ha ocurrido un error en el caso 2");
-			if (errorCON != 0)
-				printf ("Ha ocurrido un error en el caso 1, no se ha podido añadir a la lista de conectados");
-			
-			break;
-		case 3:
-			error = PuntuacionRonda(nombre,respuesta);
-			write (sock_conn,respuesta, strlen(respuesta));
-			
-			if (error != 0)
-				printf ("Ha ocurrido un error en el caso 3");
-			
-			break;
-			
-		case 4:
-			error = NumeroCartasMano(nombre,respuesta);
-			write (sock_conn,respuesta, strlen(respuesta));
-			
-			if (error != 0)
-				printf ("Ha ocurrido un error en el caso 4");
-			
-			break;
-		case 5:
-			error = PuntuacionTotal(nombre,respuesta);
-			write (sock_conn,respuesta, strlen(respuesta));
-			
-			if (error != 0)
-				printf ("Ha ocurrido un error en el caso 5");
-			break;
-		case 6:
-			DameConectados(&lista,respuesta);
-			write (sock_conn,respuesta, strlen(respuesta));
-			break;
-			
-			
-		default:
-			
-			// statements executed if expression does not equal
-			// any case constant_expression
-			break;
-		}
-		
-	}
-	// Se acabo el servicio para este cliente
-	close(sock_conn); 
-	
 }
 
 
@@ -232,7 +119,7 @@ int PuntuacionRonda (char nombre[20], char resultado[150])
 		exit (1);
 	}
 	//inicializar la conexion
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "sushigo",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n", 
 				mysql_errno(conn), mysql_error(conn));
@@ -243,7 +130,7 @@ int PuntuacionRonda (char nombre[20], char resultado[150])
 	
 	err=mysql_query (conn, consulta); 
 	if (err!=0) {
-		sprintf (resultado,"Error al consultar datos de la base %u %s",
+		sprintf (resultado,"3/Error al consultar datos de la base %u %s",
 				 mysql_errno(conn), mysql_error(conn));
 		exit (1);
 	}
@@ -252,11 +139,11 @@ int PuntuacionRonda (char nombre[20], char resultado[150])
 	row = mysql_fetch_row (resultado_c);
 	
 	if (row == NULL) {
-		sprintf (resultado,"No se han obtenido datos en la consulta\n");
+		sprintf (resultado,"3/No se han obtenido datos en la consulta\n");
 		// Y lo enviamos
 	}
 	else
-		strcpy(resultado,row[0]);
+		sprintf(resultado,"3/%s",row[0]);
 	
 	return 0;
 }
@@ -278,7 +165,7 @@ int NumeroCartasMano(char nombre[20], char resultado[150])
 		exit (1);
 	}
 	//inicializar la conexion
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "sushigo",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexi\uffc3\uffb3n: %u %s\n", 
 				mysql_errno(conn), mysql_error(conn));
@@ -298,10 +185,10 @@ int NumeroCartasMano(char nombre[20], char resultado[150])
 	resultado_c = mysql_store_result (conn); 
 	row = mysql_fetch_row (resultado_c);
 	if (row == NULL){
-		sprintf (resultado,"No se han obtenido datos en la consulta\n");
+		sprintf (resultado,"4/No se han obtenido datos en la consulta\n");
 	}
 	else
-		sprintf(resultado,row[0]); 
+		sprintf(resultado,"4/%s",row[0]); 
 	return 0;
 }
 
@@ -322,7 +209,7 @@ int PuntuacionTotal (char nombre[20], char resultado[150])
 		exit (1);
 	}
 	//inicializar la conexion
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "sushigo",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n", 
 				mysql_errno(conn), mysql_error(conn));
@@ -333,7 +220,7 @@ int PuntuacionTotal (char nombre[20], char resultado[150])
 	
 	err=mysql_query (conn, consulta); 
 	if (err!=0) {
-		sprintf (resultado,"Error al consultar datos de la base %u %s",
+		sprintf (resultado,"5/Error al consultar datos de la base %u %s",
 				 mysql_errno(conn), mysql_error(conn));
 		exit (1);
 	}
@@ -342,10 +229,10 @@ int PuntuacionTotal (char nombre[20], char resultado[150])
 	row = mysql_fetch_row (resultado_c);
 	
 	if (row == NULL){
-		sprintf (resultado,"No se han obtenido datos en la consulta\n");
+		sprintf (resultado,"5/No se han obtenido datos en la consulta\n");
 	}
 	else
-		strcpy(resultado,row[0]); 
+		sprintf(resultado,"5/%s",row[0]); 
 	return 0;
 	
 }
@@ -365,7 +252,7 @@ int Registrarse (char usuario[20], char contrasena[20]) {
 	}
 	//inicializar la conexion
 	
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "sushigo",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n",
 				mysql_errno(conn), mysql_error(conn));
@@ -429,7 +316,7 @@ int LogIn(char usuario[20], char contrasena[20]) {
 	}
 	//inicializar la conexiï¿ƒï¾³n, entrando nuestras claves de acceso y
 	//el nombre de la base de datos a la que queremos acceder 
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "sushigo",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n",
 				mysql_errno(conn), mysql_error(conn));
@@ -456,11 +343,147 @@ int LogIn(char usuario[20], char contrasena[20]) {
 	return 0;
 }
 
+void *AtenderCliente (void *socket)
+{
+	int sock_conn;
+	int *s;
+	s= (int *) socket;
+	sock_conn= *s;
+	int error;
+	
+	//int socket_conn = * (int *) socket;
+	
+	char peticion[512];
+	char respuesta[512];
+	int ret;
+	
+	int terminar =0;
+	// Entramos en un bucle para atender todas las peticiones de este cliente
+	//hasta que se desconecte
+	while (terminar ==0)
+	{
+		// Ahora recibimos su nombre, que dejamos en buff
+		ret=read(sock_conn,peticion, sizeof(peticion));
+		printf ("Recibido\n");
+		
+		
+		// Tenemos que a?adirle la marca de fin de string 
+		// para que no escriba lo que hay despues en el buffer
+		peticion[ret]='\0';
+		
+		//Escribimos el nombre en la consola
+		printf ("Se ha conectado: %s\n",peticion);
+		
+		char *p = strtok( peticion, "/");
+		int codigo =  atoi (p);
+		char nombre[20];
+		p = strtok( NULL, "/");
+			
+		strcpy (nombre, p);
+		printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
+				
+		switch (codigo)
+		{
+		case 0:
+			terminar = 1;
+			pthread_mutex_lock(&mutex);
+			Eliminar(&lista,nombre);
+			pthread_mutex_unlock(&mutex);
+			DameConectados(&lista,notificacion);
+			int j;
+			for (j=0; j<i; j++)
+			{
+				write (sockets[j],notificacion, strlen(notificacion));
+			}
+			char respuesta0[50];
+			strcpy(respuesta0,"0/Te has desconectado");
+			write (sock_conn,respuesta0,strlen(respuesta0));
+			break;
+		case 1:
+			//Registrar un usuario
+			p = strtok( NULL, "/");
+			char respuesta1[50];
+			char contrasena[20];
+			strcpy (contrasena, p);
+			error = Registrarse(nombre,contrasena);
+			sprintf(respuesta1,"1/%s",nombre);
+			write (sock_conn,respuesta1,strlen(respuesta1));
+			
+			if (error != 0)
+				printf ("Ha ocurrido un error en el caso 1");
+			
+			break;
+			
+		case 2:
+			//Iniciar Sesion
+			p = strtok( NULL, "/");
+			char respuesta2[50];
+			strcpy (contrasena, p);
+			error = LogIn(nombre,contrasena);
+			sprintf(respuesta2,"2/%s",nombre);
+			write (sock_conn,respuesta2,strlen(respuesta2));
+			int numsocket = DameSocket(&lista,nombre);
+			
+			if (error != 0)
+				printf ("Ha ocurrido un error en el caso 2");
+			
+			pthread_mutex_lock(&mutex);
+			int errorCON = Conectarse (&lista,nombre,numsocket);
+			pthread_mutex_unlock(&mutex);
+			
+			if (errorCON != 0)
+				printf ("Ha ocurrido un error en el caso 1, no se ha podido añadir a la lista de conectados");
+			else		
+			DameConectados(&lista,notificacion);
+			for (j=0; j<i; j++)
+			{
+				write (sockets[j],notificacion, strlen(notificacion));
+			}
+			
+			break;
+		case 3:
+			error = PuntuacionRonda(nombre,respuesta);
+			write (sock_conn,respuesta, strlen(respuesta));
+			
+			if (error != 0)
+				printf ("Ha ocurrido un error en el caso 3");
+			
+			break;
+			
+		case 4:
+			error = NumeroCartasMano(nombre,respuesta);
+			write (sock_conn,respuesta, strlen(respuesta));
+			
+			if (error != 0)
+				printf ("Ha ocurrido un error en el caso 4");
+			
+			break;
+		case 5:
+			error = PuntuacionTotal(nombre,respuesta);
+			write (sock_conn,respuesta, strlen(respuesta));
+			
+			if (error != 0)
+				printf ("Ha ocurrido un error en el caso 5");
+			break;
+			
+		default:
+			
+			// statements executed if expression does not equal
+			// any case constant_expression
+			break;
+		}
+		
+	}
+	// Se acabo el servicio para este cliente
+	close(sock_conn); 
+}
+
 int main(int argc, char *argv[])
 {
 	lista.num=0;
 	int sock_conn, sock_listen, ret;
 	struct sockaddr_in serv_adr;
+	int puerto = 50079;
 	char peticion[512];
 	char respuesta[512];
 	// INICIALITZACIONS
@@ -477,20 +500,19 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// escucharemos en el port 9080
-	serv_adr.sin_port = htons(9080);
+	serv_adr.sin_port = htons(puerto);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	//La cola de peticiones pendientes no podr? ser superior a 4
 	if (listen(sock_listen, 2) < 0)
 		printf("Error en el Listen");
 	
-	int i;
-	int sockets[100];
+	
 	pthread_t thread;
 	i=0;
+	printf ("Escuchando\n");
 	
 	for(;;){
-		printf ("Escuchando\n");
 		
 		sock_conn = accept(sock_listen, NULL, NULL);
 		printf ("He recibido conexion\n");
@@ -499,7 +521,6 @@ int main(int argc, char *argv[])
 		
 		pthread_create (&thread, NULL, AtenderCliente,&sockets[i]);
 		i=i+1;
-		
 	}
 	
 }

@@ -1,6 +1,6 @@
 ﻿namespace WindowsFormsApplication1
 {
-    partial class Menu
+    partial class Inicio
     {
         /// <summary>
         /// Variable del diseñador requerida.
@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnCréditos = new FontAwesome.Sharp.IconButton();
             this.btnInstrucciones = new FontAwesome.Sharp.IconButton();
@@ -39,21 +40,35 @@
             this.btnHome = new System.Windows.Forms.PictureBox();
             this.panelTitleBar = new System.Windows.Forms.Panel();
             this.Windowed = new FontAwesome.Sharp.IconButton();
+            this.lblconexion = new System.Windows.Forms.Label();
             this.Minimize = new FontAwesome.Sharp.IconButton();
             this.btnExit = new FontAwesome.Sharp.IconButton();
             this.lblTitleChildForm = new System.Windows.Forms.Label();
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
-            this.desconectar = new System.Windows.Forms.Button();
-            this.notifyConexion = new System.Windows.Forms.NotifyIcon(this.components);
-            this.Conectadosbtn = new System.Windows.Forms.Button();
+            this.lblresultado = new System.Windows.Forms.Label();
+            this.lblrestitulo = new System.Windows.Forms.Label();
+            this.btnEnviar = new System.Windows.Forms.Button();
+            this.puntuaciontotal = new System.Windows.Forms.RadioButton();
+            this.NumeroCartasMano = new System.Windows.Forms.RadioButton();
+            this.PuntuacionRonda = new System.Windows.Forms.RadioButton();
+            this.Desconectarbtn = new System.Windows.Forms.Button();
+            this.btnRegistrarse = new System.Windows.Forms.Button();
+            this.btnIniciarSesion = new System.Windows.Forms.Button();
+            this.lblContrasena = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtcontrasena = new System.Windows.Forms.TextBox();
+            this.txtnombre = new System.Windows.Forms.TextBox();
+            this.ListaConectados = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
             this.panelTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).BeginInit();
             this.panelDesktop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaConectados)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -69,7 +84,7 @@
             this.panelMenu.Location = new System.Drawing.Point(0, 0);
             this.panelMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelMenu.Name = "panelMenu";
-            this.panelMenu.Size = new System.Drawing.Size(169, 500);
+            this.panelMenu.Size = new System.Drawing.Size(169, 597);
             this.panelMenu.TabIndex = 14;
             // 
             // btnCréditos
@@ -214,6 +229,7 @@
             // 
             this.panelTitleBar.BackColor = System.Drawing.Color.Black;
             this.panelTitleBar.Controls.Add(this.Windowed);
+            this.panelTitleBar.Controls.Add(this.lblconexion);
             this.panelTitleBar.Controls.Add(this.Minimize);
             this.panelTitleBar.Controls.Add(this.btnExit);
             this.panelTitleBar.Controls.Add(this.lblTitleChildForm);
@@ -222,7 +238,7 @@
             this.panelTitleBar.Location = new System.Drawing.Point(169, 0);
             this.panelTitleBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelTitleBar.Name = "panelTitleBar";
-            this.panelTitleBar.Size = new System.Drawing.Size(873, 81);
+            this.panelTitleBar.Size = new System.Drawing.Size(1113, 81);
             this.panelTitleBar.TabIndex = 15;
             this.panelTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTitleBar_MouseDown);
             // 
@@ -236,13 +252,25 @@
             this.Windowed.IconColor = System.Drawing.Color.White;
             this.Windowed.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.Windowed.IconSize = 20;
-            this.Windowed.Location = new System.Drawing.Point(801, 10);
+            this.Windowed.Location = new System.Drawing.Point(1041, 10);
             this.Windowed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Windowed.Name = "Windowed";
             this.Windowed.Size = new System.Drawing.Size(29, 20);
             this.Windowed.TabIndex = 4;
             this.Windowed.UseVisualStyleBackColor = false;
             this.Windowed.Click += new System.EventHandler(this.Windowed_Click);
+            // 
+            // lblconexion
+            // 
+            this.lblconexion.AutoSize = true;
+            this.lblconexion.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblconexion.ForeColor = System.Drawing.Color.Black;
+            this.lblconexion.Location = new System.Drawing.Point(840, 26);
+            this.lblconexion.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblconexion.Name = "lblconexion";
+            this.lblconexion.Size = new System.Drawing.Size(146, 31);
+            this.lblconexion.TabIndex = 5;
+            this.lblconexion.Text = "Conectado";
             // 
             // Minimize
             // 
@@ -254,7 +282,7 @@
             this.Minimize.IconChar = FontAwesome.Sharp.IconChar.None;
             this.Minimize.IconColor = System.Drawing.Color.White;
             this.Minimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Minimize.Location = new System.Drawing.Point(767, 10);
+            this.Minimize.Location = new System.Drawing.Point(1007, 10);
             this.Minimize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Minimize.Name = "Minimize";
             this.Minimize.Size = new System.Drawing.Size(29, 20);
@@ -274,7 +302,7 @@
             this.btnExit.IconColor = System.Drawing.Color.White;
             this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExit.IconSize = 20;
-            this.btnExit.Location = new System.Drawing.Point(835, 9);
+            this.btnExit.Location = new System.Drawing.Point(1075, 9);
             this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(29, 20);
@@ -315,66 +343,283 @@
             this.panelShadow.Location = new System.Drawing.Point(169, 81);
             this.panelShadow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelShadow.Name = "panelShadow";
-            this.panelShadow.Size = new System.Drawing.Size(873, 8);
+            this.panelShadow.Size = new System.Drawing.Size(1113, 8);
             this.panelShadow.TabIndex = 16;
             // 
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.Crimson;
-            this.panelDesktop.Controls.Add(this.Conectadosbtn);
-            this.panelDesktop.Controls.Add(this.desconectar);
+            this.panelDesktop.Controls.Add(this.lblresultado);
+            this.panelDesktop.Controls.Add(this.lblrestitulo);
+            this.panelDesktop.Controls.Add(this.btnEnviar);
+            this.panelDesktop.Controls.Add(this.puntuaciontotal);
+            this.panelDesktop.Controls.Add(this.NumeroCartasMano);
+            this.panelDesktop.Controls.Add(this.PuntuacionRonda);
+            this.panelDesktop.Controls.Add(this.Desconectarbtn);
+            this.panelDesktop.Controls.Add(this.btnRegistrarse);
+            this.panelDesktop.Controls.Add(this.btnIniciarSesion);
+            this.panelDesktop.Controls.Add(this.lblContrasena);
+            this.panelDesktop.Controls.Add(this.lblName);
+            this.panelDesktop.Controls.Add(this.txtcontrasena);
+            this.panelDesktop.Controls.Add(this.txtnombre);
+            this.panelDesktop.Controls.Add(this.ListaConectados);
             this.panelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDesktop.Location = new System.Drawing.Point(169, 89);
             this.panelDesktop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelDesktop.Name = "panelDesktop";
-            this.panelDesktop.Size = new System.Drawing.Size(873, 411);
-            this.panelDesktop.TabIndex = 17;
+            this.panelDesktop.Size = new System.Drawing.Size(1113, 508);
+            this.panelDesktop.TabIndex = 26;
             // 
-            // desconectar
+            // lblresultado
             // 
-            this.desconectar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.desconectar.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.desconectar.Location = new System.Drawing.Point(734, 334);
-            this.desconectar.Name = "desconectar";
-            this.desconectar.Size = new System.Drawing.Size(130, 67);
-            this.desconectar.TabIndex = 22;
-            this.desconectar.Text = "desconectar";
-            this.desconectar.UseVisualStyleBackColor = true;
-            this.desconectar.Click += new System.EventHandler(this.desconectar_Click);
+            this.lblresultado.AutoSize = true;
+            this.lblresultado.Enabled = false;
+            this.lblresultado.Location = new System.Drawing.Point(522, 66);
+            this.lblresultado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblresultado.Name = "lblresultado";
+            this.lblresultado.Size = new System.Drawing.Size(0, 13);
+            this.lblresultado.TabIndex = 36;
+            this.lblresultado.Visible = false;
             // 
-            // notifyConexion
+            // lblrestitulo
             // 
-            this.notifyConexion.Visible = true;
+            this.lblrestitulo.AutoSize = true;
+            this.lblrestitulo.Enabled = false;
+            this.lblrestitulo.Location = new System.Drawing.Point(522, 39);
+            this.lblrestitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblrestitulo.Name = "lblrestitulo";
+            this.lblrestitulo.Size = new System.Drawing.Size(58, 13);
+            this.lblrestitulo.TabIndex = 35;
+            this.lblrestitulo.Text = "Resultado:";
+            this.lblrestitulo.Visible = false;
             // 
-            // Conectadosbtn
+            // btnEnviar
             // 
-            this.Conectadosbtn.Location = new System.Drawing.Point(26, 334);
-            this.Conectadosbtn.Margin = new System.Windows.Forms.Padding(2);
-            this.Conectadosbtn.Name = "Conectadosbtn";
-            this.Conectadosbtn.Size = new System.Drawing.Size(155, 37);
-            this.Conectadosbtn.TabIndex = 24;
-            this.Conectadosbtn.Text = "Lista de conectados";
-            this.Conectadosbtn.UseVisualStyleBackColor = true;
-            this.Conectadosbtn.Click += new System.EventHandler(this.Conectadosbtn_Click);
+            this.btnEnviar.BackColor = System.Drawing.Color.PeachPuff;
+            this.btnEnviar.Enabled = false;
+            this.btnEnviar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEnviar.Location = new System.Drawing.Point(298, 124);
+            this.btnEnviar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEnviar.Name = "btnEnviar";
+            this.btnEnviar.Size = new System.Drawing.Size(140, 57);
+            this.btnEnviar.TabIndex = 34;
+            this.btnEnviar.Text = "Enviar";
+            this.btnEnviar.UseVisualStyleBackColor = false;
+            this.btnEnviar.Visible = false;
+            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
-            // Menu
+            // puntuaciontotal
+            // 
+            this.puntuaciontotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.puntuaciontotal.AutoSize = true;
+            this.puntuaciontotal.Enabled = false;
+            this.puntuaciontotal.Location = new System.Drawing.Point(302, 91);
+            this.puntuaciontotal.Name = "puntuaciontotal";
+            this.puntuaciontotal.Size = new System.Drawing.Size(196, 17);
+            this.puntuaciontotal.TabIndex = 31;
+            this.puntuaciontotal.TabStop = true;
+            this.puntuaciontotal.Text = "Puntuación total al final de la partida";
+            this.puntuaciontotal.UseVisualStyleBackColor = true;
+            this.puntuaciontotal.Visible = false;
+            // 
+            // NumeroCartasMano
+            // 
+            this.NumeroCartasMano.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.NumeroCartasMano.AutoSize = true;
+            this.NumeroCartasMano.Enabled = false;
+            this.NumeroCartasMano.Location = new System.Drawing.Point(296, 63);
+            this.NumeroCartasMano.Name = "NumeroCartasMano";
+            this.NumeroCartasMano.Size = new System.Drawing.Size(164, 17);
+            this.NumeroCartasMano.TabIndex = 32;
+            this.NumeroCartasMano.TabStop = true;
+            this.NumeroCartasMano.Text = "Número de cartas en la mano";
+            this.NumeroCartasMano.UseVisualStyleBackColor = true;
+            this.NumeroCartasMano.Visible = false;
+            // 
+            // PuntuacionRonda
+            // 
+            this.PuntuacionRonda.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.PuntuacionRonda.AutoSize = true;
+            this.PuntuacionRonda.Enabled = false;
+            this.PuntuacionRonda.Location = new System.Drawing.Point(288, 39);
+            this.PuntuacionRonda.Name = "PuntuacionRonda";
+            this.PuntuacionRonda.Size = new System.Drawing.Size(130, 17);
+            this.PuntuacionRonda.TabIndex = 33;
+            this.PuntuacionRonda.TabStop = true;
+            this.PuntuacionRonda.Text = "Puntos en cada ronda";
+            this.PuntuacionRonda.UseVisualStyleBackColor = true;
+            this.PuntuacionRonda.Visible = false;
+            // 
+            // Desconectarbtn
+            // 
+            this.Desconectarbtn.BackColor = System.Drawing.Color.PeachPuff;
+            this.Desconectarbtn.Location = new System.Drawing.Point(13, 462);
+            this.Desconectarbtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Desconectarbtn.Name = "Desconectarbtn";
+            this.Desconectarbtn.Size = new System.Drawing.Size(170, 37);
+            this.Desconectarbtn.TabIndex = 30;
+            this.Desconectarbtn.Text = "Desconectar";
+            this.Desconectarbtn.UseVisualStyleBackColor = false;
+            this.Desconectarbtn.Click += new System.EventHandler(this.Desconectarbtn_Click);
+            // 
+            // btnRegistrarse
+            // 
+            this.btnRegistrarse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRegistrarse.BackColor = System.Drawing.Color.PeachPuff;
+            this.btnRegistrarse.Enabled = false;
+            this.btnRegistrarse.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnRegistrarse.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarse.Location = new System.Drawing.Point(6, 202);
+            this.btnRegistrarse.Name = "btnRegistrarse";
+            this.btnRegistrarse.Size = new System.Drawing.Size(170, 38);
+            this.btnRegistrarse.TabIndex = 29;
+            this.btnRegistrarse.Text = "Registrarse";
+            this.btnRegistrarse.UseVisualStyleBackColor = false;
+            this.btnRegistrarse.Visible = false;
+            this.btnRegistrarse.Click += new System.EventHandler(this.btnRegistrarse_Click);
+            // 
+            // btnIniciarSesion
+            // 
+            this.btnIniciarSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnIniciarSesion.BackColor = System.Drawing.Color.PeachPuff;
+            this.btnIniciarSesion.Enabled = false;
+            this.btnIniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnIniciarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIniciarSesion.Location = new System.Drawing.Point(6, 155);
+            this.btnIniciarSesion.Name = "btnIniciarSesion";
+            this.btnIniciarSesion.Size = new System.Drawing.Size(170, 40);
+            this.btnIniciarSesion.TabIndex = 28;
+            this.btnIniciarSesion.Text = "Iniciar Sesión";
+            this.btnIniciarSesion.UseVisualStyleBackColor = false;
+            this.btnIniciarSesion.Visible = false;
+            this.btnIniciarSesion.Click += new System.EventHandler(this.btnIniciarSesion_Click);
+            // 
+            // lblContrasena
+            // 
+            this.lblContrasena.AutoSize = true;
+            this.lblContrasena.Enabled = false;
+            this.lblContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContrasena.Location = new System.Drawing.Point(16, 84);
+            this.lblContrasena.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblContrasena.Name = "lblContrasena";
+            this.lblContrasena.Size = new System.Drawing.Size(124, 25);
+            this.lblContrasena.TabIndex = 27;
+            this.lblContrasena.Text = "Contraseña";
+            this.lblContrasena.Visible = false;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Enabled = false;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(16, 13);
+            this.lblName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(87, 25);
+            this.lblName.TabIndex = 26;
+            this.lblName.Text = "Nombre";
+            this.lblName.Visible = false;
+            // 
+            // txtcontrasena
+            // 
+            this.txtcontrasena.Enabled = false;
+            this.txtcontrasena.Location = new System.Drawing.Point(20, 110);
+            this.txtcontrasena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtcontrasena.Name = "txtcontrasena";
+            this.txtcontrasena.Size = new System.Drawing.Size(144, 20);
+            this.txtcontrasena.TabIndex = 25;
+            this.txtcontrasena.Visible = false;
+            // 
+            // txtnombre
+            // 
+            this.txtnombre.Enabled = false;
+            this.txtnombre.Location = new System.Drawing.Point(20, 39);
+            this.txtnombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtnombre.Name = "txtnombre";
+            this.txtnombre.Size = new System.Drawing.Size(144, 20);
+            this.txtnombre.TabIndex = 24;
+            this.txtnombre.Visible = false;
+            // 
+            // ListaConectados
+            // 
+            this.ListaConectados.AllowUserToAddRows = false;
+            this.ListaConectados.AllowUserToDeleteRows = false;
+            this.ListaConectados.AllowUserToResizeColumns = false;
+            this.ListaConectados.AllowUserToResizeRows = false;
+            this.ListaConectados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ListaConectados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.ListaConectados.BackgroundColor = System.Drawing.Color.White;
+            this.ListaConectados.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListaConectados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.ListaConectados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ListaConectados.ColumnHeadersVisible = false;
+            this.ListaConectados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Pink;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.ForestGreen;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ListaConectados.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ListaConectados.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ListaConectados.Enabled = false;
+            this.ListaConectados.GridColor = System.Drawing.Color.Crimson;
+            this.ListaConectados.Location = new System.Drawing.Point(1015, 0);
+            this.ListaConectados.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ListaConectados.MultiSelect = false;
+            this.ListaConectados.Name = "ListaConectados";
+            this.ListaConectados.ReadOnly = true;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Pink;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ListaConectados.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.ListaConectados.RowHeadersVisible = false;
+            this.ListaConectados.RowHeadersWidth = 90;
+            this.ListaConectados.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.ListaConectados.RowTemplate.Height = 24;
+            this.ListaConectados.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.ListaConectados.ShowCellErrors = false;
+            this.ListaConectados.ShowCellToolTips = false;
+            this.ListaConectados.ShowEditingIcon = false;
+            this.ListaConectados.ShowRowErrors = false;
+            this.ListaConectados.Size = new System.Drawing.Size(98, 508);
+            this.ListaConectados.TabIndex = 23;
+            this.ListaConectados.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Column1";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1042, 500);
+            this.ClientSize = new System.Drawing.Size(1282, 597);
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
-            this.Name = "Menu";
+            this.Name = "Inicio";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panelMenu.ResumeLayout(false);
             this.panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).EndInit();
             this.panelTitleBar.ResumeLayout(false);
+            this.panelTitleBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).EndInit();
             this.panelDesktop.ResumeLayout(false);
+            this.panelDesktop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ListaConectados)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -396,9 +641,22 @@
         private FontAwesome.Sharp.IconButton Windowed;
         private FontAwesome.Sharp.IconButton Minimize;
         private FontAwesome.Sharp.IconButton btnExit;
-        private System.Windows.Forms.Button desconectar;
-        public System.Windows.Forms.NotifyIcon notifyConexion;
-        private System.Windows.Forms.Button Conectadosbtn;
+        private System.Windows.Forms.DataGridView ListaConectados;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.Button Desconectarbtn;
+        private System.Windows.Forms.Button btnRegistrarse;
+        private System.Windows.Forms.Button btnIniciarSesion;
+        private System.Windows.Forms.Label lblContrasena;
+        private System.Windows.Forms.Label lblName;
+        public System.Windows.Forms.TextBox txtcontrasena;
+        public System.Windows.Forms.TextBox txtnombre;
+        private System.Windows.Forms.Label lblresultado;
+        private System.Windows.Forms.Label lblrestitulo;
+        private System.Windows.Forms.Button btnEnviar;
+        private System.Windows.Forms.RadioButton puntuaciontotal;
+        private System.Windows.Forms.RadioButton NumeroCartasMano;
+        private System.Windows.Forms.RadioButton PuntuacionRonda;
+        private System.Windows.Forms.Label lblconexion;
     }
 }
 
