@@ -62,12 +62,6 @@
     <Compile Include="Forms\Créditos.Designer.cs">
       <DependentUpon>Créditos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\IniciarSesion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\IniciarSesion.Designer.cs">
-      <DependentUpon>IniciarSesion.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Instrucciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,12 +74,6 @@
     <Compile Include="Forms\Jugar.Designer.cs">
       <DependentUpon>Jugar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Perfil.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Perfil.Designer.cs">
-      <DependentUpon>Perfil.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,17 +85,11 @@
     <EmbeddedResource Include="Forms\Créditos.resx">
       <DependentUpon>Créditos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\IniciarSesion.resx">
-      <DependentUpon>IniciarSesion.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Instrucciones.resx">
       <DependentUpon>Instrucciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Jugar.resx">
       <DependentUpon>Jugar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Perfil.resx">
-      <DependentUpon>Perfil.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>

@@ -20,23 +20,17 @@ typedef struct {
 
 int i;
 int sockets[100];
+char notificacion[500];
 ListaConectados lista;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int Conectarse (ListaConectados *lista, char nombre[20], int socket){
-	char notificacion[500];
 	if (lista->num == 100)
 		return -1;
 	else {
 		strcpy (lista->conectados[lista->num].nombre, nombre);
 		lista->conectados[lista->num].socket = socket;
 		lista->num++;
-		DameConectados(&lista,notificacion);
-		int j;
-		for (j=0; j<i; j++)
-		{
-			write (sockets[j],notificacion, strlen(notificacion));
-		}
 		return 0;
 	}
 }
@@ -79,7 +73,6 @@ int DamePosicion (ListaConectados *lista, char nombre[20]){
 
 int Eliminar (ListaConectados *lista, char nombre[20]){
 	//Retorna 0 si elimina y -1 si el usuario no est￡ en la lista
-	char notificacion[500];
 	int pos = DamePosicion (lista, nombre);
 	if (pos == -1)
 		return -1;
@@ -92,12 +85,6 @@ int Eliminar (ListaConectados *lista, char nombre[20]){
 			lista->conectados[i].socket = lista->conectados[i+1].socket;          
 		}
 		lista->num--;
-		DameConectados(&lista,notificacion);
-		int j;
-		for (j=0; j<i; j++)
-		{
-			write (sockets[j],notificacion, strlen(notificacion));
-		}
 		return 0;
 	}
 }
@@ -105,7 +92,8 @@ int Eliminar (ListaConectados *lista, char nombre[20]){
 
 void DameConectados (ListaConectados *lista, char conectados[500]){
 	//Devuelve los nombres de los conectados separados por /.
-	sprintf (conectados, "6/%d/", lista->num);
+
+	sprintf (conectados, "6/%d", lista->num);
 	int i;
 	for (i=0; i< lista->num; i++)
 	{
@@ -131,7 +119,7 @@ int PuntuacionRonda (char nombre[20], char resultado[150])
 		exit (1);
 	}
 	//inicializar la conexion
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "sushigo",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n", 
 				mysql_errno(conn), mysql_error(conn));
@@ -177,7 +165,7 @@ int NumeroCartasMano(char nombre[20], char resultado[150])
 		exit (1);
 	}
 	//inicializar la conexion
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "sushigo",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexi\uffc3\uffb3n: %u %s\n", 
 				mysql_errno(conn), mysql_error(conn));
@@ -221,7 +209,7 @@ int PuntuacionTotal (char nombre[20], char resultado[150])
 		exit (1);
 	}
 	//inicializar la conexion
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "sushigo",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n", 
 				mysql_errno(conn), mysql_error(conn));
@@ -264,7 +252,7 @@ int Registrarse (char usuario[20], char contrasena[20]) {
 	}
 	//inicializar la conexion
 	
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "sushigo",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n",
 				mysql_errno(conn), mysql_error(conn));
@@ -328,7 +316,7 @@ int LogIn(char usuario[20], char contrasena[20]) {
 	}
 	//inicializar la conexiￃﾳn, entrando nuestras claves de acceso y
 	//el nombre de la base de datos a la que queremos acceder 
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "sushigo",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n",
 				mysql_errno(conn), mysql_error(conn));
@@ -401,6 +389,12 @@ void *AtenderCliente (void *socket)
 			pthread_mutex_lock(&mutex);
 			Eliminar(&lista,nombre);
 			pthread_mutex_unlock(&mutex);
+			DameConectados(&lista,notificacion);
+			int j;
+			for (j=0; j<i; j++)
+			{
+				write (sockets[j],notificacion, strlen(notificacion));
+			}
 			char respuesta0[50];
 			strcpy(respuesta0,"0/Te has desconectado");
 			write (sock_conn,respuesta0,strlen(respuesta0));
@@ -409,7 +403,7 @@ void *AtenderCliente (void *socket)
 			//Registrar un usuario
 			p = strtok( NULL, "/");
 			char respuesta1[50];
-			char contrasena[50];
+			char contrasena[20];
 			strcpy (contrasena, p);
 			error = Registrarse(nombre,contrasena);
 			sprintf(respuesta1,"1/%s",nombre);
@@ -423,9 +417,7 @@ void *AtenderCliente (void *socket)
 		case 2:
 			//Iniciar Sesion
 			p = strtok( NULL, "/");
-			
 			char respuesta2[50];
-			
 			strcpy (contrasena, p);
 			error = LogIn(nombre,contrasena);
 			sprintf(respuesta2,"2/%s",nombre);
@@ -441,6 +433,12 @@ void *AtenderCliente (void *socket)
 			
 			if (errorCON != 0)
 				printf ("Ha ocurrido un error en el caso 1, no se ha podido a�adir a la lista de conectados");
+			else		
+			DameConectados(&lista,notificacion);
+			for (j=0; j<i; j++)
+			{
+				write (sockets[j],notificacion, strlen(notificacion));
+			}
 			
 			break;
 		case 3:
@@ -485,6 +483,7 @@ int main(int argc, char *argv[])
 	lista.num=0;
 	int sock_conn, sock_listen, ret;
 	struct sockaddr_in serv_adr;
+	int puerto = 50079;
 	char peticion[512];
 	char respuesta[512];
 	// INICIALITZACIONS
@@ -501,7 +500,7 @@ int main(int argc, char *argv[])
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	// escucharemos en el port 9080
-	serv_adr.sin_port = htons(9080);
+	serv_adr.sin_port = htons(puerto);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");
 	//La cola de peticiones pendientes no podr? ser superior a 4
@@ -511,9 +510,9 @@ int main(int argc, char *argv[])
 	
 	pthread_t thread;
 	i=0;
+	printf ("Escuchando\n");
 	
 	for(;;){
-		printf ("Escuchando\n");
 		
 		sock_conn = accept(sock_listen, NULL, NULL);
 		printf ("He recibido conexion\n");

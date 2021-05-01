@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1.Forms
         PictureBox[,] PictureBoxCartas = new PictureBox[6, 6];
         Label[,] LabelsJugadores = new Label[6, 6];
         int[] numCartasPorJugador = new int[6];
-        int numJugadores;
+
         public Jugar()
         {
             InitializeComponent();
@@ -53,8 +53,7 @@ namespace WindowsFormsApplication1.Forms
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 6; j++)
-                {
-                   
+                { 
                     PictureBoxCartas[0, j].ImageLocation = "Portada.jpg";
                 }
             }
@@ -67,8 +66,6 @@ namespace WindowsFormsApplication1.Forms
             SoundPlayer simpleSound = new SoundPlayer(@"Barajar.wav");
             simpleSound.Play();
             Repartir.Visible = true;
-
-
         }
         public string AsignarImagenCarta(string numrand)
         {
@@ -139,14 +136,16 @@ namespace WindowsFormsApplication1.Forms
             Random r = new Random();
             for (int i = 0; i < 6; i++)
             {
-                numrand = Convert.ToString(r.Next(1, 12));
+                numrand = Convert.ToString(r.Next(1, 13));
                 carta = AsignarImagenCarta(numrand);
 
                 //Insertamos la imagen de cada carta de mi jugador
                 PictureBoxCartas[0, i].ImageLocation = carta + ".jpg";
             }
+        }
 
-
+        private void Jugar_Load_1(object sender, EventArgs e)
+        {
 
         }
     }

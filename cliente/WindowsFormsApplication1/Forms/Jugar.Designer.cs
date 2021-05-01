@@ -52,9 +52,10 @@ namespace WindowsFormsApplication1.Forms
             this.Barajar.IconChar = FontAwesome.Sharp.IconChar.None;
             this.Barajar.IconColor = System.Drawing.Color.Black;
             this.Barajar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Barajar.Location = new System.Drawing.Point(208, 39);
+            this.Barajar.Location = new System.Drawing.Point(277, 48);
+            this.Barajar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Barajar.Name = "Barajar";
-            this.Barajar.Size = new System.Drawing.Size(188, 66);
+            this.Barajar.Size = new System.Drawing.Size(251, 81);
             this.Barajar.TabIndex = 0;
             this.Barajar.Text = "BARAJAR";
             this.Barajar.UseVisualStyleBackColor = true;
@@ -62,9 +63,10 @@ namespace WindowsFormsApplication1.Forms
             // 
             // Carta4
             // 
-            this.Carta4.Location = new System.Drawing.Point(436, 186);
+            this.Carta4.Location = new System.Drawing.Point(581, 229);
+            this.Carta4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Carta4.Name = "Carta4";
-            this.Carta4.Size = new System.Drawing.Size(128, 213);
+            this.Carta4.Size = new System.Drawing.Size(171, 262);
             this.Carta4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Carta4.TabIndex = 1;
             this.Carta4.TabStop = false;
@@ -73,45 +75,50 @@ namespace WindowsFormsApplication1.Forms
             // 
             this.Carta1.BackColor = System.Drawing.Color.Transparent;
             this.Carta1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Carta1.Location = new System.Drawing.Point(36, 186);
+            this.Carta1.Location = new System.Drawing.Point(48, 229);
+            this.Carta1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Carta1.Name = "Carta1";
-            this.Carta1.Size = new System.Drawing.Size(128, 213);
+            this.Carta1.Size = new System.Drawing.Size(171, 262);
             this.Carta1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Carta1.TabIndex = 2;
             this.Carta1.TabStop = false;
             // 
             // Carta2
             // 
-            this.Carta2.Location = new System.Drawing.Point(170, 186);
+            this.Carta2.Location = new System.Drawing.Point(227, 229);
+            this.Carta2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Carta2.Name = "Carta2";
-            this.Carta2.Size = new System.Drawing.Size(128, 213);
+            this.Carta2.Size = new System.Drawing.Size(171, 262);
             this.Carta2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Carta2.TabIndex = 3;
             this.Carta2.TabStop = false;
             // 
             // Carta3
             // 
-            this.Carta3.Location = new System.Drawing.Point(302, 186);
+            this.Carta3.Location = new System.Drawing.Point(403, 229);
+            this.Carta3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Carta3.Name = "Carta3";
-            this.Carta3.Size = new System.Drawing.Size(128, 213);
+            this.Carta3.Size = new System.Drawing.Size(171, 262);
             this.Carta3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Carta3.TabIndex = 4;
             this.Carta3.TabStop = false;
             // 
             // Carta5
             // 
-            this.Carta5.Location = new System.Drawing.Point(570, 186);
+            this.Carta5.Location = new System.Drawing.Point(760, 229);
+            this.Carta5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Carta5.Name = "Carta5";
-            this.Carta5.Size = new System.Drawing.Size(128, 213);
+            this.Carta5.Size = new System.Drawing.Size(171, 262);
             this.Carta5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Carta5.TabIndex = 5;
             this.Carta5.TabStop = false;
             // 
             // Carta6
             // 
-            this.Carta6.Location = new System.Drawing.Point(704, 186);
+            this.Carta6.Location = new System.Drawing.Point(939, 229);
+            this.Carta6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Carta6.Name = "Carta6";
-            this.Carta6.Size = new System.Drawing.Size(128, 213);
+            this.Carta6.Size = new System.Drawing.Size(171, 262);
             this.Carta6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Carta6.TabIndex = 6;
             this.Carta6.TabStop = false;
@@ -123,9 +130,10 @@ namespace WindowsFormsApplication1.Forms
             this.Repartir.IconChar = FontAwesome.Sharp.IconChar.None;
             this.Repartir.IconColor = System.Drawing.Color.Black;
             this.Repartir.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Repartir.Location = new System.Drawing.Point(426, 49);
+            this.Repartir.Location = new System.Drawing.Point(568, 60);
+            this.Repartir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Repartir.Name = "Repartir";
-            this.Repartir.Size = new System.Drawing.Size(138, 47);
+            this.Repartir.Size = new System.Drawing.Size(184, 58);
             this.Repartir.TabIndex = 7;
             this.Repartir.Text = "REPARTIR";
             this.Repartir.UseVisualStyleBackColor = true;
@@ -133,10 +141,10 @@ namespace WindowsFormsApplication1.Forms
             // 
             // Jugar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Crimson;
-            this.ClientSize = new System.Drawing.Size(987, 561);
+            this.ClientSize = new System.Drawing.Size(1316, 690);
             this.Controls.Add(this.Repartir);
             this.Controls.Add(this.Carta6);
             this.Controls.Add(this.Carta5);
@@ -145,9 +153,10 @@ namespace WindowsFormsApplication1.Forms
             this.Controls.Add(this.Carta1);
             this.Controls.Add(this.Carta4);
             this.Controls.Add(this.Barajar);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Jugar";
             this.Text = "Jugar";
+            this.Load += new System.EventHandler(this.Jugar_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.Carta4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Carta1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Carta2)).EndInit();

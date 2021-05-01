@@ -17,12 +17,14 @@ namespace WindowsFormsApplication1
 {
     public partial class Inicio : Form
     {
+        public Thread atender;
         private IconButton currentBtn;
         private Panel leftBorderBtn;
         private Form currentChildForm;
+        public static int A;
+        public static string N;
+        bool RegisterCheck = false;
         public static Socket server;
-        Thread atender;
-
 
         public Inicio()
         {
@@ -86,10 +88,6 @@ namespace WindowsFormsApplication1
 
         private void OpenChildForm(Form childForm)
         {
-            if (currentChildForm != null)
-            {
-                currentChildForm.Close();
-            }
             currentChildForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -99,37 +97,15 @@ namespace WindowsFormsApplication1
             childForm.BringToFront();
             childForm.Show();
             lblTitleChildForm.Text = childForm.Text;
+            ListaConectados.Visible = false;
+            ListaConectados.Enabled = false;
             
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ListaConectados.Columns.Add("nombre","Jugadores online");
-
-            //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
-            //al que deseamos conectarnos
-            IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, 9080);
-
-            
-            //Creamos el socket 
-            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            try
-            {
-                server.Connect(ipep);//Intentamos conectar el socket
-                MessageBox.Show("Perfecto");
-            }
-            catch (SocketException ex)
-            {
-                //Si hay excepcion imprimimos error y salimos del programa con return 
-                return;
-
-            }
-            
-
-            ThreadStart ts = delegate { AtenderServidor(); };
-            atender = new Thread(ts);
-            atender.Start();
+                ListaConectados.ColumnCount = 1;
+                ListaConectados.RowCount = 100;
         }
 
         public void AtenderServidor ()
@@ -138,33 +114,60 @@ namespace WindowsFormsApplication1
             {
                 byte[] msg2 = new byte[80];
                 server.Receive(msg2);
-                string [] respuesta = Encoding.ASCII.GetString(msg2).Split('/');
+                //Limpiar el mensaje de basura
+                string mensaje = Encoding.ASCII.GetString(msg2).Split('\0')[0];
+                string [] respuesta = mensaje.Split('/');
                 int codigo = Convert.ToInt32(respuesta[0]);
-                string mensaje = respuesta[1].Split('\0')[0];
 
                 switch (codigo)
                 {
                     case 0:
-                        MessageBox.Show(mensaje);
+                        mensaje = respuesta[1];
+                        lblconexion.ForeColor = Color.Black;
+                        //lblconexion.Text = mensaje;
                         atender.Abort();
                         break;
                     case 1:
+                        mensaje = respuesta[1];
                         MessageBox.Show(mensaje + " se ha registrado correctamente, Ahora inicie sesión!");        
                         break;
                     case 2:
-                        MessageBox.Show(mensaje + " ha iniciado sesión correctamente"); 
+                        mensaje = respuesta[1];
+                        MessageBox.Show(mensaje + " ha iniciado sesión correctamente");
+                        //lblconexion.Text = "Conectado";
+                        lblconexion.ForeColor = Color.Green;
+
                         break;
                     case 3:
-                        MessageBox.Show(IniciarSesion.N + " tiene " + mensaje + " puntos");
+                        mensaje = respuesta[1];
+                        MessageBox.Show(N + " tiene " + mensaje + " puntos");
                         break;
                     case 4:
-                        MessageBox.Show(IniciarSesion.N + " tiene " + mensaje + " cartas");
+                        mensaje = respuesta[1];
+                        MessageBox.Show(N + " tiene " + mensaje + " cartas");
                         break;
                     case 5:
-                        MessageBox.Show(IniciarSesion.N + " tiene " + mensaje + " puntos");
+                        mensaje = respuesta[1];
+                        MessageBox.Show(N + " tiene " + mensaje + " puntos");
                         break;
                     case 6:
-                        
+                        // ListaConectados.Rows.Clear();
+                        int x = 0;
+                        int numConectados = Convert.ToInt32(respuesta[1]);
+                        while (x < numConectados + 1)
+                        {
+                            ListaConectados.Rows[x].Cells[0].Value = "";
+                            x++;
+                        }
+                            int j = 0, k = 2;
+
+                        while (j < numConectados)
+                        {
+                         // ListaConectados.Rows.Add(respuesta[k]);
+                            ListaConectados.Rows[j].Cells[0].Value = respuesta[k];
+                            j++;
+                            k++;
+                        }
                         break;
                 }
             }
@@ -172,14 +175,76 @@ namespace WindowsFormsApplication1
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close();
+            }
             ActivarBoton(sender, RGBColors.color2);
-            OpenChildForm(new IniciarSesion());
+            lblName.Visible = true;
+            lblName.Enabled = true;
+            lblContrasena.Visible = true;
+            lblContrasena.Enabled = true;
+            txtnombre.Visible = true;
+            txtnombre.Enabled = true;
+            txtcontrasena.Visible = true;
+            txtcontrasena.Enabled = true;
+            btnIniciarSesion.Visible = true;
+            btnIniciarSesion.Enabled = true;
+            btnRegistrarse.Visible = true;
+            btnRegistrarse.Enabled = true;
+            Desconectarbtn.Visible = true;
+            Desconectarbtn.Enabled = true;
+            puntuaciontotal.Visible = false;
+            puntuaciontotal.Enabled = false;
+            PuntuacionRonda.Visible = false;
+            PuntuacionRonda.Enabled = false;
+            NumeroCartasMano.Visible = false;
+            NumeroCartasMano.Enabled = false;
+            btnEnviar.Visible = false;
+            btnEnviar.Enabled = false;
+            ListaConectados.Visible = true;
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close();
+            }
+
         }
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close();
+            }
             ActivarBoton(sender, RGBColors.color3);
-            OpenChildForm(new Perfil());
+            lblName.Visible = false;
+            lblName.Enabled = false;
+            lblContrasena.Visible = false;
+            lblContrasena.Enabled = false;
+            txtnombre.Visible = false;
+            txtnombre.Enabled = false;
+            txtcontrasena.Visible = false;
+            txtcontrasena.Enabled = false;
+            btnIniciarSesion.Visible = false;
+            btnIniciarSesion.Enabled = false;
+            btnRegistrarse.Visible = false;
+            btnRegistrarse.Enabled = false;
+            Desconectarbtn.Visible = false;
+            Desconectarbtn.Enabled = false;
+            puntuaciontotal.Visible = true;
+            puntuaciontotal.Enabled = true;
+            PuntuacionRonda.Visible = true;
+            PuntuacionRonda.Enabled = true;
+            NumeroCartasMano.Visible = true;
+            NumeroCartasMano.Enabled = true;
+            btnEnviar.Visible = true;
+            btnEnviar.Enabled = true;
+            ListaConectados.Visible = false;
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close();
+            }
+
         }
 
         private void iconButton3_Click(object sender, EventArgs e)
@@ -202,7 +267,10 @@ namespace WindowsFormsApplication1
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            currentChildForm.Close();
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close();
+            }
             Reset();
         }
         private void Reset()
@@ -213,6 +281,30 @@ namespace WindowsFormsApplication1
             iconCurrentChildForm.IconColor = Color.White;
             lblTitleChildForm.Text = "Inicio";
             lblTitleChildForm.ForeColor = Color.White;
+            lblName.Visible = false;
+            lblName.Enabled = false;
+            lblContrasena.Visible = false;
+            lblContrasena.Enabled = false;
+            txtnombre.Visible = false;
+            txtnombre.Enabled = false;
+            txtcontrasena.Visible = false;
+            txtcontrasena.Enabled = false;
+            btnIniciarSesion.Visible = false;
+            btnIniciarSesion.Enabled = false;
+            btnRegistrarse.Visible = false;
+            btnRegistrarse.Enabled = false;
+            Desconectarbtn.Visible = false;
+            Desconectarbtn.Enabled = false;
+            puntuaciontotal.Visible = false;
+            puntuaciontotal.Enabled = false;
+            PuntuacionRonda.Visible = false;
+            PuntuacionRonda.Enabled = false;
+            NumeroCartasMano.Visible = false;
+            NumeroCartasMano.Enabled = false;
+            btnEnviar.Visible = false;
+            btnEnviar.Enabled = false;
+            ListaConectados.Visible = false;
+            ListaConectados.Enabled = false;
         }
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -243,28 +335,128 @@ namespace WindowsFormsApplication1
             WindowState = FormWindowState.Minimized;
         }
 
-        private void desconectar_Click(object sender, EventArgs e)
+        private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            if (IniciarSesion.A == 1)
+            if (A != 1)
+            {
+                if (RegisterCheck == false)
+                {
+                        //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
+                        //al que deseamos conectarnos
+                        IPAddress direc = IPAddress.Parse("147.83.117.22");
+                        IPEndPoint ipep = new IPEndPoint(direc, 50079);
+
+
+                        //Creamos el socket 
+                        server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                        try
+                        {
+                            server.Connect(ipep);//Intentamos conectar el socket
+
+                        }
+                        catch (SocketException ex)
+                        {
+                            //Si hay excepcion imprimimos error y salimos del programa con return 
+                            return;
+
+                        }
+                        A = 1;
+                        N = txtnombre.Text;
+
+                    ThreadStart ts = delegate { AtenderServidor(); };
+                    atender = new Thread(ts);
+                    atender.Start();
+                    string mensaje = "2/" + txtnombre.Text + "/" + txtcontrasena.Text;
+                    // Enviamos al servidor el nombre tecleado
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    server.Send(msg);
+                }
+            }
+            else
+                MessageBox.Show("Ya has iniciado una sesión debes desconectarte primero.");
+        }
+
+        private void btnRegistrarse_Click(object sender, EventArgs e)
+        {
+                //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
+                //al que deseamos conectarnos
+                IPAddress direc = IPAddress.Parse("192.168.56.102");
+                IPEndPoint ipep = new IPEndPoint(direc, 9090);
+
+
+                //Creamos el socket 
+                server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                try
+                {
+                    server.Connect(ipep);//Intentamos conectar el socket     
+
+                }
+                catch (SocketException ex)
+                {
+                    //Si hay excepcion imprimimos error y salimos del programa con return 
+                    return;
+
+                }
+            string mensaje = "1/" + txtnombre.Text + "/" + txtcontrasena.Text;
+            // Enviamos al servidor el nombre tecleado
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+            RegisterCheck = true;
+        }
+
+        private void Desconectarbtn_Click(object sender, EventArgs e)
+        {
+            if (A == 1)
             {
                 //Mensaje de desconexión
-                string mensaje = "0/" + IniciarSesion.N;
-
+                string mensaje = "0/" + N;
                 byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
 
-                MessageBox.Show("Desconectado");
 
                 // Nos desconectamos
+                MessageBox.Show("Te has desconectado");
                 server.Shutdown(SocketShutdown.Both);
                 server.Close();
                 atender.Abort();
-                IniciarSesion.A = 0;
+                A = 0;
             }
             else
             {
                 MessageBox.Show("Todavía no estás conectado!");
             }
         }
+
+        private void btnEnviar_Click(object sender, EventArgs e)
+        {
+            if (A == 1)
+            {
+
+                if (PuntuacionRonda.Checked)
+                {
+                    string mensaje = "3/" + N;
+                    // Enviamos al servidor el nombre tecleado
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    server.Send(msg);
+                }
+                else if (NumeroCartasMano.Checked)
+                {
+                    string mensaje = "4/" + N;
+                    // Enviamos al servidor el nombre tecleado
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    server.Send(msg);
+                }
+                else if (puntuaciontotal.Checked)
+                {
+                    string mensaje = "5/" + N;
+                    // Enviamos al servidor el nombre tecleado
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    server.Send(msg);
+                }
+            }
+            else
+                MessageBox.Show("No has iniciado sesión!");
+        }
     }
 }
+   
