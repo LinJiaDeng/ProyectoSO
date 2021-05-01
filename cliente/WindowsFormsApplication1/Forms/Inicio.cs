@@ -202,10 +202,6 @@ namespace WindowsFormsApplication1
             NumeroCartasMano.Enabled = false;
             btnEnviar.Visible = false;
             btnEnviar.Enabled = false;
-            lblrestitulo.Visible = false;
-            lblrestitulo.Enabled = false;
-            lblresultado.Visible = false;
-            lblresultado.Enabled = false;
             ListaConectados.Visible = true;
             if (currentChildForm != null)
             {
@@ -243,10 +239,6 @@ namespace WindowsFormsApplication1
             NumeroCartasMano.Enabled = true;
             btnEnviar.Visible = true;
             btnEnviar.Enabled = true;
-            lblrestitulo.Visible = true;
-            lblrestitulo.Enabled = true;
-            lblresultado.Visible = true;
-            lblresultado.Enabled = true;
             ListaConectados.Visible = false;
             if (currentChildForm != null)
             {
@@ -311,10 +303,6 @@ namespace WindowsFormsApplication1
             NumeroCartasMano.Enabled = false;
             btnEnviar.Visible = false;
             btnEnviar.Enabled = false;
-            lblrestitulo.Visible = false;
-            lblrestitulo.Enabled = false;
-            lblresultado.Visible = false;
-            lblresultado.Enabled = false;
             ListaConectados.Visible = false;
             ListaConectados.Enabled = false;
         }
