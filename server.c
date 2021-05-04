@@ -18,10 +18,22 @@ typedef struct {
 	int num;
 }ListaConectados;
 
+typedef struct {
+	int ID;
+	int numParticipantes;
+	Conectado conectados [8];
+}Partida;
+
+typedef struct {
+	Partida partidas [100];
+	int num;
+}ListaPartidas;
+
 int i;
 int sockets[100];
 char notificacion[500];
 ListaConectados lista;
+ListaPartidas listap;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int Conectarse (ListaConectados *lista, char nombre[20], int socket){
@@ -99,6 +111,41 @@ void DameConectados (ListaConectados *lista, char conectados[500]){
 	{
 		sprintf (conectados,"%s/%s", conectados, lista->conectados[i].nombre);
 	}
+}
+int GetID (ListaPartidas *listap)
+{
+	int max = 0;
+	for(int k = 0; k<listap->num; k++)
+	{
+		if (listap->partidas[k].ID > max)
+			max = listap->partidas[k].ID;
+	}
+	return max+1;
+}
+int AnadirPartida (ListaPartidas *listap, int ID)
+{
+	if (listap->num == 100)
+		return -1;
+	else {
+		listap->partidas[listap->num].ID = ID;
+		listap->num++;
+		return 0;
+	}
+}
+int AnadirParticipante(ListaPartidas *listap, int ID, char nombre[20], int sock_conn)
+{
+	int encontrado = 0;
+	int i = 0;
+	while (i < listap->num && encontrado == 0)
+	{
+		if (listap->partidas[i].ID == ID)
+			encontrado = 1;
+		else
+		i++;
+	}
+	strcpy(listap->partidas[i].conectados[listap->partidas[i].numParticipantes].nombre, nombre);
+	listap->partidas[i].conectados[listap->partidas[i].numParticipantes].socket = sock_conn;
+	listap->partidas[i].numParticipantes++;
 }
 
 
@@ -252,7 +299,7 @@ int Registrarse (char usuario[20], char contrasena[20]) {
 	}
 	//inicializar la conexion
 	
-	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
+	conn = mysql_real_connect (conn, "localhost","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n",
 				mysql_errno(conn), mysql_error(conn));
@@ -316,7 +363,7 @@ int LogIn(char usuario[20], char contrasena[20]) {
 	}
 	//inicializar la conexiￃﾳn, entrando nuestras claves de acceso y
 	//el nombre de la base de datos a la que queremos acceder 
-	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
+	conn = mysql_real_connect (conn, "localhost","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n",
 				mysql_errno(conn), mysql_error(conn));
@@ -381,6 +428,7 @@ void *AtenderCliente (void *socket)
 			
 		strcpy (nombre, p);
 		printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
+		int ID = 0;
 				
 		switch (codigo)
 		{
@@ -458,6 +506,7 @@ void *AtenderCliente (void *socket)
 				printf ("Ha ocurrido un error en el caso 4");
 			
 			break;
+			
 		case 5:
 			error = PuntuacionTotal(nombre,respuesta);
 			write (sock_conn,respuesta, strlen(respuesta));
@@ -465,6 +514,38 @@ void *AtenderCliente (void *socket)
 			if (error != 0)
 				printf ("Ha ocurrido un error en el caso 5");
 			break;
+			
+		case 6:
+			ID = GetID(&listap);
+			AnadirPartida(&listap,ID);
+			AnadirParticipante(&listap,ID,nombre,sock_conn);
+			sprintf(respuesta,"7/%d/%s",ID,nombre);
+			p = strtok( NULL, "/");
+			int numParticipantes =  atoi (p);
+			int i=0;
+			j=0;
+			char invitado[20];
+			
+			while(i<numParticipantes)
+			{
+				p = strtok( NULL, "/");
+				strcpy(invitado,p);
+				j=0;
+				while(j < lista.num)
+				{
+				 if (strcmp(invitado, lista.conectados[j].nombre)==0)
+					 write (lista.conectados[j].socket,respuesta, strlen(respuesta));
+					 j++;
+				}
+			}
+			break;
+			
+		case 7:
+			 // 7/Pau/1
+			
+			
+			if (error != 0)
+				printf ("Ha ocurrido un error en el caso 7");
 			
 		default:
 			

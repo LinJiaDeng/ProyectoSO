@@ -25,6 +25,8 @@ namespace WindowsFormsApplication1
         public static string N;
         bool RegisterCheck = false;
         public static Socket server;
+        delegate void DelegadoDataGridView(DataGridView ListaConectados);
+        delegate void DelegadoDataGridView2(DataGridView ListaConectados, string[] respuesta, int k);
 
         public Inicio()
         {
@@ -105,7 +107,16 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
                 ListaConectados.ColumnCount = 1;
-                ListaConectados.RowCount = 100;
+        }
+
+        public void LimpiarDatagrid (DataGridView Listaconectados)
+        {
+            ListaConectados.Rows.Clear();
+        }
+
+        public void AñadirDatagrid (DataGridView ListaConectados, string[] respuesta, int k)
+        {
+            ListaConectados.Rows.Add(respuesta[k]);
         }
 
         public void AtenderServidor ()
@@ -136,7 +147,6 @@ namespace WindowsFormsApplication1
                         MessageBox.Show(mensaje + " ha iniciado sesión correctamente");
                         //lblconexion.Text = "Conectado";
                         lblconexion.ForeColor = Color.Green;
-
                         break;
                     case 3:
                         mensaje = respuesta[1];
@@ -151,23 +161,25 @@ namespace WindowsFormsApplication1
                         MessageBox.Show(N + " tiene " + mensaje + " puntos");
                         break;
                     case 6:
-                        // ListaConectados.Rows.Clear();
-                        int x = 0;
+                        //ListaConectados.Rows.Clear();
                         int numConectados = Convert.ToInt32(respuesta[1]);
-                        while (x < numConectados + 1)
-                        {
-                            ListaConectados.Rows[x].Cells[0].Value = "";
-                            x++;
-                        }
-                            int j = 0, k = 2;
-
+                        DelegadoDataGridView delegado = new DelegadoDataGridView(LimpiarDatagrid);
+                        ListaConectados.Invoke(delegado, new object[] { ListaConectados });
+                        int j = 0, k = 2;
+                        DelegadoDataGridView2 delegado2 = new DelegadoDataGridView2(AñadirDatagrid);
                         while (j < numConectados)
                         {
-                         // ListaConectados.Rows.Add(respuesta[k]);
-                            ListaConectados.Rows[j].Cells[0].Value = respuesta[k];
+                            //ListaConectados.Rows.Add(respuesta[k]);
+                            ListaConectados.Invoke(delegado2, new object[] { ListaConectados, respuesta, k });
                             j++;
                             k++;
                         }
+                        break;
+                    case 7:
+                        int IdPartida = Convert.ToInt32(respuesta[1]);
+                        string host = respuesta[2];
+                        Invitacion invitacion = new Invitacion(host);
+                        invitacion.ShowDialog();
                         break;
                 }
             }
@@ -263,6 +275,7 @@ namespace WindowsFormsApplication1
         {
             ActivarBoton(sender, RGBColors.color6);
             OpenChildForm(new Créditos());
+            Convert.ToString(ListaConectados.MultiSelect);
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -343,7 +356,7 @@ namespace WindowsFormsApplication1
                 {
                         //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
                         //al que deseamos conectarnos
-                        IPAddress direc = IPAddress.Parse("147.83.117.22");
+                        IPAddress direc = IPAddress.Parse("192.168.56.102");
                         IPEndPoint ipep = new IPEndPoint(direc, 50079);
 
 
@@ -380,8 +393,8 @@ namespace WindowsFormsApplication1
         {
                 //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
                 //al que deseamos conectarnos
-                IPAddress direc = IPAddress.Parse("192.168.56.102");
-                IPEndPoint ipep = new IPEndPoint(direc, 9090);
+                IPAddress direc = IPAddress.Parse("147.83.117.22");
+                IPEndPoint ipep = new IPEndPoint(direc, 50079);
 
 
                 //Creamos el socket 
@@ -456,6 +469,26 @@ namespace WindowsFormsApplication1
             }
             else
                 MessageBox.Show("No has iniciado sesión!");
+        }
+        StringBuilder sb = new StringBuilder();
+        private void invitarbtn_Click(object sender, EventArgs e)
+        {
+            int numParticipantes = 1;
+            sb.Append("6/" + N + "/");
+            foreach (DataGridViewCell item in ListaConectados.SelectedCells)
+            {
+                numParticipantes++;
+            }
+            sb.Append(numParticipantes + "/");
+            foreach (DataGridViewCell item in ListaConectados.SelectedCells)
+            {
+                sb.Append(item.Value.ToString()+"/");
+            }
+            MessageBox.Show(sb.ToString());
+            string mensaje = sb.ToString();
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
         }
     }
 }
