@@ -182,10 +182,6 @@ namespace WindowsFormsApplication1
                         invitacion.ShowDialog();
                         break;
 
-                    case 8:
-                        MessageBox.Show(respuesta[1]);
-                        break;
-
                     default:
                         break;
                 }
@@ -361,10 +357,12 @@ namespace WindowsFormsApplication1
             {
                 if (RegisterCheck == false)
                 {
-                        //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
-                        //al que deseamos conectarnos
-                        IPAddress direc = IPAddress.Parse("192.168.56.102");
-                        IPEndPoint ipep = new IPEndPoint(direc, 9080);
+                    //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
+                    //al que deseamos conectarnos
+                    //IP de shiva: 147.83.117.22
+                    //IP Ubuntu: 192.168.56.102
+                    IPAddress direc = IPAddress.Parse("147.83.117.22");
+                        IPEndPoint ipep = new IPEndPoint(direc, 50079);
 
 
                         //Creamos el socket 
@@ -417,7 +415,7 @@ namespace WindowsFormsApplication1
                 }
             string mensaje = "1/" + txtnombre.Text + "/" + txtcontrasena.Text;
             // Enviamos al servidor el nombre tecleado
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
             RegisterCheck = true;
         }
@@ -428,7 +426,7 @@ namespace WindowsFormsApplication1
             {
                 //Mensaje de desconexión
                 string mensaje = "0/" + N;
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
 
 
@@ -454,21 +452,21 @@ namespace WindowsFormsApplication1
                 {
                     string mensaje = "3/" + N;
                     // Enviamos al servidor el nombre tecleado
-                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                     server.Send(msg);
                 }
                 else if (NumeroCartasMano.Checked)
                 {
                     string mensaje = "4/" + N;
                     // Enviamos al servidor el nombre tecleado
-                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                     server.Send(msg);
                 }
                 else if (puntuaciontotal.Checked)
                 {
                     string mensaje = "5/" + N;
                     // Enviamos al servidor el nombre tecleado
-                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                     server.Send(msg);
                 }
             }
@@ -491,7 +489,7 @@ namespace WindowsFormsApplication1
             }
             
             string mensaje = sb.ToString();
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
 
         }
