@@ -1,5 +1,15 @@
 # ProyectoSO
 
+Versión 4:
+
+1. Manager Jiadeng Lin
+2. Verificador Pau Ruiz
+3. Comunicador Guillem Pacheco
+
+Video demostrativo v.04:
+
+https://youtu.be/bIGf16AuBsc
+
 Versión 3:
 
 1. Manager Pau Ruiz

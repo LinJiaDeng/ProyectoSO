@@ -191,7 +191,6 @@ int PuntuacionRonda (char nombre[20], char resultado[150])
 	}
 	else
 		sprintf(resultado,"3/%s",row[0]);
-	
 	return 0;
 }
 
@@ -519,6 +518,7 @@ void *AtenderCliente (void *socket)
 			ID = GetID(&listap);
 			AnadirPartida(&listap,ID);
 			AnadirParticipante(&listap,ID,nombre,sock_conn);
+			strcpy(respuesta,"");
 			sprintf(respuesta,"7/%d/%s",ID,nombre);
 			p = strtok( NULL, "/");
 			int numParticipantes =  atoi (p);
@@ -554,7 +554,6 @@ void *AtenderCliente (void *socket)
 			{
 				int sock = DameSocket(&lista,nombre);
 				AnadirParticipante(&listap,ID,nombre,sock);
-
 			}			
 							
 			if (error != 0)
