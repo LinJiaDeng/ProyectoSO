@@ -178,8 +178,15 @@ namespace WindowsFormsApplication1
                     case 7:
                         int IdPartida = Convert.ToInt32(respuesta[1]);
                         string host = respuesta[2];
-                        Invitacion invitacion = new Invitacion(host);
+                        Invitacion invitacion = new Invitacion(IdPartida, host);
                         invitacion.ShowDialog();
+                        break;
+
+                    case 8:
+                        MessageBox.Show(respuesta[1]);
+                        break;
+
+                    default:
                         break;
                 }
             }
@@ -357,7 +364,7 @@ namespace WindowsFormsApplication1
                         //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
                         //al que deseamos conectarnos
                         IPAddress direc = IPAddress.Parse("192.168.56.102");
-                        IPEndPoint ipep = new IPEndPoint(direc, 50079);
+                        IPEndPoint ipep = new IPEndPoint(direc, 9080);
 
 
                         //Creamos el socket 
@@ -365,13 +372,11 @@ namespace WindowsFormsApplication1
                         try
                         {
                             server.Connect(ipep);//Intentamos conectar el socket
-
                         }
                         catch (SocketException ex)
                         {
                             //Si hay excepcion imprimimos error y salimos del programa con return 
                             return;
-
                         }
                         A = 1;
                         N = txtnombre.Text;
@@ -381,7 +386,7 @@ namespace WindowsFormsApplication1
                     atender.Start();
                     string mensaje = "2/" + txtnombre.Text + "/" + txtcontrasena.Text;
                     // Enviamos al servidor el nombre tecleado
-                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                     server.Send(msg);
                 }
             }
@@ -484,7 +489,7 @@ namespace WindowsFormsApplication1
             {
                 sb.Append(item.Value.ToString()+"/");
             }
-            MessageBox.Show(sb.ToString());
+            
             string mensaje = sb.ToString();
             byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);

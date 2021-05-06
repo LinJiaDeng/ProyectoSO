@@ -12,31 +12,34 @@ namespace WindowsFormsApplication1
     public partial class Invitacion : Form
     {
         string host;
-        public Invitacion(string host)
+        int ID_Partida;
+
+        public Invitacion(int ID_Partida, string host)
         {
             InitializeComponent();
             this.host = host;
+            this.ID_Partida = ID_Partida;
         }
 
         private void Invitacion_Load(object sender, EventArgs e)
         {
-            lblinvitacion.Text = this.host + "te ha invitado a una partida 😎.";
+            lblinvitacion.Text = this.host + " te ha invitado a una partida 😎.";
         }
 
         private void aceptarbtn_Click(object sender, EventArgs e)
         {
-            string mensaje = "7/"+ Inicio.N +"1";
+            string mensaje = "7/" + Inicio.N +  "/" + ID_Partida + "/1";
             // Enviamos al servidor el nombre tecleado
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             Inicio.server.Send(msg);
             this.Close();
         }
 
         private void rechazarbtn_Click(object sender, EventArgs e)
         {
-            string mensaje = "7/" + Inicio.N + "0";
+            string mensaje = "7/" + Inicio.N + "/" + ID_Partida + "/0";
             // Enviamos al servidor el nombre tecleado
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             Inicio.server.Send(msg);
             this.Close();
         }

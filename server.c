@@ -207,14 +207,14 @@ int NumeroCartasMano(char nombre[20], char resultado[150])
 	//Creamos una conexion al servidor MYSQL 
 	conn = mysql_init(NULL);
 	if (conn==NULL) {
-		printf ("Error al crear la conexi\uffc3\uffb3n: %u %s\n", 
+		printf ("Error al crear la conexion: %u %s\n", 
 				mysql_errno(conn), mysql_error(conn));
 		exit (1);
 	}
 	//inicializar la conexion
 	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
-		printf ("Error al inicializar la conexi\uffc3\uffb3n: %u %s\n", 
+		printf ("Error al inicializar la conexion: %u %s\n", 
 				mysql_errno(conn), mysql_error(conn));
 		exit (1);
 	}
@@ -299,7 +299,7 @@ int Registrarse (char usuario[20], char contrasena[20]) {
 	}
 	//inicializar la conexion
 	
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n",
 				mysql_errno(conn), mysql_error(conn));
@@ -363,7 +363,7 @@ int LogIn(char usuario[20], char contrasena[20]) {
 	}
 	//inicializar la conexiￃﾳn, entrando nuestras claves de acceso y
 	//el nombre de la base de datos a la que queremos acceder 
-	conn = mysql_real_connect (conn, "localhost","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
+	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
 		printf ("Error al inicializar la conexion: %u %s\n",
 				mysql_errno(conn), mysql_error(conn));
@@ -526,7 +526,7 @@ void *AtenderCliente (void *socket)
 			j=0;
 			char invitado[20];
 			
-			while(i<numParticipantes)
+			while(i<numParticipantes-1)
 			{
 				p = strtok( NULL, "/");
 				strcpy(invitado,p);
@@ -534,16 +534,29 @@ void *AtenderCliente (void *socket)
 				while(j < lista.num)
 				{
 				 if (strcmp(invitado, lista.conectados[j].nombre)==0)
-					 write (lista.conectados[j].socket,respuesta, strlen(respuesta));
+					 
+					 write (sockets[j],respuesta, strlen(respuesta));
 					 j++;
 				}
+				i++;
 			}
 			break;
 			
 		case 7:
-			 // 7/Pau/1
+			 // 1/1
+			p = strtok( NULL, "/");
+			int ID =  atoi (p);			
 			
+			p = strtok( NULL, "/");
+			int SiNo =  atoi (p);	
 			
+			if( SiNo == 1)
+			{
+				int sock = DameSocket(&lista,nombre);
+				AnadirParticipante(&listap,ID,nombre,sock);
+
+			}			
+							
 			if (error != 0)
 				printf ("Ha ocurrido un error en el caso 7");
 			
@@ -580,7 +593,7 @@ int main(int argc, char *argv[])
 	// asocia el socket a cualquiera de las IP de la m?quina. 
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
-	// escucharemos en el port 9080
+	// escucharemos en el port 50079
 	serv_adr.sin_port = htons(puerto);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");

@@ -271,3 +271,16 @@ C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.cspro
 C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CoreCompileInputs.cache
 C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.CopyComplete
 C:\share\ProyectoSO\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Invitacion.resources
+C:\share\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\share\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\share\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\share\cliente\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\share\cliente\WindowsFormsApplication1\bin\Debug\FontAwesome.Sharp.dll
+C:\share\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csprojResolveAssemblyReference.cache
+C:\share\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Créditos.resources
+C:\share\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Instrucciones.resources
+C:\share\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Invitacion.resources
+C:\share\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Forms.Jugar.resources
+C:\share\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Inicio.resources
+C:\share\cliente\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\share\cliente\WindowsFormsApplication1\obj\Debug\clienteForm.csproj.GenerateResource.Cache
