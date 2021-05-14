@@ -18,10 +18,22 @@ typedef struct {
 	int num;
 }ListaConectados;
 
+typedef struct {
+	int ID;
+	int numParticipantes;
+	Conectado conectados [8];
+}Partida;
+
+typedef struct {
+	Partida partidas [100];
+	int num;
+}ListaPartidas;
+
 int i;
 int sockets[100];
 char notificacion[500];
 ListaConectados lista;
+ListaPartidas listap;
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int Conectarse (ListaConectados *lista, char nombre[20], int socket){
@@ -39,7 +51,7 @@ int DameSocket (ListaConectados *lista, char nombre[20]){
 	//Devueleve el socket
 	int i=0;
 	int encontrado = 0;
-	while ((i< lista->num) && !encontrado)
+	while ((i<= lista->num) && !encontrado)
 	{
 		if (strcmp(lista->conectados[i].nombre, nombre) == 0)
 			encontrado =1;
@@ -100,6 +112,41 @@ void DameConectados (ListaConectados *lista, char conectados[500]){
 		sprintf (conectados,"%s/%s", conectados, lista->conectados[i].nombre);
 	}
 }
+int GetID (ListaPartidas *listap)
+{
+	int max = 0;
+	for(int k = 0; k<listap->num; k++)
+	{
+		if (listap->partidas[k].ID > max)
+			max = listap->partidas[k].ID;
+	}
+	return max;
+}
+int AnadirPartida (ListaPartidas *listap, int ID)
+{
+	if (listap->num == 100)
+		return -1;
+	else {
+		listap->partidas[listap->num].ID = ID;
+		listap->num++;
+		return 0;
+	}
+}
+int AnadirParticipante(ListaPartidas *listap, int ID, char nombre[20], int sock_conn)
+{
+	int encontrado = 0;
+	int i = 0;
+	while (i < listap->num && encontrado == 0)
+	{
+		if (listap->partidas[i].ID == ID)
+			encontrado = 1;
+		else
+		i++;
+	}
+	strcpy(listap->partidas[i].conectados[listap->partidas[i].numParticipantes].nombre, nombre);
+	listap->partidas[i].conectados[listap->partidas[i].numParticipantes].socket = sock_conn;
+	listap->partidas[i].numParticipantes++;
+}
 
 
 int PuntuacionRonda (char nombre[20], char resultado[150])
@@ -144,7 +191,6 @@ int PuntuacionRonda (char nombre[20], char resultado[150])
 	}
 	else
 		sprintf(resultado,"3/%s",row[0]);
-	
 	return 0;
 }
 
@@ -160,14 +206,14 @@ int NumeroCartasMano(char nombre[20], char resultado[150])
 	//Creamos una conexion al servidor MYSQL 
 	conn = mysql_init(NULL);
 	if (conn==NULL) {
-		printf ("Error al crear la conexi\uffc3\uffb3n: %u %s\n", 
+		printf ("Error al crear la conexion: %u %s\n", 
 				mysql_errno(conn), mysql_error(conn));
 		exit (1);
 	}
 	//inicializar la conexion
 	conn = mysql_real_connect (conn, "shiva2.upc.es","root", "mysql", "T4_BBDDjuego",0, NULL, 0);
 	if (conn==NULL) {
-		printf ("Error al inicializar la conexi\uffc3\uffb3n: %u %s\n", 
+		printf ("Error al inicializar la conexion: %u %s\n", 
 				mysql_errno(conn), mysql_error(conn));
 		exit (1);
 	}
@@ -378,9 +424,9 @@ void *AtenderCliente (void *socket)
 		int codigo =  atoi (p);
 		char nombre[20];
 		p = strtok( NULL, "/");
-			
 		strcpy (nombre, p);
 		printf ("Codigo: %d, Nombre: %s\n", codigo, nombre);
+		int ID = 0;
 				
 		switch (codigo)
 		{
@@ -422,14 +468,16 @@ void *AtenderCliente (void *socket)
 			error = LogIn(nombre,contrasena);
 			sprintf(respuesta2,"2/%s",nombre);
 			write (sock_conn,respuesta2,strlen(respuesta2));
-			int numsocket = DameSocket(&lista,nombre);
+			pthread_mutex_lock(&mutex);
+			int errorCON = Conectarse (&lista,nombre,sock_conn);
+			pthread_mutex_unlock(&mutex);
+			
+			
 			
 			if (error != 0)
 				printf ("Ha ocurrido un error en el caso 2");
 			
-			pthread_mutex_lock(&mutex);
-			int errorCON = Conectarse (&lista,nombre,numsocket);
-			pthread_mutex_unlock(&mutex);
+			
 			
 			if (errorCON != 0)
 				printf ("Ha ocurrido un error en el caso 1, no se ha podido añadir a la lista de conectados");
@@ -458,12 +506,88 @@ void *AtenderCliente (void *socket)
 				printf ("Ha ocurrido un error en el caso 4");
 			
 			break;
+			
 		case 5:
 			error = PuntuacionTotal(nombre,respuesta);
 			write (sock_conn,respuesta, strlen(respuesta));
 			
 			if (error != 0)
 				printf ("Ha ocurrido un error en el caso 5");
+			break;
+			
+		case 6:
+			ID = GetID(&listap);
+			AnadirPartida(&listap,ID);
+			AnadirParticipante(&listap,ID,nombre,sock_conn);
+			strcpy(respuesta,"");
+			sprintf(respuesta,"7/%d/%s",ID,nombre);
+			p = strtok( NULL, "/");
+			int numParticipantes =  atoi (p);
+			int i=0;
+			j=0;
+			char invitado[20];
+			char info[25];
+			
+			
+			
+			while(i<numParticipantes-1)
+			{
+				p = strtok( NULL, "/");
+				strcpy(invitado,p);
+				j=0;
+				while(j < lista.num)
+				{
+				 if (strcmp(invitado, lista.conectados[j].nombre)==0)
+					 
+					 write (sockets[j],respuesta, strlen(respuesta));
+					 j++;
+				}
+				i++;
+			}
+			break;
+			
+		case 7:
+			// aceptar partida
+			p = strtok( NULL, "/");
+			int ID =  atoi (p);			
+			
+			p = strtok( NULL, "/");
+			int SiNo =  atoi (p);	
+			char aceptar[25];
+			sprintf (aceptar, "8/%d",ID);
+			
+			
+			if( SiNo == 1)
+			{
+								
+				int sock = DameSocket(&lista,nombre);
+				AnadirParticipante(&listap,ID,nombre,sock);
+				write(sock,aceptar, strlen(aceptar));
+			}			
+							
+			if (error != 0)
+				printf ("Ha ocurrido un error en el caso 7");
+			break;
+		
+		case 8:
+			
+			p = strtok( NULL, "/");
+			ID =  atoi (p);
+			p = strtok (NULL, "/");
+			char mensajeChat [1000];
+			strcpy(mensajeChat,p);
+			char reenvioChat [1000];
+			sprintf(reenvioChat, "9/%s/%d/%s",nombre,ID,mensajeChat);
+			
+				j=0;
+				while(j < listap.partidas[ID].numParticipantes)
+				{
+					
+						write (listap.partidas[ID].conectados[j].socket,reenvioChat, strlen(reenvioChat));
+					j++;
+				}
+				
+			
 			break;
 			
 		default:
@@ -499,7 +623,7 @@ int main(int argc, char *argv[])
 	// asocia el socket a cualquiera de las IP de la m?quina. 
 	//htonl formatea el numero que recibe al formato necesario
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
-	// escucharemos en el port 9080
+	// escucharemos en el port 50079
 	serv_adr.sin_port = htons(puerto);
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0)
 		printf ("Error al bind");

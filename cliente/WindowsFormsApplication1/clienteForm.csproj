@@ -80,6 +80,18 @@
     <Compile Include="Forms\Inicio.Designer.cs">
       <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Invitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Invitacion.Designer.cs">
+      <DependentUpon>Invitacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Lobby.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Lobby.Designer.cs">
+      <DependentUpon>Lobby.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Créditos.resx">
@@ -88,11 +100,17 @@
     <EmbeddedResource Include="Forms\Instrucciones.resx">
       <DependentUpon>Instrucciones.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Invitacion.resx">
+      <DependentUpon>Invitacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Jugar.resx">
       <DependentUpon>Jugar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Lobby.resx">
+      <DependentUpon>Lobby.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

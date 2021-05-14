@@ -25,6 +25,9 @@ namespace WindowsFormsApplication1
         public static string N;
         bool RegisterCheck = false;
         public static Socket server;
+        delegate void DelegadoDataGridView(DataGridView ListaConectados);
+        delegate void DelegadoDataGridView2(DataGridView ListaConectados, string[] respuesta, int k);
+        List<Lobby> partidas = new List<Lobby>();
 
         public Inicio()
         {
@@ -105,7 +108,24 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
                 ListaConectados.ColumnCount = 1;
-                ListaConectados.RowCount = 100;
+        }
+
+        public void LimpiarDatagrid (DataGridView Listaconectados)
+        {
+            ListaConectados.Rows.Clear();
+        }
+
+        public void AñadirDatagrid (DataGridView ListaConectados, string[] respuesta, int k)
+        {
+            ListaConectados.Rows.Add(respuesta[k]);
+        }
+
+        public void crearPartida()
+        {
+            int IdPartida = partidas.Count;
+            Lobby lobby = new Lobby(IdPartida,server);
+            partidas.Add(lobby);
+            lobby.ShowDialog();
         }
 
         public void AtenderServidor ()
@@ -136,7 +156,6 @@ namespace WindowsFormsApplication1
                         MessageBox.Show(mensaje + " ha iniciado sesión correctamente");
                         //lblconexion.Text = "Conectado";
                         lblconexion.ForeColor = Color.Green;
-
                         break;
                     case 3:
                         mensaje = respuesta[1];
@@ -151,23 +170,40 @@ namespace WindowsFormsApplication1
                         MessageBox.Show(N + " tiene " + mensaje + " puntos");
                         break;
                     case 6:
-                        // ListaConectados.Rows.Clear();
-                        int x = 0;
+                        //ListaConectados.Rows.Clear();
                         int numConectados = Convert.ToInt32(respuesta[1]);
-                        while (x < numConectados + 1)
-                        {
-                            ListaConectados.Rows[x].Cells[0].Value = "";
-                            x++;
-                        }
-                            int j = 0, k = 2;
-
+                        DelegadoDataGridView delegado = new DelegadoDataGridView(LimpiarDatagrid);
+                        ListaConectados.Invoke(delegado, new object[] { ListaConectados });
+                        int j = 0, k = 2;
+                        DelegadoDataGridView2 delegado2 = new DelegadoDataGridView2(AñadirDatagrid);
                         while (j < numConectados)
                         {
-                         // ListaConectados.Rows.Add(respuesta[k]);
-                            ListaConectados.Rows[j].Cells[0].Value = respuesta[k];
+                            //ListaConectados.Rows.Add(respuesta[k]);
+                            ListaConectados.Invoke(delegado2, new object[] { ListaConectados, respuesta, k });
                             j++;
                             k++;
                         }
+                        break;
+                    case 7:
+                        //Llega una invitación, mostramos el mensaje al usuario.
+                        int IdPartida = Convert.ToInt32(respuesta[1]);
+                        string host = respuesta[2];
+                        Invitacion invitacion = new Invitacion(IdPartida, host);
+                        invitacion.ShowDialog();
+                        break;
+                    case 8:
+                        ThreadStart ts = delegate { crearPartida(); };
+                        Thread T = new Thread(ts);
+                        T.Start();
+                        break;
+                    case 9:
+                       
+                        IdPartida = Convert.ToInt32(respuesta[2]);
+                       
+                        partidas[IdPartida].tomaRespuesta(respuesta);
+                        break;
+                        
+                    default:
                         break;
                 }
             }
@@ -263,6 +299,7 @@ namespace WindowsFormsApplication1
         {
             ActivarBoton(sender, RGBColors.color6);
             OpenChildForm(new Créditos());
+            Convert.ToString(ListaConectados.MultiSelect);
         }
 
         private void btnHome_Click(object sender, EventArgs e)
@@ -319,6 +356,13 @@ namespace WindowsFormsApplication1
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            string mensaje = "0/" + Inicio.N;
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            // Nos desconectamos
+            server.Shutdown(SocketShutdown.Both);
+            server.Close();
             Application.Exit();
         }
 
@@ -341,10 +385,12 @@ namespace WindowsFormsApplication1
             {
                 if (RegisterCheck == false)
                 {
-                        //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
-                        //al que deseamos conectarnos
-                        IPAddress direc = IPAddress.Parse("147.83.117.22");
-                        IPEndPoint ipep = new IPEndPoint(direc, 50079);
+                    //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
+                    //al que deseamos conectarnos
+                    //IP de shiva: 147.83.117.22
+                    //IP Ubuntu: 192.168.56.102 
+                    IPAddress direc = IPAddress.Parse("147.83.117.22");
+                     IPEndPoint ipep = new IPEndPoint(direc, 50079);
 
 
                         //Creamos el socket 
@@ -352,13 +398,11 @@ namespace WindowsFormsApplication1
                         try
                         {
                             server.Connect(ipep);//Intentamos conectar el socket
-
                         }
                         catch (SocketException ex)
                         {
                             //Si hay excepcion imprimimos error y salimos del programa con return 
                             return;
-
                         }
                         A = 1;
                         N = txtnombre.Text;
@@ -368,7 +412,7 @@ namespace WindowsFormsApplication1
                     atender.Start();
                     string mensaje = "2/" + txtnombre.Text + "/" + txtcontrasena.Text;
                     // Enviamos al servidor el nombre tecleado
-                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                     server.Send(msg);
                 }
             }
@@ -380,8 +424,8 @@ namespace WindowsFormsApplication1
         {
                 //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
                 //al que deseamos conectarnos
-                IPAddress direc = IPAddress.Parse("192.168.56.102");
-                IPEndPoint ipep = new IPEndPoint(direc, 9090);
+                IPAddress direc = IPAddress.Parse("147.83.117.22");
+                IPEndPoint ipep = new IPEndPoint(direc, 50079);
 
 
                 //Creamos el socket 
@@ -399,7 +443,7 @@ namespace WindowsFormsApplication1
                 }
             string mensaje = "1/" + txtnombre.Text + "/" + txtcontrasena.Text;
             // Enviamos al servidor el nombre tecleado
-            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
             RegisterCheck = true;
         }
@@ -410,7 +454,7 @@ namespace WindowsFormsApplication1
             {
                 //Mensaje de desconexión
                 string mensaje = "0/" + N;
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                 server.Send(msg);
 
 
@@ -436,26 +480,51 @@ namespace WindowsFormsApplication1
                 {
                     string mensaje = "3/" + N;
                     // Enviamos al servidor el nombre tecleado
-                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                     server.Send(msg);
                 }
                 else if (NumeroCartasMano.Checked)
                 {
                     string mensaje = "4/" + N;
                     // Enviamos al servidor el nombre tecleado
-                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                     server.Send(msg);
                 }
                 else if (puntuaciontotal.Checked)
                 {
                     string mensaje = "5/" + N;
                     // Enviamos al servidor el nombre tecleado
-                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    byte[] msg = Encoding.ASCII.GetBytes(mensaje);
                     server.Send(msg);
                 }
             }
             else
                 MessageBox.Show("No has iniciado sesión!");
+        }
+        StringBuilder sb = new StringBuilder();
+
+        private void invitarbtn_Click(object sender, EventArgs e)
+        {
+            string mensaje = null;
+            int numParticipantes = 1;
+            sb.Append("6/" + N + "/");
+            foreach (DataGridViewCell item in ListaConectados.SelectedCells)
+            {
+                numParticipantes++;
+            }
+            sb.Append(numParticipantes + "/");
+            foreach (DataGridViewCell item in ListaConectados.SelectedCells)
+            {
+                sb.Append(item.Value.ToString()+"/");
+            }
+            
+            mensaje = sb.ToString();
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+
+            ThreadStart ts = delegate { crearPartida(); };
+            Thread T = new Thread(ts);
+            T.Start();
         }
     }
 }

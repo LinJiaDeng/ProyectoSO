@@ -47,6 +47,7 @@
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.invitarbtn = new System.Windows.Forms.Button();
             this.btnEnviar = new System.Windows.Forms.Button();
             this.puntuaciontotal = new System.Windows.Forms.RadioButton();
             this.NumeroCartasMano = new System.Windows.Forms.RadioButton();
@@ -59,7 +60,7 @@
             this.txtcontrasena = new System.Windows.Forms.TextBox();
             this.txtnombre = new System.Windows.Forms.TextBox();
             this.ListaConectados = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Conectados = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
@@ -345,6 +346,8 @@
             // panelDesktop
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.Crimson;
+            this.panelDesktop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDesktop.Controls.Add(this.invitarbtn);
             this.panelDesktop.Controls.Add(this.btnEnviar);
             this.panelDesktop.Controls.Add(this.puntuaciontotal);
             this.panelDesktop.Controls.Add(this.NumeroCartasMano);
@@ -363,6 +366,16 @@
             this.panelDesktop.Name = "panelDesktop";
             this.panelDesktop.Size = new System.Drawing.Size(1484, 625);
             this.panelDesktop.TabIndex = 26;
+            // 
+            // invitarbtn
+            // 
+            this.invitarbtn.Location = new System.Drawing.Point(1178, 569);
+            this.invitarbtn.Name = "invitarbtn";
+            this.invitarbtn.Size = new System.Drawing.Size(143, 44);
+            this.invitarbtn.TabIndex = 35;
+            this.invitarbtn.Text = "Invitar";
+            this.invitarbtn.UseVisualStyleBackColor = true;
+            this.invitarbtn.Click += new System.EventHandler(this.invitarbtn_Click);
             // 
             // btnEnviar
             // 
@@ -384,8 +397,8 @@
             this.puntuaciontotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.puntuaciontotal.AutoSize = true;
             this.puntuaciontotal.Enabled = false;
-            this.puntuaciontotal.Location = new System.Drawing.Point(405, 112);
-            this.puntuaciontotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.puntuaciontotal.Location = new System.Drawing.Point(403, 111);
+            this.puntuaciontotal.Margin = new System.Windows.Forms.Padding(4);
             this.puntuaciontotal.Name = "puntuaciontotal";
             this.puntuaciontotal.Size = new System.Drawing.Size(259, 21);
             this.puntuaciontotal.TabIndex = 31;
@@ -399,8 +412,8 @@
             this.NumeroCartasMano.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.NumeroCartasMano.AutoSize = true;
             this.NumeroCartasMano.Enabled = false;
-            this.NumeroCartasMano.Location = new System.Drawing.Point(397, 78);
-            this.NumeroCartasMano.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.NumeroCartasMano.Location = new System.Drawing.Point(395, 77);
+            this.NumeroCartasMano.Margin = new System.Windows.Forms.Padding(4);
             this.NumeroCartasMano.Name = "NumeroCartasMano";
             this.NumeroCartasMano.Size = new System.Drawing.Size(216, 21);
             this.NumeroCartasMano.TabIndex = 32;
@@ -414,8 +427,8 @@
             this.PuntuacionRonda.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.PuntuacionRonda.AutoSize = true;
             this.PuntuacionRonda.Enabled = false;
-            this.PuntuacionRonda.Location = new System.Drawing.Point(388, 48);
-            this.PuntuacionRonda.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PuntuacionRonda.Location = new System.Drawing.Point(386, 47);
+            this.PuntuacionRonda.Margin = new System.Windows.Forms.Padding(4);
             this.PuntuacionRonda.Name = "PuntuacionRonda";
             this.PuntuacionRonda.Size = new System.Drawing.Size(169, 21);
             this.PuntuacionRonda.TabIndex = 33;
@@ -438,13 +451,13 @@
             // 
             // btnRegistrarse
             // 
-            this.btnRegistrarse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRegistrarse.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRegistrarse.BackColor = System.Drawing.Color.PeachPuff;
             this.btnRegistrarse.Enabled = false;
             this.btnRegistrarse.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegistrarse.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarse.Location = new System.Drawing.Point(8, 249);
-            this.btnRegistrarse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRegistrarse.Location = new System.Drawing.Point(7, 248);
+            this.btnRegistrarse.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegistrarse.Name = "btnRegistrarse";
             this.btnRegistrarse.Size = new System.Drawing.Size(227, 47);
             this.btnRegistrarse.TabIndex = 29;
@@ -455,13 +468,13 @@
             // 
             // btnIniciarSesion
             // 
-            this.btnIniciarSesion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnIniciarSesion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnIniciarSesion.BackColor = System.Drawing.Color.PeachPuff;
             this.btnIniciarSesion.Enabled = false;
             this.btnIniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnIniciarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciarSesion.Location = new System.Drawing.Point(8, 191);
-            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIniciarSesion.Location = new System.Drawing.Point(7, 190);
+            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(4);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
             this.btnIniciarSesion.Size = new System.Drawing.Size(227, 49);
             this.btnIniciarSesion.TabIndex = 28;
@@ -526,9 +539,8 @@
             this.ListaConectados.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ListaConectados.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.ListaConectados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ListaConectados.ColumnHeadersVisible = false;
             this.ListaConectados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1});
+            this.Conectados});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Crimson;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -538,11 +550,9 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.ListaConectados.DefaultCellStyle = dataGridViewCellStyle1;
             this.ListaConectados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ListaConectados.Enabled = false;
             this.ListaConectados.GridColor = System.Drawing.Color.Crimson;
-            this.ListaConectados.Location = new System.Drawing.Point(1353, 0);
+            this.ListaConectados.Location = new System.Drawing.Point(1341, 0);
             this.ListaConectados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ListaConectados.MultiSelect = false;
             this.ListaConectados.Name = "ListaConectados";
             this.ListaConectados.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -562,16 +572,16 @@
             this.ListaConectados.ShowCellToolTips = false;
             this.ListaConectados.ShowEditingIcon = false;
             this.ListaConectados.ShowRowErrors = false;
-            this.ListaConectados.Size = new System.Drawing.Size(131, 625);
+            this.ListaConectados.Size = new System.Drawing.Size(141, 623);
             this.ListaConectados.TabIndex = 23;
             this.ListaConectados.Visible = false;
             // 
-            // Column1
+            // Conectados
             // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.Conectados.HeaderText = "Conectados";
+            this.Conectados.MinimumWidth = 6;
+            this.Conectados.Name = "Conectados";
+            this.Conectados.ReadOnly = true;
             // 
             // Inicio
             // 
@@ -582,7 +592,7 @@
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Inicio";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -617,7 +627,6 @@
         private FontAwesome.Sharp.IconButton Minimize;
         private FontAwesome.Sharp.IconButton btnExit;
         private System.Windows.Forms.DataGridView ListaConectados;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.Button Desconectarbtn;
         private System.Windows.Forms.Button btnRegistrarse;
         private System.Windows.Forms.Button btnIniciarSesion;
@@ -630,6 +639,8 @@
         private System.Windows.Forms.RadioButton NumeroCartasMano;
         private System.Windows.Forms.RadioButton PuntuacionRonda;
         private System.Windows.Forms.Label lblconexion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Conectados;
+        private System.Windows.Forms.Button invitarbtn;
     }
 }
 
