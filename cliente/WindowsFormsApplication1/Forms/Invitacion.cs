@@ -23,7 +23,8 @@ namespace WindowsFormsApplication1
 
         private void Invitacion_Load(object sender, EventArgs e)
         {
-            lblinvitacion.Text = this.host + " te ha invitado a una partida 😎.";
+            lblinvitacion.Text = this.host + " te ha invitado a una partida 😎👾.";
+            ControlBox = false;
         }
 
         private void aceptarbtn_Click(object sender, EventArgs e)
