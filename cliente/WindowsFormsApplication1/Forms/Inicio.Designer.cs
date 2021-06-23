@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMenu = new System.Windows.Forms.Panel();
@@ -47,12 +48,11 @@
             this.iconCurrentChildForm = new FontAwesome.Sharp.IconPictureBox();
             this.panelShadow = new System.Windows.Forms.Panel();
             this.panelDesktop = new System.Windows.Forms.Panel();
+            this.peticion2Lbl = new System.Windows.Forms.Label();
+            this.peticion1Lbl = new System.Windows.Forms.Label();
+            this.darseDeBajaBtn = new System.Windows.Forms.Button();
             this.nombrePerfilLbl = new System.Windows.Forms.Label();
             this.invitarbtn = new System.Windows.Forms.Button();
-            this.btnEnviar = new System.Windows.Forms.Button();
-            this.puntuaciontotal = new System.Windows.Forms.RadioButton();
-            this.NumeroCartasMano = new System.Windows.Forms.RadioButton();
-            this.PuntuacionRonda = new System.Windows.Forms.RadioButton();
             this.Desconectarbtn = new System.Windows.Forms.Button();
             this.btnRegistrarse = new System.Windows.Forms.Button();
             this.btnIniciarSesion = new System.Windows.Forms.Button();
@@ -62,6 +62,7 @@
             this.txtnombre = new System.Windows.Forms.TextBox();
             this.ListaConectados = new System.Windows.Forms.DataGridView();
             this.Conectados = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sushi = new System.Windows.Forms.PictureBox();
             this.panelMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHome)).BeginInit();
@@ -69,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChildForm)).BeginInit();
             this.panelDesktop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaConectados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sushi)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -150,7 +152,7 @@
             this.btnJugar.Padding = new System.Windows.Forms.Padding(8, 0, 15, 0);
             this.btnJugar.Size = new System.Drawing.Size(169, 59);
             this.btnJugar.TabIndex = 3;
-            this.btnJugar.Text = "Jugar";
+            this.btnJugar.Text = "Demo";
             this.btnJugar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnJugar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnJugar.UseVisualStyleBackColor = true;
@@ -215,6 +217,8 @@
             // 
             // btnHome
             // 
+            this.btnHome.Image = global::WindowsFormsApplication1.Properties.Resources.sushi_go_logo;
+            this.btnHome.InitialImage = ((System.Drawing.Image)(resources.GetObject("btnHome.InitialImage")));
             this.btnHome.Location = new System.Drawing.Point(2, 2);
             this.btnHome.Margin = new System.Windows.Forms.Padding(2);
             this.btnHome.Name = "btnHome";
@@ -349,12 +353,12 @@
             // 
             this.panelDesktop.BackColor = System.Drawing.Color.Crimson;
             this.panelDesktop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDesktop.Controls.Add(this.sushi);
+            this.panelDesktop.Controls.Add(this.peticion2Lbl);
+            this.panelDesktop.Controls.Add(this.peticion1Lbl);
+            this.panelDesktop.Controls.Add(this.darseDeBajaBtn);
             this.panelDesktop.Controls.Add(this.nombrePerfilLbl);
             this.panelDesktop.Controls.Add(this.invitarbtn);
-            this.panelDesktop.Controls.Add(this.btnEnviar);
-            this.panelDesktop.Controls.Add(this.puntuaciontotal);
-            this.panelDesktop.Controls.Add(this.NumeroCartasMano);
-            this.panelDesktop.Controls.Add(this.PuntuacionRonda);
             this.panelDesktop.Controls.Add(this.Desconectarbtn);
             this.panelDesktop.Controls.Add(this.btnRegistrarse);
             this.panelDesktop.Controls.Add(this.btnIniciarSesion);
@@ -370,15 +374,53 @@
             this.panelDesktop.Size = new System.Drawing.Size(1113, 508);
             this.panelDesktop.TabIndex = 26;
             // 
+            // peticion2Lbl
+            // 
+            this.peticion2Lbl.AutoSize = true;
+            this.peticion2Lbl.Font = new System.Drawing.Font("Agency FB", 38F, System.Drawing.FontStyle.Bold);
+            this.peticion2Lbl.Location = new System.Drawing.Point(213, 168);
+            this.peticion2Lbl.Name = "peticion2Lbl";
+            this.peticion2Lbl.Size = new System.Drawing.Size(189, 62);
+            this.peticion2Lbl.TabIndex = 39;
+            this.peticion2Lbl.Text = "peticion2";
+            this.peticion2Lbl.Visible = false;
+            // 
+            // peticion1Lbl
+            // 
+            this.peticion1Lbl.AutoSize = true;
+            this.peticion1Lbl.Font = new System.Drawing.Font("Agency FB", 38F, System.Drawing.FontStyle.Bold);
+            this.peticion1Lbl.Location = new System.Drawing.Point(213, 84);
+            this.peticion1Lbl.Name = "peticion1Lbl";
+            this.peticion1Lbl.Size = new System.Drawing.Size(165, 62);
+            this.peticion1Lbl.TabIndex = 38;
+            this.peticion1Lbl.Text = "peticion";
+            this.peticion1Lbl.Visible = false;
+            // 
+            // darseDeBajaBtn
+            // 
+            this.darseDeBajaBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.darseDeBajaBtn.BackColor = System.Drawing.Color.PeachPuff;
+            this.darseDeBajaBtn.Enabled = false;
+            this.darseDeBajaBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.darseDeBajaBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.darseDeBajaBtn.Location = new System.Drawing.Point(3, 247);
+            this.darseDeBajaBtn.Name = "darseDeBajaBtn";
+            this.darseDeBajaBtn.Size = new System.Drawing.Size(170, 66);
+            this.darseDeBajaBtn.TabIndex = 37;
+            this.darseDeBajaBtn.Text = "Darse de baja";
+            this.darseDeBajaBtn.UseVisualStyleBackColor = false;
+            this.darseDeBajaBtn.Visible = false;
+            this.darseDeBajaBtn.Click += new System.EventHandler(this.darseDeBajaBtn_Click);
+            // 
             // nombrePerfilLbl
             // 
             this.nombrePerfilLbl.AutoSize = true;
             this.nombrePerfilLbl.Enabled = false;
-            this.nombrePerfilLbl.Font = new System.Drawing.Font("Agency FB", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nombrePerfilLbl.Location = new System.Drawing.Point(22, 3);
+            this.nombrePerfilLbl.Font = new System.Drawing.Font("Agency FB", 38F, System.Drawing.FontStyle.Bold);
+            this.nombrePerfilLbl.Location = new System.Drawing.Point(14, 2);
             this.nombrePerfilLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.nombrePerfilLbl.Name = "nombrePerfilLbl";
-            this.nombrePerfilLbl.Size = new System.Drawing.Size(81, 34);
+            this.nombrePerfilLbl.Size = new System.Drawing.Size(166, 62);
             this.nombrePerfilLbl.TabIndex = 36;
             this.nombrePerfilLbl.Text = "Nombre";
             this.nombrePerfilLbl.Visible = false;
@@ -395,63 +437,6 @@
             this.invitarbtn.UseVisualStyleBackColor = true;
             this.invitarbtn.Visible = false;
             this.invitarbtn.Click += new System.EventHandler(this.invitarbtn_Click);
-            // 
-            // btnEnviar
-            // 
-            this.btnEnviar.BackColor = System.Drawing.Color.PeachPuff;
-            this.btnEnviar.Enabled = false;
-            this.btnEnviar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnEnviar.Location = new System.Drawing.Point(298, 124);
-            this.btnEnviar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEnviar.Name = "btnEnviar";
-            this.btnEnviar.Size = new System.Drawing.Size(140, 57);
-            this.btnEnviar.TabIndex = 34;
-            this.btnEnviar.Text = "Enviar";
-            this.btnEnviar.UseVisualStyleBackColor = false;
-            this.btnEnviar.Visible = false;
-            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
-            // 
-            // puntuaciontotal
-            // 
-            this.puntuaciontotal.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.puntuaciontotal.AutoSize = true;
-            this.puntuaciontotal.Enabled = false;
-            this.puntuaciontotal.Location = new System.Drawing.Point(300, 90);
-            this.puntuaciontotal.Name = "puntuaciontotal";
-            this.puntuaciontotal.Size = new System.Drawing.Size(196, 17);
-            this.puntuaciontotal.TabIndex = 31;
-            this.puntuaciontotal.TabStop = true;
-            this.puntuaciontotal.Text = "Puntuación total al final de la partida";
-            this.puntuaciontotal.UseVisualStyleBackColor = true;
-            this.puntuaciontotal.Visible = false;
-            // 
-            // NumeroCartasMano
-            // 
-            this.NumeroCartasMano.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.NumeroCartasMano.AutoSize = true;
-            this.NumeroCartasMano.Enabled = false;
-            this.NumeroCartasMano.Location = new System.Drawing.Point(293, 63);
-            this.NumeroCartasMano.Name = "NumeroCartasMano";
-            this.NumeroCartasMano.Size = new System.Drawing.Size(164, 17);
-            this.NumeroCartasMano.TabIndex = 32;
-            this.NumeroCartasMano.TabStop = true;
-            this.NumeroCartasMano.Text = "Número de cartas en la mano";
-            this.NumeroCartasMano.UseVisualStyleBackColor = true;
-            this.NumeroCartasMano.Visible = false;
-            // 
-            // PuntuacionRonda
-            // 
-            this.PuntuacionRonda.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.PuntuacionRonda.AutoSize = true;
-            this.PuntuacionRonda.Enabled = false;
-            this.PuntuacionRonda.Location = new System.Drawing.Point(286, 38);
-            this.PuntuacionRonda.Name = "PuntuacionRonda";
-            this.PuntuacionRonda.Size = new System.Drawing.Size(130, 17);
-            this.PuntuacionRonda.TabIndex = 33;
-            this.PuntuacionRonda.TabStop = true;
-            this.PuntuacionRonda.Text = "Puntos en cada ronda";
-            this.PuntuacionRonda.UseVisualStyleBackColor = true;
-            this.PuntuacionRonda.Visible = false;
             // 
             // Desconectarbtn
             // 
@@ -474,7 +459,7 @@
             this.btnRegistrarse.Enabled = false;
             this.btnRegistrarse.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRegistrarse.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarse.Location = new System.Drawing.Point(4, 202);
+            this.btnRegistrarse.Location = new System.Drawing.Point(3, 202);
             this.btnRegistrarse.Name = "btnRegistrarse";
             this.btnRegistrarse.Size = new System.Drawing.Size(170, 38);
             this.btnRegistrarse.TabIndex = 29;
@@ -490,7 +475,7 @@
             this.btnIniciarSesion.Enabled = false;
             this.btnIniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnIniciarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciarSesion.Location = new System.Drawing.Point(4, 154);
+            this.btnIniciarSesion.Location = new System.Drawing.Point(3, 154);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
             this.btnIniciarSesion.Size = new System.Drawing.Size(170, 40);
             this.btnIniciarSesion.TabIndex = 28;
@@ -601,6 +586,18 @@
             this.Conectados.Name = "Conectados";
             this.Conectados.ReadOnly = true;
             // 
+            // sushi
+            // 
+            this.sushi.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.sushi.Image = ((System.Drawing.Image)(resources.GetObject("sushi.Image")));
+            this.sushi.InitialImage = ((System.Drawing.Image)(resources.GetObject("sushi.InitialImage")));
+            this.sushi.Location = new System.Drawing.Point(286, 13);
+            this.sushi.Name = "sushi";
+            this.sushi.Size = new System.Drawing.Size(496, 439);
+            this.sushi.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.sushi.TabIndex = 40;
+            this.sushi.TabStop = false;
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,6 +607,8 @@
             this.Controls.Add(this.panelShadow);
             this.Controls.Add(this.panelTitleBar);
             this.Controls.Add(this.panelMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Inicio";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -622,6 +621,7 @@
             this.panelDesktop.ResumeLayout(false);
             this.panelDesktop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ListaConectados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sushi)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -651,14 +651,14 @@
         private System.Windows.Forms.Label lblName;
         public System.Windows.Forms.TextBox txtcontrasena;
         public System.Windows.Forms.TextBox txtnombre;
-        private System.Windows.Forms.Button btnEnviar;
-        private System.Windows.Forms.RadioButton puntuaciontotal;
-        private System.Windows.Forms.RadioButton NumeroCartasMano;
-        private System.Windows.Forms.RadioButton PuntuacionRonda;
         private System.Windows.Forms.Label lblconexion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Conectados;
         private System.Windows.Forms.Button invitarbtn;
         private System.Windows.Forms.Label nombrePerfilLbl;
+        private System.Windows.Forms.Button darseDeBajaBtn;
+        private System.Windows.Forms.Label peticion1Lbl;
+        private System.Windows.Forms.Label peticion2Lbl;
+        private System.Windows.Forms.PictureBox sushi;
     }
 }
 

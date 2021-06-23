@@ -9,12 +9,15 @@ using FontAwesome.Sharp;
 using System.Runtime.InteropServices;
 using WindowsFormsApplication1.Forms;
 using System.Threading;
+using System.Media;
 
 namespace WindowsFormsApplication1
 {
+    //Version con anti-afk en estado alpha
     public partial class Inicio : Form
     {
         public Thread atender;
+        Thread T;
         private IconButton currentBtn;
         private Panel leftBorderBtn;
         private Form currentChildForm;
@@ -28,6 +31,8 @@ namespace WindowsFormsApplication1
         delegate void DelegadoDataGridView2(DataGridView ListaConectados, string[] respuesta, int k);
         List<Lobby> partidas = new List<Lobby>();
         List<Mano> manos = new List<Mano>();
+
+
 
         public Inicio()
         {
@@ -133,16 +138,16 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void crearPartida(int IdPartida, int numParticipantes)
+        public void crearPartida(int IdPartida, int numParticipantes, string nombre)
         {     
-            Lobby lobby = new Lobby(IdPartida,server,numParticipantes);
+            Lobby lobby = new Lobby(IdPartida,server,numParticipantes, nombre);
             partidas.Add(lobby);
             lobby.ShowDialog();
         }
 
-        public void crearMano(int[] IdCarta, int numcartas)
+        public void crearMano(int[] IdCarta, int numcartas, int ID_Partida, int numjugadores)
         {
-            Mano mano = new Mano(IdCarta, server, numcartas);
+            Mano mano = new Mano(IdCarta, server, numcartas, ID_Partida, numjugadores);
             manos.Add(mano);
             mano.ShowDialog();
         }
@@ -195,6 +200,7 @@ namespace WindowsFormsApplication1
                             }
                             else if (mensaje == "err2") // Si ya se ha iniciado sesión con esa cuenta
                             {
+                                 A = 0;
                                  MessageBox.Show("Este usuario ya ha iniciado sesion");
                                  server.Shutdown(SocketShutdown.Both);
                                  server.Close();
@@ -211,16 +217,30 @@ namespace WindowsFormsApplication1
                             }
                             break;
                         case 3:
-                            mensaje = respuesta[1];
-                            MessageBox.Show(N + " tiene " + mensaje + " puntos");
-                            break;
+                              mensaje = respuesta[1];
+                              if (mensaje == "err3") // Error al eliminar un usuario inexistente
+                              {
+                              A = 0;
+                              MessageBox.Show("Este usuario no existe!");
+                              server.Shutdown(SocketShutdown.Both);
+                              server.Close();
+                              atender.Abort();
+                              }
+                              else
+                              {
+                                 MessageBox.Show(mensaje + " se ha dado de baja correctamente");
+                              }
+                             break;
                         case 4:
-                            mensaje = respuesta[1];
-                            MessageBox.Show(N + " tiene " + mensaje + " cartas");
+                             mensaje = respuesta[1];
+                             DelegadoRegistrarVisible delegadoModificarPeticion2 = new DelegadoRegistrarVisible(Peticion2);
+                                peticion2Lbl.Invoke(delegadoModificarPeticion2, new object[] { mensaje });
                             break;
                         case 5:
-                            mensaje = respuesta[1];
-                            MessageBox.Show(N + " tiene " + mensaje + " puntos");
+                                mensaje = respuesta[1];
+                                DelegadoRegistrarVisible delegadoModificarPeticion = new DelegadoRegistrarVisible(Peticion1);
+                                peticion1Lbl.Invoke(delegadoModificarPeticion, new object[] { mensaje });
+
                             break;
                         case 6:
                             //ListaConectados.Rows.Clear();
@@ -247,8 +267,9 @@ namespace WindowsFormsApplication1
                         case 8:
                             IdPartida = Convert.ToInt32(respuesta[1]);
                             int numParticipantes = Convert.ToInt32(respuesta[2]);
-                            ThreadStart ts = delegate { crearPartida(IdPartida,numParticipantes); };
-                            Thread T = new Thread(ts);
+                            string nombre = respuesta[3];
+                            ThreadStart ts = delegate { crearPartida(IdPartida,numParticipantes, nombre); };
+                            T = new Thread(ts);
                             T.Start();
                             break;
                         case 9:
@@ -259,22 +280,65 @@ namespace WindowsFormsApplication1
                             MessageBox.Show("La partida esta llena");
                             break;
                         case 11:
+                            IdPartida = Convert.ToInt32(respuesta[1]);
+                            partidas[IdPartida].configurarPartida(Convert.ToInt32(respuesta[2]));
+                            break;
+                        case 12:
                         //Recibimos la ID de las cartas repartidas
-                            int numCartas = Convert.ToInt32(respuesta[1]);
-                            int[] IdCarta = new int[10];
-                            int n = 0;
-                            int m = 2; 
-                        while (n<numCartas)
-                            {
-                            IdCarta[n] = Convert.ToInt32(respuesta[m]);
-                            n++;
-                            m++;
-                            }
-                            ts = delegate { crearMano(IdCarta,numCartas); };
-                            T = new Thread(ts);
-                            T.Start();
+                            IdPartida = Convert.ToInt32(respuesta[1]);
+                            int numjugadores = Convert.ToInt32(respuesta[2]);
+                            int numCartas = Convert.ToInt32(respuesta[3]);
+                            
+                                int[] IdCarta = new int[10];
+                                int n = 0;
+                                int m = 4;
+                                while (n < numCartas)
+                                {
+                                    IdCarta[n] = Convert.ToInt32(respuesta[m]);
+                                    n++;
+                                    m++;
+                                }
+                                if (numCartas != 0)
+                                {
+                                    ts = delegate { crearMano(IdCarta, numCartas, IdPartida, numjugadores); };
+                                    T = new Thread(ts);
+                                    T.Start();
+                                    SoundPlayer simpleSound = new SoundPlayer(@"repartir.wav");
+                                    simpleSound.Play();
+                        }
+                                else {
+                                        partidas[IdPartida].AsignarPuntuacionRonda(numjugadores);
+                                     }
+                                    
+                              
+                            
+                            break;
+                        case 13:
+                        
+                        IdPartida = Convert.ToInt32(respuesta[1]);
+                    
+                        partidas[IdPartida].tomaRespuesta(respuesta);
+                        
+                            break;
+                        case 14:
 
+                            IdPartida = Convert.ToInt32(respuesta[1]);
+                        partidas[IdPartida].tomaRespuesta(respuesta);
                         break;
+
+                        case 15:
+                            IdPartida = Convert.ToInt32(respuesta[1]);
+                            partidas[IdPartida].VaciarTabla();
+                        break;
+                        case 16:
+                        IdPartida = Convert.ToInt32(respuesta[1]);
+                        partidas[IdPartida].EscribirPuntuacion(respuesta);
+                        break;
+                        case 17:
+                            IdPartida = Convert.ToInt32(respuesta[1]);
+                    
+                            partidas[IdPartida].tomaRespuesta(respuesta);
+                           break;
 
                         default:
                             break;
@@ -291,7 +355,9 @@ namespace WindowsFormsApplication1
             }
             ActivarBoton(sender, RGBColors.color2);
             lblName.Visible = true;
+            sushi.Visible = false;
             lblName.Enabled = true;
+            peticion1Lbl.Visible = false;
             lblContrasena.Visible = true;
             lblContrasena.Enabled = true;
             txtnombre.Visible = true;
@@ -304,20 +370,16 @@ namespace WindowsFormsApplication1
             btnRegistrarse.Enabled = true;
             Desconectarbtn.Visible = true;
             Desconectarbtn.Enabled = true;
-            puntuaciontotal.Visible = false;
-            puntuaciontotal.Enabled = false;
-            PuntuacionRonda.Visible = false;
-            PuntuacionRonda.Enabled = false;
-            NumeroCartasMano.Visible = false;
-            NumeroCartasMano.Enabled = false;
-            btnEnviar.Visible = false;
-            btnEnviar.Enabled = false;
             ListaConectados.Visible = true;
+            ListaConectados.Enabled = true;
             invitarbtn.Visible = true;
+            peticion2Lbl.Visible = false; 
             invitarbtn.Enabled = true;
             nombrePerfilLbl.Visible = false;
             nombrePerfilLbl.Enabled = false;
-            lblTitleChildForm.Text = "Iniciar Sesión / Registrarse";
+            darseDeBajaBtn.Visible = true;
+            darseDeBajaBtn.Enabled = true;
+            lblTitleChildForm.Text = "Iniciar Sesión";
             if (currentChildForm != null)
             {
                 currentChildForm.Close();
@@ -334,6 +396,7 @@ namespace WindowsFormsApplication1
             }
             ActivarBoton(sender, RGBColors.color3);
             lblName.Visible = false;
+            sushi.Visible = false;
             lblName.Enabled = false;
             lblContrasena.Visible = false;
             lblContrasena.Enabled = false;
@@ -347,23 +410,23 @@ namespace WindowsFormsApplication1
             btnRegistrarse.Enabled = false;
             Desconectarbtn.Visible = false;
             Desconectarbtn.Enabled = false;
-            puntuaciontotal.Visible = true;
-            puntuaciontotal.Enabled = true;
-            PuntuacionRonda.Visible = true;
-            PuntuacionRonda.Enabled = true;
-            NumeroCartasMano.Visible = true;
-            NumeroCartasMano.Enabled = true;
-            btnEnviar.Visible = true;
-            btnEnviar.Enabled = true;
             ListaConectados.Visible = false;
             invitarbtn.Visible = false;
             invitarbtn.Enabled = false;
             nombrePerfilLbl.Visible = true;
             nombrePerfilLbl.Enabled = true;
+            darseDeBajaBtn.Visible = false;
+            darseDeBajaBtn.Enabled = false;
             lblTitleChildForm.Text = "Perfil";
             if (currentChildForm != null)
             {
                 currentChildForm.Close();
+            }
+            if (A == 1)
+            {
+                string mensaje = "5/" + N;
+                byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+                server.Send(msg);
             }
 
         }
@@ -398,12 +461,16 @@ namespace WindowsFormsApplication1
         private void Reset()
         {
             DesactivarBoton();
+            sushi.Visible = true;
             leftBorderBtn.Visible = false;
+            peticion1Lbl.Visible = false;
+            peticion2Lbl.Visible = false;
             iconCurrentChildForm.IconChar = IconChar.Home;
             iconCurrentChildForm.IconColor = Color.White;
             lblTitleChildForm.Text = "Inicio";
             lblTitleChildForm.ForeColor = Color.White;
             lblName.Visible = false;
+            nombrePerfilLbl.Visible = false;
             lblName.Enabled = false;
             lblContrasena.Visible = false;
             lblContrasena.Enabled = false;
@@ -417,18 +484,12 @@ namespace WindowsFormsApplication1
             btnRegistrarse.Enabled = false;
             Desconectarbtn.Visible = false;
             Desconectarbtn.Enabled = false;
-            puntuaciontotal.Visible = false;
-            puntuaciontotal.Enabled = false;
-            PuntuacionRonda.Visible = false;
-            PuntuacionRonda.Enabled = false;
-            NumeroCartasMano.Visible = false;
-            NumeroCartasMano.Enabled = false;
-            btnEnviar.Visible = false;
-            btnEnviar.Enabled = false;
             ListaConectados.Visible = false;
             ListaConectados.Enabled = false;
             invitarbtn.Visible = false;
             invitarbtn.Enabled = false;
+            darseDeBajaBtn.Visible = false;
+            darseDeBajaBtn.Enabled = false;
         }
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -459,6 +520,11 @@ namespace WindowsFormsApplication1
                 atender.Abort();
                 A = 0;
                 btnRegistrarse.Visible = true;
+                sushi.Visible = false;
+                btnIniciarSesion.Visible = true;
+                darseDeBajaBtn.Visible = true;
+                peticion1Lbl.Visible = false;
+                peticion2Lbl.Visible = false;
             }
             else
             {
@@ -490,7 +556,7 @@ namespace WindowsFormsApplication1
                         //al que deseamos conectarnos
                         //IP de shiva: 147.83.117.22
                         //IP Ubuntu: 192.168.56.102 
-                        IPAddress direc = IPAddress.Parse("192.168.56.102");
+                        IPAddress direc = IPAddress.Parse("147.83.117.22");
                         IPEndPoint ipep = new IPEndPoint(direc, 50079);
 
 
@@ -528,13 +594,13 @@ namespace WindowsFormsApplication1
                     else
                         MessageBox.Show("Ya has iniciado una sesión debes desconectarte primero.");
                 }
-            }
+        }
 
-            private void btnRegistrarse_Click(object sender, EventArgs e)
+        private void btnRegistrarse_Click(object sender, EventArgs e)
         {
                 //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
                 //al que deseamos conectarnos
-                IPAddress direc = IPAddress.Parse("192.168.56.102");
+                IPAddress direc = IPAddress.Parse("147.83.117.22");
                 IPEndPoint ipep = new IPEndPoint(direc, 50079);
 
 
@@ -579,6 +645,8 @@ namespace WindowsFormsApplication1
                 atender.Abort();
                 A = 0;
                 btnRegistrarse.Visible = true;
+                darseDeBajaBtn.Visible = true;
+                btnIniciarSesion.Visible = true;
             }
             else
             {
@@ -586,36 +654,6 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void btnEnviar_Click(object sender, EventArgs e)
-        {
-            if (A == 1)
-            {
-
-                if (PuntuacionRonda.Checked)
-                {
-                    string mensaje = "3/" + N;
-                    // Enviamos al servidor el nombre tecleado
-                    byte[] msg = Encoding.ASCII.GetBytes(mensaje);
-                    server.Send(msg);
-                }
-                else if (NumeroCartasMano.Checked)
-                {
-                    string mensaje = "4/" + N;
-                    // Enviamos al servidor el nombre tecleado
-                    byte[] msg = Encoding.ASCII.GetBytes(mensaje);
-                    server.Send(msg);
-                }
-                else if (puntuaciontotal.Checked)
-                {
-                    string mensaje = "5/" + N;
-                    // Enviamos al servidor el nombre tecleado
-                    byte[] msg = Encoding.ASCII.GetBytes(mensaje);
-                    server.Send(msg);
-                }
-            }
-            else
-                MessageBox.Show("No has iniciado sesión!");
-        }
         StringBuilder sb = new StringBuilder();
 
         private void invitarbtn_Click(object sender, EventArgs e)
@@ -626,25 +664,72 @@ namespace WindowsFormsApplication1
             sb.Append("6/" + N + "/");
             foreach (DataGridViewCell item in ListaConectados.SelectedCells)
             {
-                numParticipantes++;
+                if (item.Value.ToString() != N)
+                {
+                    numParticipantes++;
+                }
             }
             sb.Append(numParticipantes + "/");
             foreach (DataGridViewCell item in ListaConectados.SelectedCells)
             {
-                sb.Append(item.Value.ToString()+"/");
+                if (item.Value.ToString() != N)
+                {
+                    sb.Append(item.Value.ToString() + "/");
+                }
             }
             
             mensaje = sb.ToString();
             byte[] msg = Encoding.ASCII.GetBytes(mensaje);
             server.Send(msg);
 
-           
         }
         private void PonInvisible(string btn)
         {
             if (btn == "btnRegistrarse")
                 btnRegistrarse.Visible = false;
+                darseDeBajaBtn.Visible = false;
+                btnIniciarSesion.Visible = false;
         }
+
+        private void darseDeBajaBtn_Click(object sender, EventArgs e)
+        {
+            //Creamos un IPEndPoint con el ip del servidor y puerto del servidor 
+            //al que deseamos conectarnos
+            IPAddress direc = IPAddress.Parse("147.83.117.22");
+            IPEndPoint ipep = new IPEndPoint(direc, 50079);
+
+            //Creamos el socket 
+            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            try
+            {
+                server.Connect(ipep);//Intentamos conectar el socket     
+            }
+            catch (SocketException ex)
+            {
+                //Si hay excepcion imprimimos error y salimos del programa con return 
+                return;
+            }
+            ThreadStart ts = delegate { AtenderServidor(); };
+            atender = new Thread(ts);
+            atender.Start();
+
+            string mensaje = "3/" + txtnombre.Text + "/" + txtcontrasena.Text;
+            // Enviamos al servidor el nombre tecleado
+            byte[] msg = Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+        }
+
+        public void Peticion1(string mensaje)
+        {
+            peticion1Lbl.Visible = true;
+            peticion1Lbl.Text = "Partidas ganadas: " + mensaje;
+        }
+        public void Peticion2(string mensaje)
+        {
+            peticion2Lbl.Visible = true;
+            peticion2Lbl.Text = "Partidas jugadas: " + mensaje;
+        }
+
 
     }
 }

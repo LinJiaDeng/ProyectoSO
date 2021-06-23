@@ -42,6 +42,8 @@ namespace WindowsFormsApplication1.Forms
         }
         private void Jugar_Load(object sender, EventArgs e)
         {
+            pictureBox1.ImageLocation = "Portada.jpg";
+            pictureBox2.ImageLocation = "Instrucciones.jpg";
             //Organizamos todos los PictureBox en la matriz PictureBoxCartas
             PictureBoxCartas[0, 0] = Carta1;
             PictureBoxCartas[0, 1] = Carta2;
@@ -102,7 +104,7 @@ namespace WindowsFormsApplication1.Forms
                         break;
 
                     case "8":
-                        numrand = "Palillos";
+                        numrand = "Tofu";
                         break;
 
                     case "9":
@@ -146,6 +148,15 @@ namespace WindowsFormsApplication1.Forms
 
         private void Jugar_Load_1(object sender, EventArgs e)
         {
+            pictureBox2.ImageLocation = "Portada.jpg";
+            pictureBox1.ImageLocation = "Instrucciones.jpg";
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            Instrucciones instrucciones = new Instrucciones();
+            instrucciones.ShowDialog();
+
 
         }
 

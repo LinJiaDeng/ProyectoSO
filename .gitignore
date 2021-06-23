@@ -1,3 +1,4 @@
+
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,c
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,c
 
@@ -82,7 +83,6 @@ mono_crash.*
 [Rr]eleases/
 x64/
 x86/
-[Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
 [Aa][Rr][Mm]64/
 bld/
@@ -120,9 +120,6 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
-
-# ASP.NET Scaffolding
-ScaffoldingReadMe.txt
 
 # StyleCop
 StyleCopReport.xml
@@ -410,12 +407,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-
-# Fody - auto-generated XML schema
-FodyWeavers.xsd
-
-### VisualStudio Patch ###
-# Additional files built by Visual Studio
-*.tlog
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudio,c

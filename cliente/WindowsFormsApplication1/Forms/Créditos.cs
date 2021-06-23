@@ -14,6 +14,7 @@ namespace WindowsFormsApplication1.Forms
         public Créditos()
         {
             InitializeComponent();
+            foto.ImageLocation = "Creditos.jpg";
         }
     }
 }
