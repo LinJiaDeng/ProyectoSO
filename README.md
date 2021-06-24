@@ -8,6 +8,8 @@ Versión FINAL:
 
 Video TRAILER:
 
+https://youtu.be/f14UcSuP26Q
+
 disponible 25/06
 
 -------------------------------------------------------------------
