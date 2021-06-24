@@ -1,5 +1,17 @@
 # ProyectoSO
 
+Versión FINAL:
+
+1. Manager Pau Ruiz
+2. Verificador Jiadeng Lin
+3. Comunicador Guillem Pacheco
+
+Video TRAILER:
+
+disponible 25/06
+
+-------------------------------------------------------------------
+
 Versión 5:
 
 1. Manager Guillem Pacheco
