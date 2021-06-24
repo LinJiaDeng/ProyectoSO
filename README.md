@@ -3,8 +3,8 @@
 Versión FINAL:
 
 1. Manager Pau Ruiz
-2. Verificador Jiadeng Lin
-3. Comunicador Guillem Pacheco
+2. Verificador Guillem Pacheco
+3. Comunicador  Jiadeng Lin
 
 Video TRAILER:
 
